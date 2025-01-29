@@ -1,0 +1,26 @@
+@use 'core/reset';
+
+@font-face {
+  font-family: "Peppino";
+  src:
+    url("/NotoSerif-Variable.ttf") format("TrueType");
+}
+
+body {
+  background-color: darkcyan;
+}
+
+div {
+  h1 {
+    color: white;
+    font-family: 'Peppino';
+  }
+}
+
+.main_image {
+  border: solid 1px black;
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  background-image: url('../images/JavaScript-logo.png');
+  background-size: cover;
+}
