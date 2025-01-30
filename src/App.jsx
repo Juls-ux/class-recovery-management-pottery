@@ -1,47 +1,34 @@
-import ImagenFrontend from './images/frontend.webp';
+import ImagenFrontend from './images/cabecera-mobile.jpg';
+
+
 import './styles/App.scss'
 
-function traducir(mensaje, idioma) {
-  if( idioma === 'en') {
-    if( mensaje === 'Hola') {
-      return 'Hello'
-    }
-    else if( mensaje === 'Registrate') {
-      return 'Sign in'
-    }
-  }
-  else if( idioma === 'ro' ) {
-    if( mensaje === 'Hola') {
-      return 'Hello'
-    }
-    else if( mensaje === 'Registrate') {
-      return 'Sign in'
-    }
-  }
-  return mensaje;
-}
+
 
 
 function App() {
 
-  const textoSaludo = traducir('Hola', 'es');
-
-  const titleText = 'Título';
-
-  const header = <header>
-    <h1>Este es el título del Header</h1>
-  </header>;
-
   return (
-    <div>
-      {header}
-      <h1>{titleText}</h1>
-      <p>Párrafo</p>
-      <p>{  traducir('Registrate', 'en')  }</p>
-      <img src={ImagenFrontend} alt="Dibujo de una pantalla con un pincel" />
+    
+    <div>   
+      <section className='header-section'> 
+      <h1 className='header-section__h1'>
+      ¡ENHORABUENA!
+      </h1>
+      <p className='header-section__parrafo'>Ya eres alumna de Rotas Ceramica</p>
+      <img src="src/images/logo-paq-2.png" alt="logo-ceramica" />
+      <section className='login-section'>
+        <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
+        <input className='login-section__user-data' type="text" />
+        <input className='login-section__user-data' type="text" />
+        <input className='login-section__login-btn' type='submit' />
+      
+      </section>
+      </section>
 
-      <div className="main_image"></div>
+   
     </div>
+
   )
 }
 
