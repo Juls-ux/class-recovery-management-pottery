@@ -10,7 +10,7 @@
 :root {
   font-family: "Raleway", serif;
   font-optical-sizing: auto;
-  font-weight:400;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -20,6 +20,7 @@ body {
   background-size: cover;
   background-position: center;
 }
+
 @media screen and (min-width: 1024px) {
   body {
     background-image: url(../images/cabecera-desktop.jpg);
@@ -34,7 +35,7 @@ body {
   text-align: center;
   height: 100vh;
 
-  &__h1{
+  &__h1 {
     font-size: 40px;
     margin-bottom: 20px;
   }
@@ -58,18 +59,21 @@ body {
   align-items: center;
   text-align: center;
   gap: 14px;
-  &__parrafo{
+
+  &__parrafo {
     font-size: 20px;
     color: #707070;
     margin-bottom: 20px;
   }
 
-  &__user-data{
+  &__user-data {
     width: 250px;
     height: 40px;
     border-radius: 10px;
-    border: 1px solid #ccc; /* Borda sutil */
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066); /* Sombra negra padrão */
+    border: 1px solid #ccc;
+    /* Borda sutil */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
+    /* Sombra negra padrão */
     padding: 5px;
     font-size: 14px;
     color: #707070;
@@ -78,16 +82,18 @@ body {
     text-align: center;
   }
 
-  &__login-btn{
+  &__login-btn {
     margin-top: 20px;
     width: 250px;
     height: 50px;
     border-radius: 10px;
     background-color: #ADB2E9;
     color: white;
-  
-    border: 1px solid #ccc; /* Borda sutil */
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066); /* Sombra negra padrão */
+
+    border: 1px solid #ccc;
+    /* Borda sutil */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
+    /* Sombra negra padrão */
     padding: 5px;
     font-size: 14px;
     outline: none;
@@ -97,3 +103,13 @@ body {
   }
 }
 
+.enlaces-temporales {
+ 
+  color: black;
+
+  font-size: 24px;
+  margin-block: 10px;
+  font-weight: 600;
+  width: 250px;
+  height: 30px;
+}

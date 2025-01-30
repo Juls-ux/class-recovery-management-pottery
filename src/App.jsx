@@ -29,6 +29,8 @@ function App() {
         <input className='login-section__login-btn' type='submit'  />
       
       </section>
+      <a  className="enlaces-temporales" href="perfil-alumnas">Perfil alumnas</a>
+      <a className="enlaces-temporales"  href="calendario">Calendario</a>
       </section>
 
    
