@@ -19,9 +19,14 @@ function App() {
       <img src="src/images/logo-paq-2.png" alt="logo-ceramica" />
       <section className='login-section'>
         <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
-        <input className='login-section__user-data' type="text" />
-        <input className='login-section__user-data' type="text" />
-        <input className='login-section__login-btn' type='submit' />
+
+        <label htmlFor="nombre">Nombre:</label>
+        <input className='login-section__user-data' type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre"/>
+
+        <label htmlFor="passwort">Contraseña:</label>
+        <input className='login-section__user-data' type="text"id="passwort" name="passwort" placeholder="Ingresa tu contraseña" />
+
+        <input className='login-section__login-btn' type='submit'  />
       
       </section>
       </section>
