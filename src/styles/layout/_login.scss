@@ -1,0 +1,126 @@
+
+
+.login {
+    height: 100vh;
+    background-image: url('../images/cabecera-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+  }
+  @media screen and (min-width: 1024px) {
+    .login {
+      background-image: url('../images/cabecera-desktop.jpg');
+    }
+  }
+  
+  .header-section {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    &__h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+  
+    &__parrafo {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+  }
+  
+  
+  .login-section {
+    background-color: rgba(255, 255, 255, 0.77);
+    border-radius: 10px;
+    padding: 35px;
+    margin-block: 40px;
+    margin-inline: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  
+  
+    &__parrafo {
+      font-size: 20px;
+      color: #707070;
+      margin-bottom: 20px;
+    }
+  
+    &__user-data {
+      width: 250px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      /* Borda sutil */
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
+      /* Sombra negra padrão */
+      padding: 5px;
+      font-size: 14px;
+      color: #707070;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+    }
+  
+    &__login-btn {
+      margin-top: 20px;
+      width: 250px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: #ADB2E9;
+      color: white;
+  
+      border: 1px solid #ccc;
+      /* Borda sutil */
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
+      /* Sombra negra padrão */
+      padding: 5px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+      font-size: 19px;
+      font-weight: 600;
+    }
+  }
+  
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+  }
+  .enlaces-temporales {
+   
+    color: black;
+  
+    font-size: 24px;
+    margin-block: 10px;
+    font-weight: 600;
+    width: 250px;
+    height: 30px;
+  }
+  
+  
+  
+  @media screen and (min-width: 716px) {
+    .login-section {
+      padding: 50px;
+      margin-inline:50px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .login-section {
+      padding: 50px;
+      margin-inline: 300px;
+    }
+  }
