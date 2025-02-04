@@ -1,10 +1,15 @@
-function Alumnas(){
-    
-    return(
-    <div>
-    <h1>hola
+import Header from "../layout/Header";
 
-    </h1></div>
+function Alumnas(){
+
+    return(
+        
+        <div>
+        <Header /> {}
+        <h1>👩‍🎓 Página de Alumnas</h1>
+        <p>Bienvenida a la sección de alumnas.</p>
+      </div>
+    
 
     )
 }

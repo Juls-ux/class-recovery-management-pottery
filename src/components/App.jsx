@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Routes, Route } from 'react-router';
+import Header from './layout/Header';
 import Home from './pages/Home';
 import Alumnas from './pages/Alumnas';
 import Enlaces from './layout/enlaces';

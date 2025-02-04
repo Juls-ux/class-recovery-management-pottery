@@ -97,12 +97,16 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    list-style: none;
+    list-style: none;
     
   }
   .enlaces-temporales {
    
     color: black;
-  
+    list-style: none;
+    text-decoration: none;
+
     font-size: 24px;
     margin-block: 10px;
     font-weight: 600;
