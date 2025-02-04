@@ -5,7 +5,7 @@ function Enlaces() {
 
     return (<>
         <div className="footer">
-            <ul>
+            <ul className="footerNav">
                 <li> <Link className="enlaces-temporales" to="Index"> Login</Link> </li>
                 <li> <Link className="enlaces-temporales" to="Alumnas"> Perfil alumnas</Link> </li>
                 <li>  <Link className="enlaces-temporales" to="Calendario"> Calendario</Link> </li>
