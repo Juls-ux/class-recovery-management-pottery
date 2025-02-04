@@ -1,0 +1,19 @@
+.Calenderhero {
+    background-image: url('../images/hero-calendario.jpg');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+    height: 200px;
+
+    &__h1 {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        color: white;
+        font-size: 50px;
+
+    }
+
+}
