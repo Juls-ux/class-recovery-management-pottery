@@ -4,7 +4,7 @@ import { Link } from "react-router";
 function Header() {
     return (
       <header>
-        <ul>
+        <ul className="nav-menu" >
           <li>
             <Link className="nav-link" to="/alumnas">Mi perfil</Link>
           </li>

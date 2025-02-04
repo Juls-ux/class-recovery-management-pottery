@@ -1,0 +1,38 @@
+.hero {
+    background-image: url('../images/hero-alumnas.jpg');
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+    height: 200px;
+
+    &__h1 {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        color: white;
+        font-size: 50px;
+
+    }
+
+}
+
+.alumnas {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__avatar {
+        width: 150px;
+
+
+    }
+
+    &__h2 {
+        color: #2F2F2F;
+        font-size: 14;
+        margin-top: 20px;
+    }
+}

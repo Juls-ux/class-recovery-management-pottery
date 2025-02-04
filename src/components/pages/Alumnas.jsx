@@ -1,4 +1,8 @@
+
 import Header from "../layout/Header";
+import heroAlumnas from "../../images/hero-alumnas.jpg";
+import avatar from "../../images/avatar-alumnas.jpg";
+
 
 function Alumnas(){
 
@@ -6,8 +10,16 @@ function Alumnas(){
         
         <div>
         <Header /> {}
-        <h1>👩‍🎓 Página de Alumnas</h1>
-        <p>Bienvenida a la sección de alumnas.</p>
+        <div className="hero">
+            <h1 className="hero__h1">Hola Paquita!</h1>
+
+        </div>
+
+        <div className="alumnas">
+       <img className="alumnas__avatar" src={avatar}alt="avatar-alumnas" />
+        <h2 className="alumnas__h2">Paquita Salas</h2>
+        </div>
+
       </div>
     
 
