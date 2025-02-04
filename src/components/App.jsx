@@ -10,11 +10,9 @@ import '../styles/App.scss'
 function App() {  
   return (
     <main>
-      <div><Home>
-        </Home></div>
 
       <Routes>
-        <Route path='Login' element={<section> <h3>Login</h3></section>}>  </Route>
+      <Route path="/" element={<Home />} />
         <Route path='Alumnas' element={<Alumnas />}> </Route>
 
       </Routes>
