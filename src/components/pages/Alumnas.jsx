@@ -50,7 +50,13 @@ function Alumnas(){
                     <label  className="userData__label"htmlFor="">Contraseña</label>
                     <input  className="userData__input" type="text" value="xxxxxxx"/>
                 </li>
+                <button className="btn">
+                Guardar datos
+            </button>
             </ul>
+          
+
+
         </div>
 
       </div>

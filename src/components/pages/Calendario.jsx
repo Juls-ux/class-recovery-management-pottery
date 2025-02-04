@@ -38,6 +38,9 @@ function Calendario(){
 
         <section className="horario">
             <h2 className="horario__h2">Hora</h2>
+            <button className="btn">
+                Solicitar
+            </button>
         </section>
         </div>
         
