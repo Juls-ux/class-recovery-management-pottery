@@ -1,6 +1,9 @@
 
 import Header from "../layout/Header";
 
+import EditIcon from "../../images/edit-icon.svg";
+import DeletIcon from "../../images/delet-icon.svg";
+
 function GestionAlumnas() {
     return (
 
@@ -17,22 +20,45 @@ function GestionAlumnas() {
             </div>
 
 
-            <section>
-                <label htmlFor="">Nombre</label>
-                <input type="text" value="Paquita Salas" />
+            <section className="listado">
+                <ul className="listado__ul">
 
-                <label htmlFor="">E-Mail</label>
-                <input type="text" value="ps-management@gmail.com" />
+                    <li className="listado__li">
+                        <label className="listado__label" htmlFor="">Nombre</label>
+                        <input className="listado__input" type="text" value="Paquita Salas" />
+                    </li>
 
-                <label htmlFor="">Telefono</label>
-                <input type="text" value="73534536" />
+                    <li className="listado__li">
+                        <label className="listado__label" htmlFor="">E-Mail</label>
+                        <input className="listado__input" type="text" value="ps-management@gmail.com" />
+
+                    </li>
+
+                    <li className="listado__li">
+                       <label className="listado__label" htmlFor="">Telefono</label>
+                        <input className="listado__input" type="text" value="73534536" />
+                    </li>
+
+                    <li className="listado__li">
+
+                        <label className="listado__label" htmlFor="">Día</label>
+                        <input className="listado__input" type="text" value="Lunes" />
+                    </li>
+                    <li className="listado__li">
+
+                        <label className="listado__label" htmlFor="">hora</label>
+                        <input className="listado__input" type="text" value="17:00-19:00" />
+                    </li>
+
+                    <li><img className="listado__iconEdit" src={EditIcon}alt="icono editar"/></li>
+                    <li><img className="listado__iconDelet" src={DeletIcon}alt="icono "/></li>
+                </ul>
 
 
-                <label htmlFor="">Día</label>
-                <input type="text" value="Lunes" />
 
-                <label htmlFor="">hora</label>
-                <input type="text" value="17:00-19:00" />
+
+
+
 
             </section>
 

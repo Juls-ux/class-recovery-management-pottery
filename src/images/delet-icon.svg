@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.941" height="21.941" viewBox="0 0 21.941 21.941">
+  <g id="Grupo_120" data-name="Grupo 120" transform="translate(0)">
+    <path id="bottom-arrow" d="M0,10.971A10.97,10.97,0,1,0,10.97,0,10.97,10.97,0,0,0,0,10.971Z" transform="translate(21.941) rotate(90)" fill="red"/>
+    <line id="Línea_15" data-name="Línea 15" x2="8" y2="8" transform="translate(6.971 6.97)" fill="none" stroke="#fbfbfb" stroke-linecap="round" stroke-width="1"/>
+    <line id="Línea_16" data-name="Línea 16" x1="8" y2="8" transform="translate(6.971 6.97)" fill="none" stroke="#fbfbfb" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

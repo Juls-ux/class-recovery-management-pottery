@@ -4,7 +4,7 @@
         align-items: center;
         flex-direction: column;
         color: #2F2F2F;
-        margin-block: 100px;
+        margin-top: 100px;
 
     
         &__sectionbtn{
@@ -36,5 +36,35 @@
 .btn-admin {
     color: white;
     background-color: #FC9A7C;
+}
+
+.listado{
+    padding-inline: 50px;
+
+    &__ul{
+        display: flex;
+        text-decoration: none;
+        list-style: none;
+        gap: 30px;
+          border-bottom: 1px solid #ccc;
+    }
+    &__li{
+        gap: 30px;
+   
+   
+    
+        margin-block: 24px;
+    }
+    &__label{
+        font-weight: 800;
+    }
+
+    &__input{
+
+    border: none;
+  
+    }
+
+ 
 }
 
