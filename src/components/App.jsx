@@ -1,29 +1,26 @@
 import { useState } from 'react'
+
+import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
 import Alumnas from './pages/Alumnas';
 import Enlaces from './layout/enlaces';
-import {Routes, Route} from 'react-router';
 import '../styles/App.scss'
 
 
-function App() {
-
-
+function App() {  
   return (
     <main>
-      <div><Home></Home></div>
+      <div><Home>
+        </Home></div>
 
       <Routes>
         <Route path='Login' element={<section> <h3>Login</h3></section>}>  </Route>
-        <Route path='Alumnas' element={<Alumnas/>}> </Route>
-      
-      </Routes>
-    <div>   
-      
+        <Route path='Alumnas' element={<Alumnas />}> </Route>
 
-      <div><Enlaces></Enlaces>
-        </div>  
-    </div>
+      </Routes>
+      <div>
+         <div><Enlaces></Enlaces></div>
+      </div>
     </main>
 
 
