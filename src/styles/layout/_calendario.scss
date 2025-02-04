@@ -6,6 +6,7 @@
     background-position: center;
     padding-top: 100px;
     height: 200px;
+    margin-bottom: 50px;
 
     &__h1 {
         text-align: center;
@@ -16,4 +17,60 @@
 
     }
 
+}
+
+.InfoSec{
+    margin-inline: 30px;
+
+    &__ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+   ;
+    }
+
+    &__li{
+        display: flex;
+        flex-direction: row;
+                gap: 15px         ;
+                margin-block:14px;
+    }
+    &__btn1, &__btn2, &__btn3, &__btn4{
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+    }
+
+    &__btn1{
+        background-color: #707070;
+        border: #707070;
+    }
+    &__btn2{
+        background-color:#B0F523;
+        border: #B0F523;
+    }
+    &__btn3{
+        background-color: #F57EA7;
+        border: #F57EA7;
+    }
+    &__btn4{
+        background-color: #FAFA1B;
+        border: #FAFA1B;
+    }
+
+
+}
+
+.horario{
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__h2 {
+        color: #2F2F2F;
+        font-size: 14;
+        margin-top: 20px;
+        margin-bottom: 14px;
+        color: #2F2F2F;
+    }
 }
