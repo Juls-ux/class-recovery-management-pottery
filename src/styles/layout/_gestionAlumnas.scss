@@ -1,0 +1,40 @@
+.title {
+        margin: 30px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: #2F2F2F;
+        margin-block: 100px;
+
+    
+        &__sectionbtn{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 30px;
+            margin-block:50px;
+         
+        }
+}
+.addInput, .btn-admin {
+    padding-block: 15px;
+    text-align: center;
+    padding-inline: 20px;
+    font-size: 18;
+    font-weight: 600
+    ;
+    border:transparent;
+    border-radius: 15px;
+    
+}
+
+.addInput{
+    color: white;
+    background-color: #ADB2E9;
+}
+
+.btn-admin {
+    color: white;
+    background-color: #FC9A7C;
+}
+

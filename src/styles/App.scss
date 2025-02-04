@@ -3,6 +3,7 @@
 @use 'layout/header';
 @use 'layout/login';
 @use 'layout/alumnas';
+@use 'layout/gestionAlumnas';
 @use 'layout/calendario';
 @use 'layout/footer';
 
@@ -17,6 +18,7 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  color: #2F2F2F;
 }
 
 body{

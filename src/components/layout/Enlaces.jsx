@@ -8,8 +8,8 @@ function Enlaces() {
             <ul className="footerNav">
                 <li> <Link className="enlaces-temporales" to="Home"> Home</Link> </li>
                 <li> <Link className="enlaces-temporales" to="Alumnas"> Perfil alumnas</Link> </li>
-                <li>  <Link className="enlaces-temporales" to="Calendario"> Calendario</Link> </li>
-            </ul>
+                <li>  <Link className="enlaces-temporales" to="Calendario"> Calendario Alumnas</Link> </li>
+                <li>  <Link className="enlaces-temporales" to="GestionAlumnas"> Gestion de Alumnos</Link> </li>            </ul>
 
         </div>
     </>
