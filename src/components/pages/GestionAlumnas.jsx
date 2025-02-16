@@ -14,7 +14,7 @@ function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilte
                 <section className="title__sectionbtn">
                     <input className="addInput" type="Add" name="" id="" value="Añadir" />
                     <button className="btn-admin" >Ver Grupos Semanales</button>
-                    <input type="search" name="search" placeholder="Buscar" onInput={handlerInputFilterName} value={filterName} />
+                    <input className="search-input" type="search" name="search" placeholder="Buscar" onInput={handlerInputFilterName} value={filterName} />
                 </section>
 
             </div>

@@ -1,19 +1,35 @@
-.nav-menu {
+.header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     text-align: center;
+    padding-block: 30px;
+    padding-inline: 50px;
 
-    justify-content: end;
-    gap: 20px;
-    list-style: none;
-  
+    background-color: rgba(250, 128, 114, 0.12);
+    &__nav-menu {
+        list-style: none;
+        text-align: end;
+        align-items: end;
+    
+ 
+    }
 
- margin: 30px;
+    &__nav-link {
+        text-decoration: none;
+    
+        color: black;
+        font-size: 18px;
+    }
+
+    &__nav-logo{
+    
+    
+        width: 100px;
+       
+    
+    
+    }
 }
 
-.nav-link {
-    text-decoration: none;
 
-    color: black;
-    font-size: 18px;
-}

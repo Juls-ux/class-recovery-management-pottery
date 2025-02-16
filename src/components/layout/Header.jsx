@@ -1,18 +1,22 @@
 
 import { Link } from "react-router";
+import logoPac from '../../images/logo-paq-2.png';
 
 function Header() {
     return (
-      <header>
-        <ul className="nav-menu" >
+      <header className="header">
+        <img className="header__nav-logo" src={logoPac} alt="Logo Paquita" />
+
+        
+        <ul className="header__nav-menu" >
         <li>
-            <Link className="nav-link" to="/home">Home</Link>
+            <Link className="header__nav-link" to="/home">Home</Link>
           </li>
           <li>
-            <Link className="nav-link" to="/alumnas">Mi perfil</Link>
+            <Link className="header__nav-link" to="/alumnas">Mi perfil</Link>
           </li>
           <li>
-            <Link className="nav-link" to="/calendario">Calendario</Link>
+            <Link className="header__nav-link" to="/calendario">Calendario</Link>
           </li>
         </ul>
       </header>

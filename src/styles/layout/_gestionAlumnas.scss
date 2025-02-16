@@ -1,31 +1,42 @@
 .title {
+    &__h1{
+        text-align: center;
+    }
         margin: 30px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
         color: #2F2F2F;
         margin-top: 100px;
 
     
         &__sectionbtn{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: space-between;
             gap: 30px;
-            margin-block:50px;
+            margin-block:50px;        
+            @media screen and (min-width: 768px) {
+            flex-direction: row;
+            justify-content: center;
+        }
          
         }
+
+        @media screen and (min-width: 768px) {
+            flex-direction: row;
+        }
 }
-.addInput, .btn-admin {
+
+.addInput, .btn-admin, .search-input {
+width: 400px;
     padding-block: 15px;
     text-align: center;
     padding-inline: 20px;
     font-size: 18;
-    font-weight: 600
-    ;
+    font-weight: 600;
     border:transparent;
     border-radius: 15px;
-    
+    @media screen and (min-width: 768px) {
+            
+        }
 }
 
 .addInput{
@@ -37,12 +48,16 @@
     color: white;
     background-color: #FC9A7C;
 }
+.search-input{
+    border: solid 1px #FC9A7C;
+}
 
 .listado{
     padding-inline: 50px;
 
     &__iconEdit, &__iconDelet {
-      
+
+
     }
 
 
