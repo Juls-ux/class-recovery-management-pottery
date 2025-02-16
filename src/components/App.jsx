@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Routes, Route } from 'react-router';
-import Header from './layout/Header';
+
 import Home from './pages/Home';
 import GestionAlumnas from './pages/GestionAlumnas'
 import Alumnas from './pages/Alumnas';
@@ -11,16 +11,18 @@ import '../styles/App.scss'
 import dataJson from '../data/alumnos.json'
 
 
+
 function App() {  
 
-  const [alumnas, setAlumnas]= useState([dataJson]);
+  const [alumnas, setAlumnas]= useState(dataJson);
 
   return (
     <main>
 
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path='GestionAlumnas' element={<GestionAlumnas />}> </Route>
+      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} />} />
+
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>
 
