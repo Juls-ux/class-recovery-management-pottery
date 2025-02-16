@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import EditIcon from "../../images/edit-icon.svg";
 import DeletIcon from "../../images/delet-icon.svg";
 
@@ -36,4 +37,7 @@ function ItemAlumnas({ alumnas = [] }) {  // 👈 Valor por defecto
     );
   }
 
+  ItemAlumnas.propTypes = {
+    alumnas: PropTypes.object
+}
   export default ItemAlumnas;

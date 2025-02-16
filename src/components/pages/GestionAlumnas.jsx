@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import Header from "../layout/Header";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
@@ -29,5 +29,7 @@ function GestionAlumnas({alumnas}) {
 
     )
 }
-
+GestionAlumnas.propTypes = {
+    alumnas: PropTypes.array
+}
 export default GestionAlumnas;
