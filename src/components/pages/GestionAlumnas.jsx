@@ -3,7 +3,7 @@ import Header from "../layout/Header";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
 
-function GestionAlumnas({alumnas}) {
+function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilterName}) {
     return (
 
         <div>
@@ -14,13 +14,14 @@ function GestionAlumnas({alumnas}) {
                 <section className="title__sectionbtn">
                     <input className="addInput" type="Add" name="" id="" value="Añadir" />
                     <button className="btn-admin" >Ver Grupos Semanales</button>
+                    <input type="search" name="search" placeholder="Buscar" onInput={handlerInputFilterName} value={filterName} />
                 </section>
 
             </div>
 
 
             <section className="listado">
-                <AlumnasList alumnas={alumnas}/>
+            <AlumnasList filteredAlumnas={filteredAlumnas} />
 
             </section>
 

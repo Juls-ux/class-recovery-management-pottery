@@ -3,7 +3,7 @@ import EditIcon from "../../images/edit-icon.svg";
 import DeletIcon from "../../images/delet-icon.svg";
 
 
-function ItemAlumnas({ alumnas = [] }) {  // 👈 Valor por defecto
+function ItemAlumnas({ alumnas = []}) {  
     return (
       <ul className="listado__ul">
         {alumnas.length > 0 ? (
@@ -38,6 +38,6 @@ function ItemAlumnas({ alumnas = [] }) {  // 👈 Valor por defecto
   }
 
   ItemAlumnas.propTypes = {
-    alumnas: PropTypes.object
+    alumnas: PropTypes.array
 }
   export default ItemAlumnas;

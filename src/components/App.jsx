@@ -15,13 +15,24 @@ import dataJson from '../data/alumnos.json'
 function App() {  
 
   const [alumnas, setAlumnas]= useState(dataJson);
+  const [filterName, setFilterName]= useState('');
+
+//SECCION EVENTOS
+
+const handlerInputFilterName= (ev) => {
+ev.preventDefault();
+setFilterName(ev.target.value);
+}
+
+const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase().includes (filterName.toLocaleLowerCase() ));
+
 
   return (
     <main>
 
       <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} />} />
+      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} />} />
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>

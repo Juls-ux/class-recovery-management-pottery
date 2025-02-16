@@ -34,13 +34,7 @@
     "dia": "Martes",
     "horario": "19:00 - 21:00"
   },
-  {
-    "nombre": "Juan Pérez",
-    "email": "juan.perez@example.com",
-    "telefono": "123456789",
-    "dia": "Lunes",
-    "horario": "17:00 - 19:00"
-  },
+
   {
     "nombre": "Luis Ramírez",
     "email": "luis.ramirez@example.com",

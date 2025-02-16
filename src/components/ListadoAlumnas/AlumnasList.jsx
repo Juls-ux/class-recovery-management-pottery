@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import ItemAlumnas from "./ItemAlumnas";
 
 
-function AlumnasList({ alumnas = [] }) {  // 👈 Valor por defecto
+function AlumnasList({ filteredAlumnas }) {
     return (
 
         <>
-        <ItemAlumnas alumnas={alumnas}/>
-        </>
+            <ItemAlumnas alumnas={filteredAlumnas} />        </>
     );
-  }
+}
 
-  AlumnasList.propTypes = {
+AlumnasList.propTypes = {
     alumnas: PropTypes.array
 }
-  export default AlumnasList;
+export default AlumnasList;
