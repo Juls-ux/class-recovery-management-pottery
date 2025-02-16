@@ -41,20 +41,36 @@
 .listado{
     padding-inline: 50px;
 
+    &__iconEdit, &__iconDelet {
+      
+    }
+
+
     &__ul{
-        display: flex;
+
+        align-items:center;
         text-decoration: none;
         list-style: none;
         gap: 30px;
           border-bottom: 1px solid #ccc;
     }
     &__li{
-        gap: 30px;
-   
-   
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
     
         margin-block: 24px;
+        @media screen and (min-width: 768px) {
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-block: 24px;
+            }
     }
+
     &__label{
         font-weight: 800;
     }

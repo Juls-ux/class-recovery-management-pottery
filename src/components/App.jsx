@@ -8,9 +8,13 @@ import Alumnas from './pages/Alumnas';
 import Calendario from './pages/Calendario';
 import Enlaces from './layout/enlaces';
 import '../styles/App.scss'
+import dataJson from '../data/alumnos.json'
 
 
 function App() {  
+
+  const [alumnas, setAlumnas]= useState([dataJson]);
+
   return (
     <main>
 

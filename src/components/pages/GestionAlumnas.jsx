@@ -22,36 +22,30 @@ function GestionAlumnas() {
 
             <section className="listado">
                 <ul className="listado__ul">
-
+                    {alumnas.map( (oneAlumn) =>       
                     <li className="listado__li">
-                        <label className="listado__label" htmlFor="">Nombre</label>
+                        <label className="listado__label" htmlFor="">Nombre: {oneAlumn.nombre}</label>
                         <input className="listado__input" type="text" value="Paquita Salas" />
-                    </li>
 
-                    <li className="listado__li">
-                        <label className="listado__label" htmlFor="">E-Mail</label>
+                        <label className="listado__label" htmlFor="">E-Mail: {oneAlumn.email}</label>
                         <input className="listado__input" type="text" value="ps-management@gmail.com" />
 
-                    </li>
-
-                    <li className="listado__li">
-                       <label className="listado__label" htmlFor="">Telefono</label>
+                        <label className="listado__label" htmlFor="">Telefono: {oneAlumn.telefono}</label>
                         <input className="listado__input" type="text" value="73534536" />
-                    </li>
 
-                    <li className="listado__li">
-
-                        <label className="listado__label" htmlFor="">Día</label>
+                        <label className="listado__label" htmlFor="">Día: {oneAlumn.dia}</label>
                         <input className="listado__input" type="text" value="Lunes" />
-                    </li>
-                    <li className="listado__li">
 
-                        <label className="listado__label" htmlFor="">hora</label>
+                        <label className="listado__label" htmlFor="">hora: {oneAlumn.horario}</label>
                         <input className="listado__input" type="text" value="17:00-19:00" />
-                    </li>
+                        <li><img className="listado__iconEdit" src={EditIcon} alt="icono editar" /></li>
+                        <li><img className="listado__iconDelet" src={DeletIcon} alt="icono " /></li>
+            
+                    </li> )}
 
-                    <li><img className="listado__iconEdit" src={EditIcon}alt="icono editar"/></li>
-                    <li><img className="listado__iconDelet" src={DeletIcon}alt="icono "/></li>
+
+             
+                    
                 </ul>
 
 
