@@ -5,7 +5,7 @@ function FormAddAlum({handleSubmit}) {
 
     return (
         <form className="addForm">
-            <h2 className="title">Información nueva alumna</h2>
+            <h2 className="addForm--title">Información nueva alumna</h2>
 
             <fieldset className="addForm__group">
 
@@ -26,7 +26,7 @@ function FormAddAlum({handleSubmit}) {
 
             </fieldset>
 
-            <fieldset className="addForm__group--upload">
+            <fieldset className="addForm__btn-group">
                 <button className="button--large" onClick={handleSubmit}>Guardar Alumna</button>
        
             </fieldset>

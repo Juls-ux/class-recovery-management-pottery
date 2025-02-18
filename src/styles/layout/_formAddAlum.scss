@@ -1,0 +1,52 @@
+.addForm {
+    .addForm--title{
+        text-align: center;
+        margin-top: 50px
+    }
+    &__group{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        gap: 5px;
+        margin-top: 40px;
+
+    }
+    @media screen and (min-width: 1024px) {
+        flex-direction: row;
+    } 
+
+    &__input{
+    width: 300px;
+    padding-block: 10px;
+    text-align: center;
+    padding-inline: 20px;
+    font-size: 18;
+    font-weight: 600;
+    border: solid 0.5px black;
+    border-radius: 10px;
+    }
+
+    &__btn-group{
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-block: 30px;
+        
+    }
+    .button--large{
+        width: 300px;
+        padding-block: 10px;
+        text-align: center;
+        padding-inline: 20px;
+        font-size: 18;
+        font-weight: 600;
+        border: solid 0.5px black;
+        border-radius: 10px;
+    }
+}
+
+ 
