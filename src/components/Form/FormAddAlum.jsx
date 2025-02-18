@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 
 
-function FormAddAlum({alumnas=[], setAlumnas, handleSubmit}) {
+function FormAddAlum({alumnas, setAlumnas, handleSubmit}) {
 
 
 
