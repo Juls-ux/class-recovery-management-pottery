@@ -26,11 +26,11 @@
 }
 
 .addInput, .btn-admin, .search-input {
-width: 300px;
-    padding-block: 15px;
+width:230px;
+    padding-block: 10px;
     text-align: center;
-    padding-inline: 20px;
-    font-size: 18;
+    padding-inline: 15px;
+    font-size: 16;
     font-weight: 600;
     border:transparent;
     border-radius: 15px;
@@ -63,18 +63,15 @@ width: 300px;
 
     &__ul{
 
-        align-items:center;
         text-decoration: none;
         list-style: none;
-        gap: 30px;
           border-bottom: 1px solid #ccc;
     }
     &__li{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 10px;
-    
+
         margin-block: 24px;
         @media screen and (min-width: 768px) {
             
@@ -99,3 +96,64 @@ width: 300px;
  
 }
 
+.tabla-alumnas {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .tabla-alumnas th, .tabla-alumnas td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .tabla-alumnas th {
+    background-color: #f4f4f4;
+  }
+  
+  .tabla-alumnas td {
+    word-wrap: break-word;
+  }
+  
+  
+  .listado__icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+
+  @media (max-width: 768px) {
+    .tabla-alumnas th,
+    .tabla-alumnas td {
+      display: block;
+      width: 100%;
+      text-align: right;
+      padding: 10px 0;
+    }
+  
+    .tabla-alumnas th {
+      background-color: #f4f4f4;
+    }
+  
+    .tabla-alumnas td {
+      text-align: left;
+      padding-left: 20px;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+  
+    .tabla-alumnas td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-weight: bold;
+    }
+  
+    .tabla-alumnas td input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }

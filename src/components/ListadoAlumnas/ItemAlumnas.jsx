@@ -5,35 +5,51 @@ import DeletIcon from "../../images/delet-icon.svg";
 
 function ItemAlumnas({ alumnas = []}) {  
     return (
-      <ul className="listado__ul">
+      <table className="tabla-alumnas">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>E-Mail</th>
+          <th>Teléfono</th>
+          <th>Día</th>
+          <th>Hora</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
         {alumnas.length > 0 ? (
           alumnas.map((oneAlumn) => (
-            <li key={oneAlumn.email} className="listado__li">
-              <label className="listado__label">Nombre:</label>
-              <input className="listado__input" type="text" value={oneAlumn.nombre}  />
-  
-              <label className="listado__label">E-Mail:</label>
-              <input className="listado__input" type="text" value={oneAlumn.email}  />
-  
-              <label className="listado__label">Teléfono:</label>
-              <input className="listado__input" type="text" value={oneAlumn.telefono}  />
-  
-              <label className="listado__label">Día:</label>
-              <input className="listado__input" type="text" value={oneAlumn.dia}  />
-  
-              <label className="listado__label">Hora:</label>
-              <input className="listado__input" type="text" value={oneAlumn.horario}  />
-  
-              <div className="listado__icons">
-                <img className="listado__iconEdit" src={EditIcon} alt="icono editar" />
-                <img className="listado__iconDelet" src={DeletIcon} alt="icono eliminar" />
-              </div>
-            </li>
+            <tr key={oneAlumn.email}>
+              <td data-label="Nombre">
+                <input className="listado__input" type="text" value={oneAlumn.nombre} readOnly />
+              </td>
+              <td data-label="E-Mail">
+                <input className="listado__input" type="text" value={oneAlumn.email} readOnly />
+              </td>
+              <td data-label="Teléfono">
+                <input className="listado__input" type="text" value={oneAlumn.telefono} readOnly />
+              </td>
+              <td data-label="Día">
+                <input className="listado__input" type="text" value={oneAlumn.dia} readOnly />
+              </td>
+              <td data-label="Hora">
+                <input className="listado__input" type="text" value={oneAlumn.horario} readOnly />
+              </td>
+              <td data-label="Acciones">
+                <div className="listado__icons">
+                  <img className="listado__iconEdit" src={EditIcon} alt="icono editar" />
+                  <img className="listado__iconDelet" src={DeletIcon} alt="icono eliminar" />
+                </div>
+              </td>
+            </tr>
           ))
         ) : (
-          <p>No hay alumnas disponibles.</p>  // 👈 Mensaje si el array está vacío
+          <tr>
+            <td colSpan="6">No hay alumnas disponibles.</td>
+          </tr>
         )}
-      </ul>
+      </tbody>
+    </table>
     );
   }
 
