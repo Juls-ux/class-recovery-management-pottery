@@ -1,34 +1,33 @@
 import PropTypes from "prop-types";
 
-function Preview({ alumnas = [] }) {
+function Preview({alumnas}) {
     return (
-
         <div className="preview">
-            <section className="preview__section">
-                <h3 className="preview--title">Vista Previa de la Información de la Alumna</h3>
-                
-                <ul className="listado__ul">
-                <li className="listado__li">
-                <p className="listado__addInput">{alumnas.email || "Email de la nueva alumna"}</p>
+        <section className="preview__section">
+          <h3 className="preview--title">Vista Previa de la Información de la Alumna</h3>
+          <ul className="listado__ul">
+            {alumnas.length > 0 ? (
+              alumnas.map((alumna, index) => (
+                <li key={index} className="listado__li">
+                  <p className="listado__addInput">{alumna.nombre || "Nombre"}</p>
+                  <p className="listado__addInput">{alumna.email || "Email"}</p>
+                  <p className="listado__addInput">{alumna.telefono || "Teléfono"}</p>
+                  <p className="listado__addInput">{alumna.dia || "Día"}</p>
+                  <p className="listado__addInput">{alumna.horario || "Hora"}</p>
                 </li>
-                <li className="listado__li">
-                <p className="listado__addInput">{alumnas.telefono || "Telefono de la nueva alumna"}</p>
-                </li>
-
-                <li className="listado__li">
-                <p className="listado__addInput">{alumnas.dia || "Día que viene la nueva alumna"}</p>                </li>
-
-                <li className="listado__li">
-                <p className="listado__addInput">{alumnas.hora || "Hora de la nueva alumna"}</p>
-                </li>
-            </ul>
-
-            </section>
-            
-            </div>
+              ))
+            ) : (
+              <li className="listado__li">No hay alumnas registradas</li>
+            )}
+          </ul>
+        </section>
+      </div>
 
     )
 }
+Preview.propTypes = {
+    alumnas: PropTypes.array.isRequired,
+};
 
 export default Preview;
 

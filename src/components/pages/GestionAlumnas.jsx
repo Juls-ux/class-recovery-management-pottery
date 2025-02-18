@@ -5,7 +5,7 @@ import Preview from "../Form/Preview";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
 
-function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilterName}) {
+function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName, setNewAlumna, handleChange}) {
     return (
 
         <div>
@@ -16,7 +16,7 @@ function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilte
                 <section className="title__sectionbtn">
                     <input className="addInput" type="Add" name="" id="" value="Añadir" />
                     <button className="btn-admin" >Ver Grupos Semanales</button>
-                    <input className="search-input" type="search" name="search" placeholder="Buscar" onInput={handlerInputFilterName} value={filterName} />
+                    <input className="search-input" type="search" name="search" placeholder="Buscar" onChange={handlerInputFilterName} value={filterName} />
                 </section>
 
             </div>
@@ -24,8 +24,8 @@ function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilte
 
             <section className="listado">
             <AlumnasList filteredAlumnas={filteredAlumnas} />
-            <FormAddAlum />
-            <Preview/>
+            <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} handleChange={handleChange}/>
+            <Preview alumnas={alumnas}/>
 
             </section>
 
@@ -35,6 +35,10 @@ function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilte
     )
 }
 GestionAlumnas.propTypes = {
-    alumnas: PropTypes.array
+    alumnas: PropTypes.array.isRequired,
+    filterName: PropTypes.string.isRequired,
+    filteredAlumnas: PropTypes.array.isRequired,
+    handlerInputFilterName: PropTypes.func.isRequired,
+    setAlumnas: PropTypes.func.isRequired,
 }
 export default GestionAlumnas;
