@@ -31,7 +31,7 @@ const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase
     <main>
 
       <Routes>
-      <Route path="/" element={<Home />} />
+      <Route index element={<Home />} />
       <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} />} />
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>

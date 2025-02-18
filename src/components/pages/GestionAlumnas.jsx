@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Header from "../layout/Header";
+import FormAddAlum from "../Form/FormAddAlum";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
 
@@ -22,6 +23,7 @@ function GestionAlumnas({alumnas, filterName, filteredAlumnas, handlerInputFilte
 
             <section className="listado">
             <AlumnasList filteredAlumnas={filteredAlumnas} />
+            <FormAddAlum />
 
             </section>
 
