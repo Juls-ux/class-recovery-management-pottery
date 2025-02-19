@@ -26,7 +26,12 @@ function Preview({alumnas}) {
     )
 }
 Preview.propTypes = {
-    alumnas: PropTypes.array.isRequired,
+  alumnas: PropTypes.array.isRequired,
+  setAlumnas: PropTypes.func.isRequired,
+  newAlumna: PropTypes.object.isRequired,
+  setNewAlumna: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
 };
 
 export default Preview;
