@@ -5,7 +5,7 @@ import Preview from "../Form/Preview";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
 
-function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName, setNewAlumna, handleChange, }) {
+function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName,newAlumna, setNewAlumna, }) {
     return (
 
         <div>
@@ -24,8 +24,8 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
 
             <section className="listado">
             <AlumnasList filteredAlumnas={filteredAlumnas} />
-            <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna}/>
-            <Preview alumnas={alumnas}/>
+            <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna}/>
+            <Preview alumnas={alumnas} newAlumna={newAlumna}/>
 
             </section>
 
@@ -39,6 +39,8 @@ GestionAlumnas.propTypes = {
     filterName: PropTypes.string.isRequired,
     filteredAlumnas: PropTypes.array.isRequired,
     handlerInputFilterName: PropTypes.func.isRequired,
+    newAlumna: PropTypes.object.isRequired,
     setAlumnas: PropTypes.func.isRequired,
+    setNewAlumna: PropTypes.func.isRequired,
 }
 export default GestionAlumnas;
