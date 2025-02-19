@@ -7,8 +7,8 @@ import GestionAlumnas from './pages/GestionAlumnas'
 import Alumnas from './pages/Alumnas';
 import Calendario from './pages/Calendario';
 import Enlaces from './layout/enlaces';
-import '../styles/App.scss'
-import dataJson from '../data/alumnos.json'
+import '../styles/App.scss';
+import dataJson from '../data/alumnos.json';
 
 
 
