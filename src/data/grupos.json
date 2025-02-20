@@ -1,23 +1,46 @@
 [
     {
         "id": 1,
+        "año": 25,
         "mes":"Marzo25",
         "horario":"17:00-19:00",
         "dia":"Lunes"
     },
     {
         "id": 2,
-        "ano": 25,
+        "año": 25,
         "mes": "Marzo",
         "horario":"19:00-21:00",
-        "dia":"Lunes"
+        "dia":"Martes"
     },
     {
-        "id": 2,
-        "ano": 25,
+        "id": 3,
+        "año": 25,
+        "mes": "Marzo",
+        "horario":"19:00-21:00",
+        "dia":"Miercoles"
+    },
+    {
+        "id": 4,
+        "año": 25,
+        "mes": "Marzo",
+        "horario":"19:00-21:00",
+        "dia":"Jueves"
+    },
+    {
+        "id": 5,
+        "año": 25,
         "mes": "Marzo",
         "horario":"19:00-21:00",
         "dia":"Viernes"
+    },
+    {
+        "id": 6,
+        "año": 25,
+        "mes": "Marzo",
+        "horario":"12:00-14:00",
+        "dia":"Viernes"
     }
+
 
 ]

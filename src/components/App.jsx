@@ -6,16 +6,20 @@ import Home from './pages/Home';
 import GestionAlumnas from './pages/GestionAlumnas'
 import Alumnas from './pages/Alumnas';
 import Calendario from './pages/Calendario';
+import Grupos from './pages/Grupos';
 import Enlaces from './layout/enlaces';
 import '../styles/App.scss';
 import dataJson from '../data/alumnos.json';
 import gruposJson from '../data/grupos.json';
 
 
+
 function App() {  
 
   const [alumnas, setAlumnas]= useState(dataJson);
+  const [grupos, setGrupos]=useState(gruposJson);
   const [filterName, setFilterName]= useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [newAlumna, setNewAlumna] = useState({
     nombre: '',
@@ -47,6 +51,7 @@ const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>
+        <Route path='Grupos' element={<Grupos searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}></Route>
 
       </Routes>
 

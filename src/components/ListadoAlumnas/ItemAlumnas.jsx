@@ -29,6 +29,7 @@ function ItemAlumnas({ alumnas = []}) {
               <td data-label="Teléfono">
                 <input className="listado__input" type="text" value={oneAlumn.telefono} readOnly />
               </td>
+              
               <td data-label="Día">
                 <input className="listado__input" type="text" value={oneAlumn.dia} readOnly />
               </td>

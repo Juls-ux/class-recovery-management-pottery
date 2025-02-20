@@ -1,44 +1,56 @@
 [
   {
+    "id": 1,
     "nombre": "Juan Pérez",
     "email": "juan.perez@example.com",
     "telefono": "123456789",
+    "fechaMatricula":"2024-04-13",
     "dia": "Lunes",
     "horario": "17:00 - 19:00"
   },
-  {
+  { 
+    "id": 2,
     "nombre": "María López",
     "email": "maria.lopez@example.com",
     "telefono": "987654321",
+    "fechaMatricula":"2024-04-13",
     "dia": "Lunes",
     "horario": "19:00 - 21:00"
   },
   {
+    "id": 3,
     "nombre": "Carlos García",
     "email": "carlos.garcia@example.com",
     "telefono": "456123789",
+    "fechaMatricula":"2024-04-13",
     "dia": "Martes",
     "horario": "17:00 - 19:00"
   },
   {
+    "id": 4,
     "nombre": "Ana Fernández",
     "email": "ana.fernandez@example.com",
     "telefono": "321654987",
+    "fechaMatricula":"2024-04-13",
     "dia": "Martes",
     "horario": "19:00 - 21:00"
   },
   {
+    "id": 5,
     "nombre": "Pepa López",
     "email": "pepa.lopez@example.com",
     "telefono": "321654987",
+    "fechaMatricula":"2024-04-13",
     "dia": "Martes",
     "horario": "19:00 - 21:00"
   },
 
   {
+    "id": 6,
     "nombre": "Luis Ramírez",
     "email": "luis.ramirez@example.com",
     "telefono": "789321456",
+    "fechaMatricula":"2024-04-13",
     "dia": "Miércoles",
     "horario": "17:00 - 19:00"
   }

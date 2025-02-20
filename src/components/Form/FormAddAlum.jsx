@@ -37,6 +37,8 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna,
                 <input className="addForm__input" type="phone" name="telefono" placeholder="Teléfono"
                     value={newAlumna.telefono} onChange={handleChange} required />
 
+                    
+
                 <label className="addForm__label">Día de la semana que viene la alumna</label>
                 <input className="addForm__input" type="day" name="dia" placeholder="Día"
                     value={newAlumna.dia} autoComplete="off" list="dia-list" onChange={handleChange} required />
