@@ -2,20 +2,23 @@
 import PropTypes from "prop-types";
 
 
-function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna }) {
+function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna, gruposJson }) {
 
     const handleChange = (ev) => {
         const { name, value } = ev.target;
-        console.log(`Cambiando ${name} a ${value}`); // Verifica qué campo está cambiando
+        console.log(`Cambiando ${name} a ${value}`); 
         setNewAlumna((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleFormSubmit = (ev) => {
         ev.preventDefault();
-        setAlumnas([...alumnas, newAlumna]); // Agrega la nueva alumna
-        setNewAlumna({ nombre: "", email: "", telefono: "", dia: "", horario: "" }); // Limpia el formulario
+        setAlumnas(prevAlumnas => [...(prevAlumnas || []), newAlumna]);
+        setNewAlumna({ nombre: "", email: "", telefono: "", dia: "", horario: "" }); 
         console.log('se ha agregado una aluman')
     };
+
+    const dias = [...new Set(gruposJson.map(obj => obj.dia))];
+    const horario = [...new Set(gruposJson.map(obj2 => obj2.horario))];
 
     return (
         <form className="addForm" onSubmit={handleFormSubmit}>
@@ -36,11 +39,19 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna 
 
                 <label className="addForm__label">Día de la semana que viene la alumna</label>
                 <input className="addForm__input" type="day" name="dia" placeholder="Día"
-                    value={newAlumna.dia} onChange={handleChange} required />
+                    value={newAlumna.dia} autoComplete="off" list="dia-list" onChange={handleChange} required />
+                    <datalist id="dia-list">
+                        {dias.map(dia => <option key={dia} value={dia}></option>)}
+                        
+                    </datalist>
 
                 <label className="addForm__label">Horario de la alumna</label>
-                <input className="addForm__input" type="time" name="horario" placeholder="Hora"
-                    value={newAlumna.horario} onChange={handleChange} required />
+                <input className="addForm__input" type="hora" name="horario" placeholder="Hora"
+                    value={newAlumna.horario} autoComplete="off" list="horario-list" onChange={handleChange} required />
+                <datalist id="horario-list">
+                    {horario.map(horario => <option key={horario} value={horario}></option>)}
+
+                </datalist>
             </fieldset>
 
             <fieldset className="addForm__btn-group">

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "mes":"Marzo25",
+        "horario":"17:00-19:00",
+        "dia":"Lunes"
+    },
+    {
+        "id": 2,
+        "ano": 25,
+        "mes": "Marzo",
+        "horario":"19:00-21:00",
+        "dia":"Lunes"
+    },
+    {
+        "id": 2,
+        "ano": 25,
+        "mes": "Marzo",
+        "horario":"19:00-21:00",
+        "dia":"Viernes"
+    }
+
+]

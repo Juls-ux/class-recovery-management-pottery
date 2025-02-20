@@ -5,7 +5,7 @@ import Preview from "../Form/Preview";
 
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
 
-function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName,newAlumna, setNewAlumna, }) {
+function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName,newAlumna, setNewAlumna, gruposJson}) {
     return (
 
         <div>
@@ -24,7 +24,7 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
 
             <section className="listado">
             <AlumnasList filteredAlumnas={filteredAlumnas} />
-            <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna}/>
+            <FormAddAlum alumns={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} gruposJson={gruposJson} />
             <Preview alumnas={alumnas} newAlumna={newAlumna}/>
 
             </section>

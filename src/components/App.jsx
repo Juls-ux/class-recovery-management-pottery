@@ -9,7 +9,7 @@ import Calendario from './pages/Calendario';
 import Enlaces from './layout/enlaces';
 import '../styles/App.scss';
 import dataJson from '../data/alumnos.json';
-
+import gruposJson from '../data/grupos.json';
 
 
 function App() {  
@@ -43,7 +43,7 @@ const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase
 
       <Routes>
       <Route index element={<Home />} />
-      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} newAlumna={newAlumna} setNewAlumna={setNewAlumna}/>} />
+      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} newAlumna={newAlumna} setNewAlumna={setNewAlumna} gruposJson={gruposJson} />} />
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>
