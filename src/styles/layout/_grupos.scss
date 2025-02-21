@@ -1,44 +1,86 @@
-.grupos{
-    font-family: 'Raleway', sans-serif;
-    padding: 2rem;
+.grupos {
+  padding: 2rem;
 
-    &__acciones{
-        display: flex;
-        gap: 1rem;
-        align-items: center;
+  &__acciones {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    width: 250px;
+    font-size: 0.875rem;
+    
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 1px #4f46e5;
     }
-    &__input{
-        padding: 0.5rem 1rem;
-        border: 1px solid #e2e8f0;
-        border-radius: 0.375rem;
-        width: 250px;
-        font-size: 0.875rem;
+  }
 
-        &:focus {
-          outline: none;
-          border-color: #a5b4fc;
-          box-shadow: 0 0 0 1px #a5b4fc;
-        }
+  &__add-btn,
+  &__manage-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &__add-btn {
+    background-color: #e9ecfb;
+    color: #4f46e5;
+
+    &:hover {
+      background-color: #dce1f9;
     }
-    &__add-btn{
-        padding: 0.5rem 1rem;
-        background-color: #e9ecfb;
-          color: #4f46e5;
-          border: none;
+  }
 
-          &:hover {
-            background-color: #dce1f9;
-          }
+  &__manage-btn {
+    background-color: #f4a68d;
+    color: white;
+
+    &:hover {
+      background-color: darken(#f4a68d, 5%);
     }
+  }
+}
 
-    &__manage-btn{
-        padding: 0.5rem 1rem;
-        background-color: #F4A68D;
-          color: white;
-          border: none;
+// Estilos para la tabla
+.tabla-container {
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr); // 1 columna para horarios, 5 para días
+  grid-template-rows: auto repeat(4, 1fr); // 1 fila para días, 4 para horarios
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+}
 
-          &:hover {
-            background-color: darken(#F4A68D, 5%);
-          }
-    }
+// Celdas
+.tabla__header {
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  background: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+.tabla__horario {
+  font-weight: bold;
+  text-align: center;
+  background: #f1f5f9;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+.tabla__cell {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  min-height: 60px;
 }

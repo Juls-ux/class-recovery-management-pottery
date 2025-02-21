@@ -11,65 +11,38 @@ function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignad
     return (
         <>
             <div className="grupos">
-                <h1>Vision global de Grupos</h1>
+                <h1>Visión Global de Grupos</h1>
 
-                <div className="grupos__actiones">
-                    <input
-                        className="grupos__input"
-                        type="search"
-                        placeholder="Buscar"
-                        value=""
-
-                    />
-                    <button className="grupos__add-btn" >Añadir</button>
+                {/* Barra de búsqueda y botones */}
+                <div className="grupos__acciones">
+                    <input className="grupos__input" type="search" placeholder="Buscar" />
+                    <button className="grupos__add-btn">Añadir</button>
                     <button className="grupos__manage-btn">Gestión Alumnos</button>
                 </div>
 
+                {/* Tabla de horarios */}
+                <section className="tabla-container">
+                    {/* Primera celda vacía */}
+                    <div className="tabla__header tabla__empty"></div>
 
-                <div className="dia-contaier">
-                    <div className="dia-contaier__column">
-                        <div className="dia-contaier__header"></div>
-                        <thead>
-                            <tr>
-                                {dias.map((dia) => (
-                                    <th key={dia}>{dia}</th>
-                                ))}
-                            </tr>
-                        </thead>
+                    {/* Días de la semana en la parte superior */}
+                    {dias.map((dia) => (
+                        <div key={dia} className="tabla__header">
+                            {dia}
+                        </div>
+                    ))}
 
-                    </div>
-
-                </div>
-
-                <div className="horario-contaier">
-                    <div className="horario-contaier__column">
-                        <div className="horario-contaier__header"></div>
-                        <thead>
-                            <tr>
-                                {horario.map((hora) => (
-                                    <th key={hora}>{hora}</th>
-                                ))}
-                            </tr>
-                        </thead>
-
-                    </div>
-
-                </div>
-
-
-                <div className="">
-                    <div className=""></div>
-
-                    <div className="">
-
-                    </div>
-
-                </div>
-
+                    {/* Horarios y celdas vacías */}
+                    {horario.map((hora) => (
+                        <>
+                            <div key={hora} className="tabla__horario">{hora}</div>
+                            {dias.map((dia, index) => (
+                                <div key={`${hora}-${dia}-${index}`} className="tabla__cell"></div>
+                            ))}
+                        </>
+                    ))}
+                </section>
             </div>
-
-
-
         </>
     )
 }
