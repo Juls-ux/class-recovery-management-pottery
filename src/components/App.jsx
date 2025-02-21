@@ -11,6 +11,7 @@ import Enlaces from './layout/enlaces';
 import '../styles/App.scss';
 import dataJson from '../data/alumnos.json';
 import gruposJson from '../data/grupos.json';
+import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 
 
 
@@ -18,8 +19,10 @@ function App() {
 
   const [alumnas, setAlumnas]= useState(dataJson);
   const [grupos, setGrupos]=useState(gruposJson);
+  const [alumnosAsignados, setAlumnosAsignados]=useState(alumnosAsignadosGrupo);
   const [filterName, setFilterName]= useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  
 
   const [newAlumna, setNewAlumna] = useState({
     nombre: '',
@@ -51,7 +54,7 @@ const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>
-        <Route path='Grupos' element={<Grupos searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>}></Route>
+        <Route path='Grupos' element={<Grupos searchTerm={searchTerm} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} setAlumnosAsignados={setAlumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo }/>}></Route>
 
       </Routes>
 

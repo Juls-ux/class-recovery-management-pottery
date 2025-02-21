@@ -1,0 +1,73 @@
+[
+    {
+      "grupo_id": 1,
+      "año": 25,
+      "mes": "Marzo25",
+      "horario": "17:00-19:00",
+      "dia": "Lunes",
+      "alumnos": [
+        {
+          "id": 1,
+          "nombre": "Juan Pérez",
+          "email": "juan.perez@example.com",
+          "telefono": "123456789",
+          "fechaMatricula": "2024-04-13"
+        }
+      ]
+    },
+    {
+      "grupo_id": 2,
+      "año": 25,
+      "mes": "Marzo",
+      "horario": "19:00-21:00",
+      "dia": "Martes",
+      "alumnos": [
+        {
+          "id": 4,
+          "nombre": "Ana Fernández",
+          "email": "ana.fernandez@example.com",
+          "telefono": "321654987",
+          "fechaMatricula": "2024-04-13"
+        },
+        {
+          "id": 5,
+          "nombre": "Pepa López",
+          "email": "pepa.lopez@example.com",
+          "telefono": "321654987",
+          "fechaMatricula": "2024-04-13"
+        }
+      ]
+    },
+    {
+      "grupo_id": 3,
+      "año": 25,
+      "mes": "Marzo",
+      "horario": "19:00-21:00",
+      "dia": "Miercoles",
+      "alumnos": []
+    },
+    {
+      "grupo_id": 4,
+      "año": 25,
+      "mes": "Marzo",
+      "horario": "19:00-21:00",
+      "dia": "Jueves",
+      "alumnos": []
+    },
+    {
+      "grupo_id": 5,
+      "año": 25,
+      "mes": "Marzo",
+      "horario": "19:00-21:00",
+      "dia": "Viernes",
+      "alumnos": []
+    },
+    {
+      "grupo_id": 6,
+      "año": 25,
+      "mes": "Marzo",
+      "horario": "12:00-14:00",
+      "dia": "Viernes",
+      "alumnos": []
+    }
+  ]
