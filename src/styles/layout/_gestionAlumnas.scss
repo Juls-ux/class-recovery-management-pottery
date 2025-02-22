@@ -100,16 +100,23 @@ width:230px;
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
   }
   
   .tabla-alumnas th, .tabla-alumnas td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
+    gap: 0.5rem;
+    padding: 1rem;
   }
   
   .tabla-alumnas th {
-    background-color: #f4f4f4;
+    background: #e2e8f0;
+    padding: 1rem;
+
+    
   }
   
   .tabla-alumnas td {
