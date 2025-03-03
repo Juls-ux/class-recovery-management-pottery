@@ -9,7 +9,7 @@
         justify-content: center;
         align-items: center;
         border: none;
-        gap: 5px;
+        gap: 15px;
         margin-top: 40px;
 
     }
@@ -18,7 +18,7 @@
     } 
 
     &__input{
-    width: 300px;
+    width: 250px;
     padding-block: 10px;
     text-align: center;
     padding-inline: 20px;
@@ -38,7 +38,7 @@
         
     }
     .button--large{
-        width: 300px;
+        width: 250px;
         padding-block: 10px;
         text-align: center;
         padding-inline: 20px;
@@ -50,3 +50,54 @@
 }
 
  
+.tabla-alumnas {
+    width: 100%;
+    border-collapse: collapse;
+  
+    &__input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+    }
+  
+    &__icons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+  
+    @media (max-width: 768px) {
+      thead {
+        display: none;
+      }
+      
+      tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      td {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        padding-inline: 100px;
+        position: relative;
+      }
+      
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        text-align: left;
+      }
+      
+      .listado__icons {
+        justify-content: flex-end;
+      }
+    }
+  }
