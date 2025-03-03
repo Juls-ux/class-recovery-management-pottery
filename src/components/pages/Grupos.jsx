@@ -55,9 +55,9 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
                                       .flatMap(grupo => grupo.alumnos) // Extraer los alumnos
                                       .map((alumno) => (
                                         <ul className="tabla__ul" key={alumno.id}>
-                                          <li className="tabla__li"><p><strong>Nombre:</strong> {alumno.nombre || "Sin nombre"}</p></li>
-                                          <li className="tabla__li"><p><strong>Email:</strong> {alumno.email || "Sin email"}</p> </li>
-                                          <li className="tabla__li"><p><strong>Teléfono:</strong> {alumno.telefono || "Sin teléfono"}</p> </li>
+                                          <li className="tabla__li"><p> <strong>{alumno.nombre || "Sin nombre"}</strong></p></li>
+                                          <li className="tabla__li"><p> {alumno.email || "Sin email"}</p> </li>
+                                          <li className="tabla__li"><p>{alumno.telefono || "Sin teléfono"}</p> </li>
                                         </ul>
                                       ))
                                     }
