@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router";
 
-function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo }) {
+function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo, handlerInputFilterName, filterName }) {
 
     console.log("Datos de alumnosAsignadosGrupo:", alumnosAsignadosGrupo);
 
@@ -23,11 +24,15 @@ function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignad
                     className="grupos__input"
                     type="search"
                     placeholder="Buscar"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={handlerInputFilterName} value={filterName}
+                    
                 />
-                <button className="grupos__add-btn">Añadir</button>
-                <button className="grupos__manage-btn">Gestión Alumnos</button>
+                <button className="grupos__add-btn">Añadir
+                <Link to ="GestionAlumnas" ></Link>
+                </button>
+                <button className="grupos__manage-btn">Gestión Alumnos
+                <Link to="GestionAlumnas"></Link>
+                </button>
             </div>
 
             <section className="tabla-container">
@@ -49,10 +54,10 @@ function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignad
                                       .filter(alumno => alumno.dia === dia && alumno.horario === hora)
                                       .flatMap(grupo => grupo.alumnos) // Extraer los alumnos
                                       .map((alumno) => (
-                                        <ul key={alumno.id}>
-                                          <li><p><strong>Nombre:</strong> {alumno.nombre || "Sin nombre"}</p></li>
-                                          <p><strong>Email:</strong> {alumno.email || "Sin email"}</p>
-                                          <p><strong>Teléfono:</strong> {alumno.telefono || "Sin teléfono"}</p>
+                                        <ul className="tabla__ul" key={alumno.id}>
+                                          <li className="tabla__li"><p><strong>Nombre:</strong> {alumno.nombre || "Sin nombre"}</p></li>
+                                          <li className="tabla__li"><p><strong>Email:</strong> {alumno.email || "Sin email"}</p> </li>
+                                          <li className="tabla__li"><p><strong>Teléfono:</strong> {alumno.telefono || "Sin teléfono"}</p> </li>
                                         </ul>
                                       ))
                                     }
@@ -74,7 +79,9 @@ Grupos.propTypes = {
     setSearchTerm: PropTypes.func,
     setAlumnosAsignados: PropTypes.func,
     alumnosAsignados: PropTypes.array,
-    alumnosAsignadosGrupo: PropTypes.array.isRequired
+    alumnosAsignadosGrupo: PropTypes.array.isRequired,
+    handlerInputFilterName: PropTypes.func.isRequired,
+    filterName: PropTypes.func.isRequired
 };
 
 export default Grupos;

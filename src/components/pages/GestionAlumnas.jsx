@@ -12,7 +12,7 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
             <Header /> { }
 
             <div className="title">
-                <h1 className="title__h1">Listado de todos los alumnos</h1>
+                <h1 className="title__h1">Listado de todos las alumnas</h1>
                 <section className="title__sectionbtn">
                     <input className="addInput" type="Add" name="" id="" value="Añadir" />
                     <button className="btn-admin" >Ver Grupos Semanales</button>
