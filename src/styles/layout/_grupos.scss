@@ -2,10 +2,12 @@
   padding: 2rem;
 
   &__acciones {
+
     display: flex;
     gap: 1rem;
     align-items: center;
     margin-bottom: 1rem;
+    margin-top: 2rem;
   }
 
   &__input {

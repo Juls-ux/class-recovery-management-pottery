@@ -7,9 +7,12 @@ function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignad
 
     const dias = [...new Set(alumnosAsignadosGrupo.map(obj => obj.dia))];
     const horario = [...new Set(alumnosAsignadosGrupo.map(obj2 => obj2.horario))];
+    const nombre = [...new Set(alumnosAsignadosGrupo.map(obj3 => obj3.nombre))];
+
 
     console.log("Días:", dias);
     console.log("Horarios:", horario);
+    console.log("Nombre:", nombre);
 
     return (
         <div className="grupos">
@@ -41,18 +44,19 @@ function Grupos({ searchTerm, setSearchTerm, alumnosAsignados, setAlumnosAsignad
                             <React.Fragment key={hora}>
                                 <div className="tabla__horario">{hora}</div>
                                 {dias.map((dia) => (
-
                                     <div key={`${hora}-${dia}`} className="tabla__cell">
-
-                                        {alumnosAsignadosGrupo
-                                            .filter(alumno => alumno.dia === dia && alumno.horario === hora)
-                                            .map((alumno) => (
-                                                <div key={alumno.id}>
-                                                    <li>{alumno.nombre}</li>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
+                                    {alumnosAsignadosGrupo
+                                      .filter(alumno => alumno.dia === dia && alumno.horario === hora)
+                                      .flatMap(grupo => grupo.alumnos) // Extraer los alumnos
+                                      .map((alumno) => (
+                                        <ul key={alumno.id}>
+                                          <li><p><strong>Nombre:</strong> {alumno.nombre || "Sin nombre"}</p></li>
+                                          <p><strong>Email:</strong> {alumno.email || "Sin email"}</p>
+                                          <p><strong>Teléfono:</strong> {alumno.telefono || "Sin teléfono"}</p>
+                                        </ul>
+                                      ))
+                                    }
+                                  </div>
                                 ))}
                             </React.Fragment>
                         ))}

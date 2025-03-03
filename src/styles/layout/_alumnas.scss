@@ -36,7 +36,7 @@
         color: #2F2F2F;
     }
     &__text {
-        font-size: 18px;
+        font-size: 16px;
         color: #2F2F2F;
     }
 }
@@ -63,7 +63,7 @@
 .recupera{
     background-color: white;
     box-shadow:none;
-    font-size: 18px;
+    font-size: 16px;
     color: #2F2F2F;
     font-weight: 600;
     padding-block: 0;
@@ -71,7 +71,8 @@
     
 }
 
-.userData{   display: flex;
+.userData{   
+    display: flex;
     flex-direction: column;
   
     text-align: center;
@@ -96,7 +97,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        font-size: 18px;
+        font-size: 16px;
         
         border-bottom: 1px solid #ccc;
         height: 40px;
@@ -104,8 +105,9 @@
         
       
     }
-    &__label {
-font-weight: 600;
+    &__label { 
+        font-weight: 600;
+        font-size: 10px;
 
     }
     &__input{
