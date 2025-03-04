@@ -32,10 +32,10 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
                     
                 />
                 <button className="grupos__add-btn">Añadir
-                <Link to="GestionAlumnas"></Link>
+                    <Link to="/GestionAlumnas"></Link>
                 </button>
                 <button className="grupos__manage-btn">Gestión Alumnos
-                <Link to="GestionAlumnas"></Link>
+                    <Link to="/GestionAlumnas"></Link>
                 </button>
             </div>
 

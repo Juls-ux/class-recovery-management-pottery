@@ -18,9 +18,17 @@ function Header() {
           <li>
             <Link className="header__nav-link" to="/calendario">Calendario</Link>
           </li>
+          <li>
+            <Link className="header__nav-link" to="/GestionAlumnas">Gestion Alumnas</Link>
+          </li>
+          <li>
+            <Link className="header__nav-link" to="/Grupos">Grupos</Link>
+          </li>
         </ul>
       </header>
     );
   }
+
+  
   
   export default Header;
