@@ -22,7 +22,11 @@ function App() {
   const [alumnosAsignados, setAlumnosAsignados]=useState(alumnosAsignadosGrupo);
   const [filterName, setFilterName]= useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  
+
+  const handleDelete = (email) => {
+    setAlumnas((prevAlumnas) => prevAlumnas.filter(alumna => alumna.email !== email));
+    console.log('borrar');
+  };
 
   const [newAlumna, setNewAlumna] = useState({
     nombre: '',
@@ -50,7 +54,7 @@ const filteredAlumnas= alumnas.filter( alumna => alumna.nombre.toLocaleLowerCase
 
       <Routes>
       <Route index element={<Home />} />
-      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} newAlumna={newAlumna} setNewAlumna={setNewAlumna} gruposJson={gruposJson} />} />
+      <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} newAlumna={newAlumna} setNewAlumna={setNewAlumna} gruposJson={gruposJson} handleDelete={handleDelete} />} />
 
         <Route path='Alumnas' element={<Alumnas />}> </Route>
         <Route path='Calendario' element={<Calendario />}> </Route>

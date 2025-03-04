@@ -3,7 +3,11 @@ import EditIcon from "../../images/edit-icon.svg";
 import DeletIcon from "../../images/delet-icon.svg";
 
 
-function ItemAlumnas({ alumnas = []}) {  
+function ItemAlumnas({ alumnas = [], setAlumnas }) {
+  const handleDelete = (email) => {
+    setAlumnas((prevAlumnas) => prevAlumnas.filter(alumna => alumna.email !== email));
+    console.log('borrar');
+  };
     return (
       <table className="tabla-alumnas">
       <thead>
@@ -39,7 +43,13 @@ function ItemAlumnas({ alumnas = []}) {
               <td data-label="Acciones">
                 <div className="listado__icons">
                   <img className="listado__iconEdit" src={EditIcon} alt="icono editar" />
-                  <img className="listado__iconDelet" src={DeletIcon} alt="icono eliminar" />
+                  <img 
+                    className="listado__iconDelet" 
+                    src={DeletIcon} 
+                    alt="icono eliminar"
+                    onClick={() => handleDelete(oneAlumn.email)}
+                    style={{ cursor: "pointer" }}
+                  />
                 </div>
               </td>
             </tr>
@@ -55,6 +65,8 @@ function ItemAlumnas({ alumnas = []}) {
   }
 
   ItemAlumnas.propTypes = {
-    alumnas: PropTypes.array
+    alumnas: PropTypes.array,
+    setAlumnas: PropTypes.func.isRequired
+
 }
   export default ItemAlumnas;

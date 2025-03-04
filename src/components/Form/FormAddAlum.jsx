@@ -40,7 +40,7 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna,
                     
 
                 <label className="addForm__label">Día de la semana que viene la alumna</label>
-                <input className="addForm__input" type="day" name="dia" placeholder="Día"
+                <input className="addForm__input" type="text" name="dia" placeholder="Día"
                     value={newAlumna.dia} autoComplete="off" list="dia-list" onChange={handleChange} required />
                     <datalist id="dia-list">
                         {dias.map(dia => <option key={dia} value={dia}></option>)}
@@ -48,7 +48,7 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna,
                     </datalist>
 
                 <label className="addForm__label">Horario de la alumna</label>
-                <input className="addForm__input" type="hora" name="horario" placeholder="Hora"
+                <input className="addForm__input" type="text" name="horario" placeholder="Hora"
                     value={newAlumna.horario} autoComplete="off" list="horario-list" onChange={handleChange} required />
                 <datalist id="horario-list">
                     {horario.map(horario => <option key={horario} value={horario}></option>)}
