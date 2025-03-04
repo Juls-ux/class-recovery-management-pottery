@@ -18,7 +18,9 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
       <table className="tabla-alumnas">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
+          <th>Apellido</th>
           <th>E-Mail</th>
           <th>Teléfono</th>
           <th>Día</th>
@@ -30,8 +32,14 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
         {alumnas.length > 0 ? (
           alumnas.map((oneAlumn) => (
             <tr key={oneAlumn.email}>
+              <td data-label="ID">
+                <input className="listado__input" type="text" value={oneAlumn.id} readOnly />
+              </td>
               <td data-label="Nombre">
                 <input className="listado__input" type="text" value={oneAlumn.nombre} readOnly />
+              </td>
+              <td data-label="Apellido">
+                <input className="listado__input" type="text" value={oneAlumn.apellido} readOnly />
               </td>
               <td data-label="E-Mail">
                 <input className="listado__input" type="text" value={oneAlumn.email} readOnly />
