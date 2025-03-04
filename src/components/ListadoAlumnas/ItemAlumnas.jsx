@@ -5,9 +5,15 @@ import DeletIcon from "../../images/delet-icon.svg";
 
 function ItemAlumnas({ alumnas = [], setAlumnas }) {
   const handleDelete = (email) => {
-    setAlumnas((prevAlumnas) => prevAlumnas.filter(alumna => alumna.email !== email));
-    console.log('borrar');
-  };
+    const confirmDelete = window.confirm("¿Seguro que quieres borrar a esta alumna?");
+    
+    if (confirmDelete) {
+        console.log("Eliminando a:", email);
+        setAlumnas(prevAlumnas => prevAlumnas.filter(alumna => alumna.email !== email));
+    } else {
+        console.log("Cancelado");
+    }
+};
     return (
       <table className="tabla-alumnas">
       <thead>

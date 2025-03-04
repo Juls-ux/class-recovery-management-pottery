@@ -24,9 +24,15 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleDelete = (email) => {
-    setAlumnas((prevAlumnas) => prevAlumnas.filter(alumna => alumna.email !== email));
-    console.log('borrar');
-  };
+    const confirmDelete = window.confirm("¿Seguro que quieres borrar a esta alumna?");
+    
+    if (confirmDelete) {
+        console.log("Eliminando a:", email);
+        setAlumnas(prevAlumnas => prevAlumnas.filter(alumna => alumna.email !== email));
+    } else {
+        console.log("Cancelado");
+    }
+};
 
   const [newAlumna, setNewAlumna] = useState({
     nombre: '',
