@@ -1,6 +1,7 @@
 
 import Header from "../layout/Header";
-
+import React from 'react';
+import CalendarioInput from '../CalendarioInput/CalendarioInput';
 
 function Calendario(){
 
@@ -9,8 +10,9 @@ function Calendario(){
              <Header /> {}
              <div className="Calenderhero">
             <h1 className="Calenderhero__h1">Calendario</h1>
-
+            
         </div>
+        
 
         <section className="InfoSec">
             <ul className="InfoSec__ul">
@@ -34,9 +36,15 @@ function Calendario(){
                     <p>Clases Recuperadas</p>
                 </li>
             </ul>
+        
         </section>
+       
+    
+    
+      
 
         <section className="horario">
+        <CalendarioInput/>
             <h2 className="horario__h2">Hora</h2>
             <section className="horario__hora">
                 <input className="horario__horas" type="text" value="17:00-19:00"/>
