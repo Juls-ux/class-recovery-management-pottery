@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Header from "../layout/Header";
 import { Link } from "react-router";
 
 function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo, handlerInputFilterName, filterName }) {
@@ -16,6 +17,9 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
     console.log("Nombre:", nombre);
 
     return (
+        <>
+        <Header/>
+        
         <div className="grupos">
             <h1>Visión Global de Grupos</h1>
 
@@ -28,7 +32,7 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
                     
                 />
                 <button className="grupos__add-btn">Añadir
-                <Link to ="GestionAlumnas" ></Link>
+                <Link to="GestionAlumnas"></Link>
                 </button>
                 <button className="grupos__manage-btn">Gestión Alumnos
                 <Link to="GestionAlumnas"></Link>
@@ -71,6 +75,7 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
                 )}
             </section>
         </div>
+        </>
     );
 }
 

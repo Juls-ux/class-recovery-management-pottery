@@ -1,21 +1,27 @@
 .footerNav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     text-align: center;
-
-    justify-content: center;
-    gap: 10px;
-    list-style: none;
+    padding-block: 30px;
+    padding-inline: 50px;
     background-color: black;
+    
 
- padding: 30px;
- margin-top: 100px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        justify-content: space-between;
+  
+ 
+       }
+    
 }
 
 .enlaces-temporales {
-    text-decoration: none;
 
-  
+    color: #e9ecfb;
     font-size: 14px;
-    color: white;
+    font-weight: 500;
+    text-decoration: none;
 }
+

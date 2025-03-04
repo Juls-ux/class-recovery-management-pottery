@@ -25,25 +25,25 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna,
             <h2 className="addForm--title">Información nueva alumna</h2>
 
             <fieldset className="addForm__group">
-                <label className="addForm__label">Nombre</label>
+                
                 <input className="addForm__input" type="text" name="nombre" placeholder="Nombre de la alumna"
                     value={newAlumna.nombre} onChange={handleChange} required />
                 
-                <label className="addForm__label">Apellido </label>
+              
                 <input className="addForm__input" type="text" name="apellido" placeholder="Apellido de la alumna"
                     value={newAlumna.apellido} onChange={handleChange} required />
 
-                <label className="addForm__label">E-Mail de la alumna</label>
+                
                 <input className="addForm__input" type="email" name="email" placeholder="E-mail"
                     value={newAlumna.email} onChange={handleChange} required />
 
-                <label className="addForm__label">Teléfono de la alumna</label>
+                
                 <input className="addForm__input" type="phone" name="telefono" placeholder="Teléfono"
                     value={newAlumna.telefono} onChange={handleChange} required />
 
                     
 
-                <label className="addForm__label">Día de la semana que viene la alumna</label>
+           
                 <input className="addForm__input" type="text" name="dia" placeholder="Día"
                     value={newAlumna.dia} autoComplete="off" list="dia-list" onChange={handleChange} required />
                     <datalist id="dia-list">
@@ -51,7 +51,7 @@ function FormAddAlum({alumnas, setAlumnas, handleSubmit, setNewAlumna,newAlumna,
                         
                     </datalist>
 
-                <label className="addForm__label">Horario de la alumna</label>
+               
                 <input className="addForm__input" type="text" name="horario" placeholder="Hora"
                     value={newAlumna.horario} autoComplete="off" list="horario-list" onChange={handleChange} required />
                 <datalist id="horario-list">
