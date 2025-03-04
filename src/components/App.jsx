@@ -68,13 +68,13 @@ function App() {
       console.log("Cancelado");
     }
   };
-
   const [newAlumna, setNewAlumna] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
-    dia: '',
-    horario: ''
+    nombre: "",
+    apellido: "",
+    email: "",
+    telefono: "",
+    dia: "",
+    horario: ""
   });
 
 
@@ -103,18 +103,16 @@ function App() {
 
   const filteredAlumnas = alumnas.filter(alumna => alumna.nombre.toLocaleLowerCase().includes(filterName.toLocaleLowerCase()));
 
-  //FETCH 
-
 
   return (
     <main>
 
       <Routes>
         <Route index element={<Home />} />
-        <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} />} />
+        <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna}/>} />
         <Route path="Alumnas" element={<Alumnas />} />
         <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} />} />
+        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
       </Routes>
 
       <div>
