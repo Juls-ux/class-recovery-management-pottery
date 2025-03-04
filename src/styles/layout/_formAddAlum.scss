@@ -1,21 +1,25 @@
 .addForm {
-    .addForm--title{
+.addForm--title{
         text-align: center;
-        margin-top: 50px
+        margin-top: 50px;
     }
     &__group{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border: none;
-        gap: 15px;
-        margin-top: 40px;
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 15px; 
+      margin-top: 40px;
+      justify-items: center; 
+      align-items: center; 
+      border: none;
+
+        @media screen and (min-width: 1024px) {
+          grid-template-columns: 1fr 1fr; 
+          justify-items: center; 
+          align-items: center; 
+      } 
 
     }
-    @media screen and (min-width: 1024px) {
-        flex-direction: row;
-    } 
+   
 
     &__input{
         width:230px;
