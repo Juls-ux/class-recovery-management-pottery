@@ -3,7 +3,9 @@ import Header from "../layout/Header";
 import FormAddAlum from "../Form/FormAddAlum";
 import Preview from "../Form/Preview";
 
+
 import AlumnasList from "../ListadoAlumnas/AlumnasList";
+import { Link } from 'react-router';
 
 function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handlerInputFilterName,newAlumna, setNewAlumna, gruposJson, handleDelete}) {
     return (
@@ -15,7 +17,9 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
                 <h1 className="title__h1">Listado de todos las alumnas</h1>
                 <section className="title__sectionbtn">
                     <input className="addInput" type="Add" name="" id="" value="Añadir" />
-                    <button className="btn-admin" >Ver Grupos Semanales</button>
+                    <button className="btn-admin" >Ver Grupos Semanales
+                        <Link to="Grupos"> </Link>
+                    </button>
                     <input className="search-input" type="search" name="search" placeholder="Buscar" onChange={handlerInputFilterName} value={filterName} />
                 </section>
 

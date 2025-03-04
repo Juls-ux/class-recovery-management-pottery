@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 
 import { Routes, Route } from 'react-router';
 
@@ -17,8 +17,16 @@ import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 
 function App() {  
 
-  const [alumnas, setAlumnas]= useState(dataJson);
-  const [grupos, setGrupos]=useState(gruposJson);
+  const [alumnas, setAlumnas] = useState(() => {
+    const storedAlumnas = localStorage.getItem('alumnas');
+    return storedAlumnas ? JSON.parse(storedAlumnas) : dataJson;
+  });
+
+  const [grupos, setGrupos] = useState(() => {
+    const storedGrupos = localStorage.getItem('grupos');
+    return storedGrupos ? JSON.parse(storedGrupos) : gruposJson;
+  });
+
   const [alumnosAsignados, setAlumnosAsignados]=useState(alumnosAsignadosGrupo);
   const [filterName, setFilterName]= useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,6 +49,22 @@ function App() {
     dia: '',
     horario: ''
   });
+
+
+  // Guardar alumnas en localStorage cuando cambian
+  useEffect(() => {
+    if (alumnas) {
+      localStorage.setItem('alumnas', JSON.stringify(alumnas));
+    }
+  }, [alumnas]);
+
+  // Guardar grupos en localStorage cuando cambian
+  useEffect(() => {
+    if (grupos) {
+      localStorage.setItem('grupos', JSON.stringify(grupos));
+    }
+  }, [grupos]);
+
 
 //SECCION EVENTOS
 
