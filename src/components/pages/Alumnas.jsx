@@ -1,7 +1,8 @@
 
 import Header from "../layout/Header";
-import heroAlumnas from "../../images/hero-alumnas.jpg";
+
 import avatar from "../../images/avatar-alumnas.jpg";
+import { Link } from "react-router";
 
 
 function Alumnas(){
@@ -11,8 +12,7 @@ function Alumnas(){
         <div>
         <Header /> {}
         <div className="hero">
-            <h1 className="hero__h1">Hola Paquita!</h1>
-
+    
         </div>
 
         <div className="alumnas">
@@ -31,7 +31,9 @@ function Alumnas(){
 
 
         </div>
-        <section><a className="recupera" href="./Calendario">Recupera una clase  🖤</a></section>
+        <section>
+            <Link to="/Calendario" className="recupera">Recupera una clase  🖤</Link>
+        </section>
 
         <div className="userData">
             <h2 className="userData__h2">Tus datos</h2>

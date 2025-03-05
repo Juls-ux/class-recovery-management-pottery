@@ -5,7 +5,12 @@ import logoPac from '../../images/logo-paq-2.png';
 function Header() {
     return (
       <header className="header">
-        <img className="header__nav-logo" src={logoPac} alt="Logo Paquita" />
+        <a href="./Home">
+        <img className="header__nav-logo" src={logoPac} alt="Logo Paquita"></img>
+        </a>
+       
+     
+       
 
         
         <ul className="header__nav-menu" >
