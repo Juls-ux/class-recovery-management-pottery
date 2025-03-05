@@ -4,7 +4,7 @@ import Header from "../layout/Header";
 function Home() {
     return (
         
-        <> <Header/>
+        <>
 
         <div className="login">
             <section className='header-section'>
@@ -13,7 +13,7 @@ function Home() {
              
             </section>
 
-            <section className='login-section'>
+            <form className='login-section'>
             <img className="login__img" src="src/images/rotas.png" alt="logo-rotas" />
             <h1 className='header-section__h1'>
                     Bienvenid@ a Rotas 🖤✨
@@ -29,7 +29,7 @@ function Home() {
                 <input className='login-section__login-btn' type='submit' />
                
 
-            </section>
+            </form>
         </div>
         </>
     )

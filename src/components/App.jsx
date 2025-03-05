@@ -13,9 +13,20 @@ import '../styles/App.scss';
 import dataJson from '../data/alumnos.json';
 import gruposJson from '../data/grupos.json';
 import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
+import { Badge } from 'antd';
+import Header from './layout/Header';
 
+const USUARIA_FALSA = {
+  id: 1,
+  nombre: 'MariCarmen',
+  apellidos: 'Salas',
+  email: 'maricarmen@salas.com',
+  rol: 'admin'
+}
 
 function App() {
+
+  const [loggedUser, setLoggedUser] = useState(USUARIA_FALSA);
 
   const [alumnas, setAlumnas] = useState(() => {
     const storedAlumnas = localStorage.getItem('alumnas');
@@ -38,10 +49,21 @@ function App() {
   // Función para personalizar las celdas del calendario
   const cellRender = (current, { today }) => {
     const formattedDate = current.format('YYYY-MM-DD');
+
+    if (current.day() === 2) {
+      return (
+        <ul>
+        <li><Badge status="success" text="17-19 Clase (5)" /></li>
+  
+      </ul>
+      );
+    }
+
     return formattedDate === today.format('YYYY-MM-DD') ? (
-      <div style={{ background: '#1890ff', color: 'white', padding: '5px', borderRadius: '4px' }}>
-        Hoy 📅
-      </div>
+      <ul>
+        <li><Badge status="success" text="17-19 Clase (5)" /></li>
+        <li><Badge status="warning" text="19-21 Clase (10)" /></li>
+      </ul>
     ) : null;
   };
 
@@ -105,14 +127,16 @@ function App() {
 
 
   return (
-    <main>
+    <>
+    <Header loggedUser={loggedUser} />
+        <main>
 
       <Routes>
         <Route index element={<Home />} />
-        <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna}/>} />
-        <Route path="Alumnas" element={<Alumnas />} />
+        <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
+        <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser}/>} />
         <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados}alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
       </Routes>
 
       <div>
@@ -120,7 +144,7 @@ function App() {
       </div>
     </main>
 
-
+</>
   )
 }
 

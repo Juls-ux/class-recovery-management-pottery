@@ -5,7 +5,7 @@ import avatar from "../../images/avatar-alumnas.jpg";
 import { Link } from "react-router";
 
 
-function Alumnas(){
+function Alumnas({loggedUser}){
 
     return(
         
@@ -17,8 +17,8 @@ function Alumnas(){
 
         <div className="alumnas">
        <img className="alumnas__avatar" src={avatar}alt="avatar-alumnas" />
-        <h2 className="alumnas__h2">Paquita Salas</h2>
-        <p className="alumnas__text">ps-managmente@gmail.com</p>
+        <h2 className="alumnas__h2">{loggedUser.nombre} {loggedUser.apellidos}</h2>
+        <p className="alumnas__text">{loggedUser.email}</p>
         </div>
 
         <div className="horario-section">
