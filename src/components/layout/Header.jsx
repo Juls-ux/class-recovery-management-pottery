@@ -10,13 +10,13 @@ function Header() {
         
         <ul className="header__nav-menu" >
         <li>
-            <Link className="header__nav-link" to="/home">Home</Link>
+            <Link className="header__nav-link" to="/">Home</Link>
           </li>
           <li>
-            <Link className="header__nav-link" to="/alumnas">Mi perfil</Link>
+            <Link className="header__nav-link" to="/Alumnas">Mi perfil</Link>
           </li>
           <li>
-            <Link className="header__nav-link" to="/calendario">Calendario</Link>
+            <Link className="header__nav-link" to="/Calendario">Calendario</Link>
           </li>
           <li>
             <Link className="header__nav-link" to="/GestionAlumnas">Gestion Alumnas</Link>

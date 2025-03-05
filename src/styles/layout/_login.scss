@@ -1,13 +1,21 @@
 
 
 .login {
-    height: 100vh;
+
+  height: 100vh;
     background-image: url('../images/cabecera-mobile.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     padding-top: 100px;
+    
+    &__img{
+      width: 150px;
+    }
+
+    
   }
+  
   @media screen and (min-width: 1024px) {
     .login {
       background-image: url('../images/cabecera-desktop.jpg');
@@ -23,15 +31,10 @@
     text-align: center;
   
     &__h1 {
-      font-size: 40px;
+      font-size: 30px;
       margin-bottom: 20px;
     }
-  
-    &__parrafo {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 40px;
-    }
+
   }
   
   
@@ -40,7 +43,7 @@
     border-radius: 10px;
     padding: 35px;
     margin-block: 40px;
-    margin-inline: 80px;
+    margin-inline: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,47 +53,31 @@
   
   
     &__parrafo {
-      font-size: 20px;
+      font-size: 16px;
       color: #707070;
       margin-bottom: 20px;
     }
   
     &__user-data {
-      width: 250px;
-      height: 40px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      /* Borda sutil */
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
-      /* Sombra negra padrão */
-      padding: 5px;
-      font-size: 14px;
-      color: #707070;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-      text-align: center;
+      padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    background-color: #e9ecfb;
+    color: #4f46e5;
+    text-align: center;
+    font-size: 14px;
     }
   
     &__login-btn {
-      margin-top: 20px;
-      width: 250px;
-      height: 50px;
-      border-radius: 10px;
-      background-color: #ADB2E9;
-      color: white;
-  
-      border: 1px solid #ccc;
-      /* Borda sutil */
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.066);
-      /* Sombra negra padrão */
-      padding: 5px;
-      font-size: 14px;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-      font-size: 19px;
-      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #e9ecfb;
+      color: #4f46e5;
     }
   }
+  
   
   @media screen and (min-width: 716px) {
     .login-section {

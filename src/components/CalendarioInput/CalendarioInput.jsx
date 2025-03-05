@@ -14,7 +14,11 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, cellRend
       <h2>📅 Calendario Rotas</h2>
       <Calendar
         cellRender={cellRender}
-        onSelect={onSelect}
+        onSelect={(date, { source }) => {
+          if (source === 'date') {
+            console.log('Panel Select:', source);
+          }
+        }}
         onPanelChange={onPanelChange}
         value={selectedDate}
         mode={mode}
