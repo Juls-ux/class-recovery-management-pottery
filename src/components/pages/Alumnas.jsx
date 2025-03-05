@@ -22,16 +22,16 @@ function Alumnas(){
         </div>
 
         <div className="horario-section">
-            <h3 className="horario-section__h3">Día</h3>
+            <h3 className="horario-section__h3">Día/s:</h3>
             <p className="alumnas__text">Lunes</p>
             
-            <h3 className="horario-section__h3">Hora</h3>
+            <h3 className="horario-section__h3">Horario:</h3>
             <p className="alumnas__text">17:00 h - 19:00 h</p>
             
 
 
         </div>
-        <section><a className="recupera" href="./Calendario">Recupera una clase</a></section>
+        <section><a className="recupera" href="./Calendario">Recupera una clase  🖤</a></section>
 
         <div className="userData">
             <h2 className="userData__h2">Tus datos</h2>
