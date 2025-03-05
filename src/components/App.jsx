@@ -112,7 +112,7 @@ function App() {
         <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna}/>} />
         <Route path="Alumnas" element={<Alumnas />} />
         <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados}alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
       </Routes>
 
       <div>

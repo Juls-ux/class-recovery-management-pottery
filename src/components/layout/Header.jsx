@@ -1,6 +1,7 @@
 
 import { Link } from "react-router";
 import logoPac from '../../images/logo-paq-2.png';
+import MenuItem from "antd/es/menu/MenuItem";
 
 function Header() {
     return (
@@ -8,10 +9,7 @@ function Header() {
         <a href="./Home">
         <img className="header__nav-logo" src={logoPac} alt="Logo Paquita"></img>
         </a>
-       
-     
-       
-
+  
         
         <ul className="header__nav-menu" >
         <li>
