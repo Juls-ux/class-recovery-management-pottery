@@ -12,19 +12,20 @@ function Home() {
                     ¡Bienvenid@ a Rotas!
                 </h1>
             
-                <img className="login__img" src="src/images/logo-paq-2.png" alt="logo-ceramica" />
+             
             </section>
 
             <section className='login-section'>
                 <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
 
                 <label htmlFor="nombre">E-Mail:</label>
-                <input className='login-section__user-data' type="text" id="nombre" name="nombre" placeholder="Ingresa tu E-Mail" />
+                <input className='login-section__user-data' type="text" id="nombre" name="nombre" placeholder="ejemplo@gmail.com" />
 
                 <label htmlFor="passwort">Contraseña:</label>
-                <input className='login-section__user-data' type="text" id="passwort" name="passwort" placeholder="Ingresa tu contraseña" />
+                <input className='login-section__user-data' type="text" id="passwort" name="passwort" placeholder="*****" />
 
                 <input className='login-section__login-btn' type='submit' />
+                <img className="login__img" src="src/images/logo-paq-2.png" alt="logo-ceramica" />
 
             </section>
         </div>
