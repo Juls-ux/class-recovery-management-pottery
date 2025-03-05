@@ -8,14 +8,15 @@ function Home() {
 
         <div className="login">
             <section className='header-section'>
-                <h1 className='header-section__h1'>
-                    ¡Bienvenid@ a Rotas!
-                </h1>
+          
             
              
             </section>
 
             <section className='login-section'>
+            <h1 className='header-section__h1'>
+                    ¡Bienvenid@ a Rotas!
+                </h1>
                 <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
 
                 <label htmlFor="nombre">E-Mail:</label>
