@@ -14,8 +14,9 @@ function Home() {
             </section>
 
             <section className='login-section'>
+            <img className="login__img" src="src/images/rotas.png" alt="logo-rotas" />
             <h1 className='header-section__h1'>
-                    ¡Bienvenid@ a Rotas!
+                    Bienvenid@ a Rotas 🖤✨
                 </h1>
                 <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
 
@@ -26,7 +27,7 @@ function Home() {
                 <input className='login-section__user-data' type="text" id="passwort" name="passwort" placeholder="*****" />
 
                 <input className='login-section__login-btn' type='submit' />
-                <img className="login__img" src="src/images/logo-paq-2.png" alt="logo-ceramica" />
+               
 
             </section>
         </div>

@@ -5,35 +5,36 @@
     text-align: center;
     padding-block: 30px;
     padding-inline: 50px;
-  
+
 
     &__nav-menu {
         display: flex;
-    flex-direction: row;
-    gap: 10px;
+        flex-direction: row;
+        gap: 10px;
         list-style: none;
         text-align: end;
-    
-    
+
+
         @media (max-width: 768px) {
             flex-direction: column;
+            gap:5px
         }
     }
 
     &__nav-link {
         text-decoration: none;
-    
-        color: #4f46e5;
-        background-color: #e9ecfb;;
-        font-size: 14px;
-        font-weight: 500;    }
 
-    &__nav-logo{
-    
+        color: #4f46e5;
+        background-color: #e9ecfb;
+        ;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &__nav-logo {
+
         width: 100px;
         height: 100px;
-       
+
     }
 }
-
-
