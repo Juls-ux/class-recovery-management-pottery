@@ -11,8 +11,6 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
     return (
 
         <div>
-            <Header /> { }
-
             <div className="title">
                 <h1 className="title__h1">Listado de todos las alumnas</h1>
                 <section className="title__sectionbtn">

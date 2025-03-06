@@ -9,8 +9,7 @@ function Alumnas({loggedUser}){
 
     return(
         
-        <div>
-        <Header /> {}
+        <>
         <div className="hero">
     
         </div>
@@ -61,7 +60,7 @@ function Alumnas({loggedUser}){
 
         </div>
 
-      </div>
+        </>
 
 
     

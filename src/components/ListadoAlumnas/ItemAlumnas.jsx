@@ -25,6 +25,7 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
           <th>Teléfono</th>
           <th>Día</th>
           <th>Hora</th>
+          <th>Pago</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -53,6 +54,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Hora">
                 <input className="listado__input" type="text" value={oneAlumn.horario} readOnly />
+              </td>
+              <td data-label="Pago"  className="pago">
+                <select className="listado__pago">
+                  <option className="pago__pendiente" value="pendiente">Pendiente</option>
+                  <option className="listado__pagado" value="pagado">Pagado</option>
+                </select>
               </td>
               <td data-label="Acciones">
                 <div className="listado__icons">

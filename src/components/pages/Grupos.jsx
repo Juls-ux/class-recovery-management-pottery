@@ -18,7 +18,6 @@ function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo,
 
     return (
         <>
-        <Header/>
         
         <div className="grupos">
             <h1>Visión Global de Grupos</h1>

@@ -79,7 +79,29 @@ width:230px;
 
     &__iconEdit, &__iconDelet {
 
+    }
+    
+    &__pago {
 
+     
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: white;
+      
+        /* Color por defecto */
+        background-color: gray;
+        border: none;
+      
+        /* Estilos cuando la opción seleccionada es "pendiente" */
+        &:has(option:checked[value="pendiente"]) {
+          background-color: #ed9494;
+        }
+      
+        /* Estilos cuando la opción seleccionada es "pagado" */
+        &:has(option:checked[value="pagado"]) {
+          background-color: #60e29b;
+        }
     }
 
 

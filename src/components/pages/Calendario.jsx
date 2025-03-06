@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 function Calendario({ selectedDate, setSelectedDate, mode, setMode, cellRender, onSelect, onPanelChange }) {
   return (
     <div>
-      <Header />
+ 
       <div className="Calenderhero">
         <h1 className="Calenderhero__h1">Calendario</h1>
       </div>
