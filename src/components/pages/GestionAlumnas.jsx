@@ -14,7 +14,7 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
             <div className="title">
                 <h1 className="title__h1">Listado de todos las alumnas</h1>
                 <section className="title__sectionbtn">
-                    <input className="addInput" type="Add" name="" id="" value="Añadir" />
+                    <input className="addInput" type="Add" name="" id="" value="+ Añadir" />
                     <button className="btn-admin" >Ver Grupos Semanales
                         <Link to="/Grupos"> </Link>
                     </button>

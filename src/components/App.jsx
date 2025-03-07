@@ -10,7 +10,7 @@ import Calendario from './pages/Calendario';
 import Grupos from './pages/Grupos';
 import Enlaces from './layout/enlaces';
 import '../styles/App.scss';
-import dataJson from '../data/alumnos.json';
+//import dataJson from '../data/alumnos.json';
 import gruposJson from '../data/grupos.json';
 import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 import { Badge } from 'antd';
@@ -27,11 +27,13 @@ const USUARIA_FALSA = {
 function App() {
 
   const [loggedUser, setLoggedUser] = useState(USUARIA_FALSA);
-
-  const [alumnas, setAlumnas] = useState(() => {
-    const storedAlumnas = localStorage.getItem('alumnas');
-    return storedAlumnas ? JSON.parse(storedAlumnas) : dataJson;
-  });
+  const [alumnas, setAlumnas] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/api/alumnas/clases')
+      .then(response => response.json())
+      .then(result => console.log('Success:', result))
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   const [grupos, setGrupos] = useState(() => {
     const storedGrupos = localStorage.getItem('grupos');
@@ -53,9 +55,9 @@ function App() {
     if (current.day() === 2) {
       return (
         <ul>
-        <li><Badge status="success" text="17-19 Clase (5)" /></li>
-  
-      </ul>
+          <li><Badge status="success" text="17-19 Clase (5)" /></li>
+
+        </ul>
       );
     }
 
@@ -128,23 +130,23 @@ function App() {
 
   return (
     <>
-    <Header loggedUser={loggedUser} />
-        <main>
+      <Header loggedUser={loggedUser} />
+      <main>
 
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
-        <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser}/>} />
-        <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-        <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
-      </Routes>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
+          <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser} />} />
+          <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
+          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+        </Routes>
 
-      <div>
-        <div><Enlaces></Enlaces></div>
-      </div>
-    </main>
+        <div>
+          <div><Enlaces></Enlaces></div>
+        </div>
+      </main>
 
-</>
+    </>
   )
 }
 

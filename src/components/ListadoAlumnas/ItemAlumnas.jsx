@@ -1,9 +1,29 @@
 import PropTypes from 'prop-types';
 import EditIcon from "../../images/edit-icon.svg";
 import DeletIcon from "../../images/delet-icon.svg";
+import { useEffect } from 'react';
 
 
 function ItemAlumnas({ alumnas = [], setAlumnas }) {
+
+  useEffect(() => {
+    const fetchAlumnas = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/alumnas/clases');
+        if (!response.ok) {
+          throw new Error('Error en la obtención de alumnas');
+        }
+        const data = await response.json();
+        setAlumnas(data);
+      } catch (error) {
+        console.error("Error al obtener alumnas:", error);
+      }
+    };
+  
+    fetchAlumnas();
+  }, []);
+
+
   const handleDelete = (email) => {
     const confirmDelete = window.confirm("¿Seguro que quieres borrar a esta alumna?");
     
