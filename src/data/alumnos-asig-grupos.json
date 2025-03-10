@@ -1,167 +1,17 @@
 [
   {
-    "grupo_id": 1,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "17:00-19:00",
-    "dia": "Lunes",
+    "grupo_id": "",
+    "año": "",
+    "mes": "",
+    "horario": "",
+    "dia": "",
     "alumnos": [
       {
         "id": 1,
-        "nombre": "Juan Pérez",
-        "email": "juan.perez@example.com",
-        "telefono": "123456789",
-        "fechaMatricula": "2024-04-13"
-      },
-      {
-        "id": 7,
-        "nombre": "Pedro Gómez",
-        "email": "pedro.gomez@example.com",
-        "telefono": "654789321",
-        "fechaMatricula": "2024-02-20"
-      },
-      {
-        "id": 8,
-        "nombre": "Lucía Martínez",
-        "email": "lucia.martinez@example.com",
-        "telefono": "987123654",
-        "fechaMatricula": "2024-03-10"
-      }
-    ]
-  },
-  {
-    "grupo_id": 2,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "19:00-21:00",
-    "dia": "Martes",
-    "alumnos": [
-      {
-        "id": 4,
-        "nombre": "Ana Fernández",
-        "email": "ana.fernandez@example.com",
-        "telefono": "321654987",
-        "fechaMatricula": "2024-04-13"
-      },
-      {
-        "id": 5,
-        "nombre": "Pepa López",
-        "email": "pepa.lopez@example.com",
-        "telefono": "321654987",
-        "fechaMatricula": "2024-04-13"
-      },
-      {
-        "id": 9,
-        "nombre": "Javier Ruiz",
-        "email": "javier.ruiz@example.com",
-        "telefono": "789456123",
-        "fechaMatricula": "2024-02-15"
-      }
-    ]
-  },
-  {
-    "grupo_id": 3,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "19:00-21:00",
-    "dia": "Miércoles",
-    "alumnos": [
-      {
-        "id": 10,
-        "nombre": "Carla Torres",
-        "email": "carla.torres@example.com",
-        "telefono": "456789123",
-        "fechaMatricula": "2024-01-25"
-      },
-      {
-        "id": 11,
-        "nombre": "David Ramírez",
-        "email": "david.ramirez@example.com",
-        "telefono": "321987654",
-        "fechaMatricula": "2024-02-18"
-      }
-    ]
-  },
-  {
-    "grupo_id": 4,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "19:00-21:00",
-    "dia": "Jueves",
-    "alumnos": [
-      {
-        "id": 12,
-        "nombre": "Raquel Sánchez",
-        "email": "raquel.sanchez@example.com",
-        "telefono": "654321987",
-        "fechaMatricula": "2024-02-22"
-      },
-      {
-        "id": 13,
-        "nombre": "Alejandro Herrera",
-        "email": "alejandro.herrera@example.com",
-        "telefono": "789123456",
-        "fechaMatricula": "2024-03-05"
-      },
-      {
-        "id": 14,
-        "nombre": "Natalia Castro",
-        "email": "natalia.castro@example.com",
-        "telefono": "987654321",
-        "fechaMatricula": "2024-02-28"
-      }
-    ]
-  },
-  {
-    "grupo_id": 5,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "19:00-21:00",
-    "dia": "Viernes",
-    "alumnos": [
-      {
-        "id": 15,
-        "nombre": "Sergio Medina",
-        "email": "sergio.medina@example.com",
-        "telefono": "789654123",
-        "fechaMatricula": "2024-03-02"
-      },
-      {
-        "id": 16,
-        "nombre": "Laura Moreno",
-        "email": "laura.moreno@example.com",
-        "telefono": "456321789",
-        "fechaMatricula": "2024-03-07"
-      }
-    ]
-  },
-  {
-    "grupo_id": 6,
-    "año": 25,
-    "mes": "Marzo",
-    "horario": "12:00-14:00",
-    "dia": "Viernes",
-    "alumnos": [
-      {
-        "id": 17,
-        "nombre": "Carlos Núñez",
-        "email": "carlos.nunez@example.com",
-        "telefono": "987321654",
-        "fechaMatricula": "2024-01-30"
-      },
-      {
-        "id": 18,
-        "nombre": "Isabel Ortega",
-        "email": "isabel.ortega@example.com",
-        "telefono": "654789321",
-        "fechaMatricula": "2024-02-12"
-      },
-      {
-        "id": 19,
-        "nombre": "Fernando Ríos",
-        "email": "fernando.rios@example.com",
-        "telefono": "321654789",
-        "fechaMatricula": "2024-03-01"
+        "nombre": "",
+        "email": "",
+        "telefono": "",
+        "fechaMatricula": ""
       }
     ]
   }

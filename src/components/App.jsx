@@ -27,6 +27,7 @@ const USUARIA_FALSA = {
 function App() {
 
   const [loggedUser, setLoggedUser] = useState(USUARIA_FALSA);
+
   const [alumnas, setAlumnas] = useState([]);
   useEffect(() => {
     fetch('http://localhost:3000/api/alumnas/clases')
@@ -35,12 +36,18 @@ function App() {
       .catch(error => console.error('Error:', error));
   }, []);
 
-  const [grupos, setGrupos] = useState(() => {
-    const storedGrupos = localStorage.getItem('grupos');
-    return storedGrupos ? JSON.parse(storedGrupos) : gruposJson;
-  });
 
-  const [alumnosAsignados, setAlumnosAsignados] = useState(alumnosAsignadosGrupo);
+  const [grupos, setGrupos] = useState([]);
+  const [alumnosAsignados, setAlumnosAsignados] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/api/alumnas/grupos')
+      .then(response => response.json())
+      .then(result => console.log('Success:', result))
+      .catch(error => console.error('Error:', error));
+  }, []);
+
+ 
+
   const [filterName, setFilterName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -138,7 +145,7 @@ function App() {
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser} />} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} gruposJson={gruposJson} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
         </Routes>
 
         <div>

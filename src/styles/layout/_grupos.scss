@@ -1,126 +1,165 @@
+/* Contenedor principal de la tabla */
 .grupos {
   padding: 2rem;
-
-  &__acciones {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap; 
-  }
-
-  &__input {
-    padding: 0.5rem 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.375rem;
-    width: 250px;
-    font-size: 0.875rem;
-
-    &:focus {
-      outline: none;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 1px #4f46e5;
-    }
-  }
-
-  &__add-btn,
-  &__manage-btn {
-    padding: 0.5rem 1rem;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  &__add-btn {
-    background-color: #e9ecfb;
-    color: #4f46e5;
-
-    &:hover {
-      background-color: #dce1f9;
-    }
-  }
-
-  &__manage-btn {
-    background-color: #f4a68d;
-    color: white;
-
-    &:hover {
-      background-color: darken(#f4a68d, 5%);
-    }
-  }
+  font-family: 'Arial', sans-serif;
 }
 
-// Estilos para la TABLET
-.tabla-container {
-  display: grid;
-  grid-template-columns: auto repeat(5, 1fr); 
-  grid-template-rows: auto repeat(4, 1fr); 
-  gap: 0.5rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto; 
-  @media screen and (max-width: 768px) {
-    display: block; 
-    overflow-x: auto; 
-    white-space: nowrap; 
-
-    .tabla__row {
-      display: flex;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 0.5rem 0;
-    }
-
-    .tabla__header,
-    .tabla__horario,
-    .tabla__cell {
-      display: block;
-      width: 100%; 
-      text-align: left;
-      padding: 0.75rem;
-    }
-
-    .tabla__header {
-      font-size: 1rem;
-      font-weight: bold;
-      background: #e2e8f0;
-    }
-
-    .tabla__horario {
-      background: #f1f5f9;
-      font-weight: bold;
-    }
-  }
+/* Acciones (botones y barra de búsqueda) */
+.grupos__acciones {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; 
 }
 
-.tabla__ul {
-  list-style: none;
-  padding: 1rem;
-  font-size: 14px;
-}
-
-
-.tabla__header {
-  font-weight: bold;
-  font-size: 1rem;
-  text-align: center;
-  background: #e2e8f0;
-  padding: 1rem;
-  border-radius: 0.375rem;
-}
-
-.tabla__horario {
-  font-weight: bold;
-  text-align: center;
-  background: #f1f5f9;
-  padding: 1rem;
-  border-radius: 0.375rem;
-}
-
-.tabla__cell {
-  background: white;
+.grupos__input {
+  padding: 0.5rem 1rem;
   border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  min-height: 60px;
+  border-radius: 0.375rem;
+  width: 250px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
+
+.grupos__input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 1px #4f46e5;
+}
+
+.grupos__add-btn,
+.grupos__manage-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.grupos__add-btn {
+  background-color: #e9ecfb;
+  color: #4f46e5;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease;
+}
+
+.grupos__add-btn:hover {
+  background-color: #dce1f9;
+}
+
+.grupos__manage-btn {
+  background-color: #f4a68d;
+  color: white;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease;
+}
+
+.grupos__manage-btn:hover {
+  background-color: #f17e6e;
+}
+
+/* Estilos de la tabla */
+.tabla-container {
+  overflow-x: auto;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th, .tabla td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+}
+
+.tabla th {
+  background-color: #f1f5f9;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tabla td {
+  background-color: #ffffff;
+  color: #4b4b4b;
+}
+
+.tabla__cell ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.tabla__cell li {
+  padding: 0.25rem 0;
+
+}
+
+.tabla__cell p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Estilos responsivos para dispositivos pequeños */
+@media screen and (max-width: 768px) {
+  .grupos__acciones {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tabla-container {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .tabla th, .tabla td {
+    padding: 0.75rem;
+  }
+
+  .tabla__cell ul {
+    padding-left: 1.5rem;
+  }
+
+  /* Mostrar las celdas en fila */
+  .tabla th {
+    text-align: center;
+  }
+
+  .tabla__cell {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .tabla__cell p {
+    font-size: 1rem;
+  }
+
+  /* Columnas se muestran una encima de otra en lugar de en fila */
+  .tabla tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .tabla td {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .tabla td:first-child {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+

@@ -60,7 +60,7 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
                 <input className="listado__input" type="text" value={oneAlumn.nombre} readOnly />
               </td>
               <td data-label="Apellido">
-                <input className="listado__input" type="text" value={oneAlumn.apellido} readOnly />
+                <input className="listado__input" type="text" value={oneAlumn.apellidos} readOnly />
               </td>
               <td data-label="E-Mail">
                 <input className="listado__input" type="text" value={oneAlumn.email} readOnly />

@@ -1,91 +1,114 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Header from "../layout/Header";
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
-function Grupos({  alumnosAsignados, setAlumnosAsignados, alumnosAsignadosGrupo, handlerInputFilterName, filterName }) {
+function Grupos({ setGrupos, alumnosAsignados, setAlumnosAsignados, handlerInputFilterName, filterName }) {
+  const [grupos, setGruposState] = useState([]);
 
-    console.log("Datos de alumnosAsignadosGrupo:", alumnosAsignadosGrupo);
+  // Cargar los datos de los grupos desde la API
+  useEffect(() => {
+    const fetchGrupos = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/alumnas/grupos');
+        if (!response.ok) {
+          throw new Error('Error al obtener los grupos');
+        }
+        const data = await response.json();
+        setGruposState(data[0].resultado_json);  // Establecer los datos de los grupos
+      } catch (error) {
+        console.error("Error al obtener los grupos:", error);
+      }
+    };
 
-    const dias = [...new Set(alumnosAsignadosGrupo.map(obj => obj.dia))];
-    const horario = [...new Set(alumnosAsignadosGrupo.map(obj2 => obj2.horario))];
-    const nombre = [...new Set(alumnosAsignadosGrupo.map(obj3 => obj3.nombre))];
+    fetchGrupos();
+  }, []);
 
+  // Días de la semana
+  const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
-    console.log("Días:", dias);
-    console.log("Horarios:", horario);
-    console.log("Nombre:", nombre);
+  // Obtener todos los horarios únicos
+  const horarios = [...new Set(grupos.map(grupo => grupo.horario))];
 
-    return (
-        <>
-        
-        <div className="grupos">
-            <h1>Visión Global de Grupos</h1>
+  // Crear una estructura para la tabla
+  const tabla = dias.map(dia => {
+    const columnas = horarios.map(horario => {
+      const gruposFiltrados = grupos.filter(grupo => grupo.dia === dia && grupo.horario === horario);
+      return {
+        horario,
+        alumnos: gruposFiltrados.length > 0 ? gruposFiltrados[0].alumnos || [] : []
+      };
+    });
+    return {
+      dia,
+      columnas
+    };
+  });
 
-            <div className="grupos__acciones">
-                <input
-                    className="grupos__input"
-                    type="search"
-                    placeholder="Buscar"
-                    onChange={handlerInputFilterName} value={filterName}
-                    
-                />
-                <button className="grupos__add-btn">Añadir
-                    <Link to="/GestionAlumnas"></Link>
-                </button>
-                <button className="grupos__manage-btn">Gestión Alumnos
-                    <Link to="/GestionAlumnas"></Link>
-                </button>
-            </div>
+  return (
+    <div className="grupos">
+      <h1>Visión Global de Grupos</h1>
 
-            <section className="tabla-container">
-                {alumnosAsignados.length > 0 ? (
-                    <>
+      <div className="grupos__acciones">
+        <input
+          className="grupos__input"
+          type="search"
+          placeholder="Buscar"
+          onChange={handlerInputFilterName}
+          value={filterName}
+        />
+          <Link to="/GestionAlumnas" className="grupos__add-btn">
+            Añadir
+          </Link>
+          <Link to="/GestionAlumnas" className="grupos__manage-btn">
+            Gestión Alumnos
+          </Link>
+      </div>
 
-                        <div className="tabla__header tabla__empty"></div>
-
-                        {dias.map((dia) => (
-                            <div key={dia} className="tabla__header">{dia}</div>
+      <section className="tabla-container">
+        <table className="tabla">
+          <thead className="tabla__header">
+            <tr>
+              <th></th>
+              {horarios.map((horario) => (
+                <th key={horario}>{horario}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="tabla__cell">
+            {tabla.map((fila) => (
+              <tr key={fila.dia}>
+                <td>{fila.dia}</td>
+                {fila.columnas.map((columna, index) => (
+                  <td key={index}>
+                    {columna.alumnos.length > 0 ? (
+                      <ul>
+                        {columna.alumnos.map((alumno) => (
+                          <li key={alumno.id}>
+                            <p><strong>{alumno.nombre}</strong></p>
+                            <p>{alumno.email}</p>
+                          </li>
                         ))}
-
-                        {horario.map((hora) => (
-                            <React.Fragment key={hora}>
-                                <div className="tabla__horario">{hora}</div>
-                                {dias.map((dia) => (
-                                    <div key={`${hora}-${dia}`} className="tabla__cell">
-                                    {alumnosAsignadosGrupo
-                                      .filter(alumno => alumno.dia === dia && alumno.horario === hora)
-                                      .flatMap(grupo => grupo.alumnos) // Extraer los alumnos
-                                      .map((alumno) => (
-                                        <ul className="tabla__ul" key={alumno.id}>
-                                          <li className="tabla__li"><p> <strong>{alumno.nombre || "Sin nombre"}</strong></p></li>
-                                          <li className="tabla__li"><p> {alumno.email || "Sin email"}</p> </li>
-                                          <li className="tabla__li"><p>{alumno.telefono || "Sin teléfono"}</p> </li>
-                                        </ul>
-                                      ))
-                                    }
-                                  </div>
-                                ))}
-                            </React.Fragment>
-                        ))}
-                    </>
-                ) : (
-                    <div className="tabla__mensaje">No hay alumnos disponibles.</div>
-                )}
-            </section>
-        </div>
-        </>
-    );
+                      </ul>
+                    ) : (
+                      <p>No hay alumnos</p>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    </div>
+  );
 }
 
 Grupos.propTypes = {
-    searchTerm: PropTypes.string,
-    setSearchTerm: PropTypes.func,
-    setAlumnosAsignados: PropTypes.func,
-    alumnosAsignados: PropTypes.array,
-    alumnosAsignadosGrupo: PropTypes.array.isRequired,
-    handlerInputFilterName: PropTypes.func.isRequired,
-    filterName: PropTypes.func.isRequired
+  setGrupos: PropTypes.func.isRequired,
+  alumnosAsignados: PropTypes.array,
+  setAlumnosAsignados: PropTypes.func,
+  handlerInputFilterName: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired
 };
 
 export default Grupos;
