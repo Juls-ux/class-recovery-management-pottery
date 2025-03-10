@@ -35,12 +35,15 @@
         margin-bottom: 14px;
         color: #2F2F2F;
     }
+
     &__text {
         font-size: 16px;
         color: #2F2F2F;
     }
 }
-.horario-section, .recupera{
+
+.horario-section,
+.recupera {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,43 +57,53 @@
     background-color: #F1F2F9;
     box-shadow: 0px 4px 10px rgba(97, 97, 97, 0.08);
 
-    &__h3{
+    &__h3 {
         color: #2F2F2F;
         font-size: 16px;
+
     }
 
 }
+
 @media screen and (min-width: 716px) {
     .horario-section {
-      padding: 50px;
-      margin-inline:100px;
+        padding: 50px;
+        margin-inline: 100px;
     }
-  }
-  @media screen and (min-width: 1024px) {
-    .horario-section {
-      padding: 50px;
-      margin-inline: 300px;
-    }
-  }
+}
 
-.recupera{
+@media screen and (min-width: 1024px) {
+    .horario-section {
+        padding: 50px;
+        margin-inline: 300px;
+    }
+}
+
+.recupera {
+
     background-color: white;
-    box-shadow:none;
+    box-shadow: none;
     font-size: 16px;
     color: #2F2F2F;
     font-weight: 600;
     padding-block: 0;
     font-style: none;
-    
+
+    &__btn {
+        background-color: transparent;
+        border: none;
+        font-weight: 600;
+    }
+
 }
 
-.userData{   
+.userData {
     display: flex;
     flex-direction: column;
     text-align: center;
     margin-bottom: 40px;
 
-    &__h2{        
+    &__h2 {
         color: #2F2F2F;
         font-size: 16px;
         margin-top: 20px;
@@ -101,11 +114,11 @@
     &__data {
         list-style: none;
         margin-inline: 50px;
-        
+
     }
 
-    &__dataList{
-       
+    &__dataList {
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -115,15 +128,59 @@
         border-bottom: 1px solid #ccc;
         height: 40px;
         margin-block: 24px;
-        
-      
+
+
     }
-    &__label { 
+
+    &__label {
         font-weight: 600;
         font-size: 14px;
 
     }
-    &__input{
+
+    &__input {
         border: none;
     }
+}
+
+.form-recuperar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+
+    margin-inline: 80px;
+    padding-bottom: 80px;
+    border-radius: 20px;
+
+    &__ul {
+        list-style: none;
+    
+    }
+
+    &__li {
+        margin-bottom: 15px;
+            
+    }
+
+    &__select{
+        padding: 0.5rem 1rem;
+    border: none;
+    
+    cursor: pointer;
+
+    border:solid 1px #4f46e5;
+    color: #282828;
+    }
+
+    &__btn{
+    text-align: center;
+            padding: 0.5rem 1rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e9ecfb;
+    color: #4f46e5;
+}
 }

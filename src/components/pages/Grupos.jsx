@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from 'react-router';
 
-function Grupos({ setGrupos, alumnosAsignados, setAlumnosAsignados, handlerInputFilterName, filterName }) {
-  const [grupos, setGruposState] = useState([]);
+function Grupos({ handlerInputFilterName, filterName }) {
+  const [grupos, setGrupos] = useState([]);
 
   // Cargar los datos de los grupos desde la API
   useEffect(() => {
@@ -14,7 +14,7 @@ function Grupos({ setGrupos, alumnosAsignados, setAlumnosAsignados, handlerInput
           throw new Error('Error al obtener los grupos');
         }
         const data = await response.json();
-        setGruposState(data[0].resultado_json);  // Establecer los datos de los grupos
+        setGrupos(data[0].resultado_json);  // Establecer los datos de los grupos
       } catch (error) {
         console.error("Error al obtener los grupos:", error);
       }
