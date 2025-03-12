@@ -9,7 +9,7 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
   useEffect(() => {
     const fetchAlumnas = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/alumnas/clases');
+        const response = await fetch('http://localhost:3000/api/alumnas/clases?sort=a');
         if (!response.ok) {
           throw new Error('Error en la obtención de alumnas');
         }

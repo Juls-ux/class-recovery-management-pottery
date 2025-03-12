@@ -17,6 +17,7 @@ function Header({ loggedUser }) {
           </li>
           <li>
             <Link className="header__nav-link" to="/Alumnas">Mi perfil</Link>
+
           </li>
           {loggedUser.rol === 'admin' && (
             <>
@@ -29,6 +30,7 @@ function Header({ loggedUser }) {
               <li>
                 <Link className="header__nav-link" to="/Grupos">Grupos</Link>
               </li>
+              <li>  <Link className="header__nav-link" to="RecuperarSolicitud"> Solicitudes de recuperación</Link> </li>     
             </>
           )}
         </ul>

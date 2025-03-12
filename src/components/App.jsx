@@ -15,6 +15,7 @@ import gruposJson from '../data/grupos.json';
 import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 import { Badge } from 'antd';
 import Header from './layout/Header';
+import RecuperarSolicitud from './pages/RecuperarSolicitud';
 
 const USUARIA_FALSA = {
   id: 1,
@@ -28,10 +29,17 @@ function App() {
 
   const [loggedUser, setLoggedUser] = useState(USUARIA_FALSA);
 
+  const [showModal, setShowModal] = useState(false); 
   const [showForm, setShowform]= useState(false);
+
+
+  const handleAddAlumna = () => {
+    setShowModal(true);
+  };
 
   const handlerRecuperar = (ev) => {
     ev.preventDefault();
+
     setShowform(!showForm); 
 
     }
@@ -156,11 +164,20 @@ function App() {
           <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
           <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+          <Route path='RecuperarSolicitud' element={<RecuperarSolicitud/> }/>
         </Routes>
+        <button className="btn-add" onClick={handleAddAlumna}>Añadir Alumna</button>
 
-        <div>
-          <div><Enlaces></Enlaces></div>
-        </div>
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={handleCloseModal}>&times;</span>
+              <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} gruposJson={gruposJson} />
+            </div>
+          </div>
+        )}
+
+        <div><Enlaces /></div>
       </main>
 
     </>

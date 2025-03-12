@@ -57,7 +57,7 @@ function Grupos({ handlerInputFilterName, filterName }) {
           value={filterName}
         />
           <Link to="/GestionAlumnas" className="grupos__add-btn">
-            Añadir
+           + Añadir
           </Link>
           <Link to="/GestionAlumnas" className="grupos__manage-btn">
             Gestión Alumnos
