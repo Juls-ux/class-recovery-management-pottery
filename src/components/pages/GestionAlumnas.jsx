@@ -18,6 +18,8 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
         setShowModal(false);
     };
 
+    
+
     return (
 
         <div>
@@ -45,7 +47,7 @@ function GestionAlumnas({alumnas,setAlumnas, filterName, filteredAlumnas, handle
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={handleCloseModal}>&times;</span>
-                        <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} gruposJson={gruposJson} />
+                        <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} gruposJson={gruposJson} handleCloseModal={handleCloseModal} />
                     </div>
                 </div>
             )}

@@ -166,7 +166,7 @@ function App() {
           <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud/> }/>
         </Routes>
-        <button className="btn-add" onClick={handleAddAlumna}>Añadir Alumna</button>
+       
 
         {showModal && (
           <div className="modal">
