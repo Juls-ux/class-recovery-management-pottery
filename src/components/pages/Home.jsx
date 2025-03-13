@@ -1,16 +1,25 @@
 
 import Header from "../layout/Header";
+import { useState } from "react";
 
-function Home() {
+function Home({login}) {
+
+
+    const [email, setEmail] = useState('');
+    const [contraseña, setContraseña] = useState('');
+    
+    const handlerSubmit = (ev)=>{
+        ev.preventDefault();
+        const data = { email, contraseña: password }; 
+        login(data);
+    };
+
     return (
         
         <>
 
         <div className="login">
-            <section className='header-section'>
-          
-            
-             
+            <section className='header-section'>      
             </section>
 
             <form className='login-section'>
@@ -24,9 +33,9 @@ function Home() {
                 <input className='login-section__user-data' type="text" id="nombre" name="nombre" placeholder="ejemplo@gmail.com" />
 
                 <label htmlFor="passwort">Contraseña:</label>
-                <input className='login-section__user-data' type="text" id="passwort" name="passwort" placeholder="*****" />
+                <input className='login-section__user-data' type="password" id="contraseña" name="contraseña" placeholder="*****" value={contraseña}/>
 
-                <input className='login-section__login-btn' type='submit' />
+                <input className='login-section__login-btn' type='submit' onSubmit={handlerSubmit}/>
                
 
             </form>

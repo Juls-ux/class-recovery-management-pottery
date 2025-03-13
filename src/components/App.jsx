@@ -17,17 +17,11 @@ import { Badge } from 'antd';
 import Header from './layout/Header';
 import RecuperarSolicitud from './pages/RecuperarSolicitud';
 
-const USUARIA_FALSA = {
-  id: 1,
-  nombre: 'MariCarmen',
-  apellidos: 'Salas',
-  email: 'maricarmen@salas.com',
-  rol: 'admin'
-}
+
 
 function App() {
 
-  const [loggedUser, setLoggedUser] = useState(USUARIA_FALSA);
+  const [loggedUser, setLoggedUser] = useState(null);
 
   const [showModal, setShowModal] = useState(false); 
   const [showForm, setShowform]= useState(false);
@@ -63,6 +57,24 @@ function App() {
       .then(result => console.log('Success:', result))
       .catch(error => console.error('Error:', error));
   }, []);
+
+
+  const login = async ({email, contraseña}) =>{
+    const res = await fetch('http://localhost:3000/api/login',{
+      method:'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({email, contraseña})
+    });
+
+    const data= await res.json();
+    if (data.success) {
+      localStorage.setItem('token', data.token);
+      setLoggedUser(email); // Guarda el usuario en el estado
+  } else {
+      alert(data.error);
+  }
+    
+  }
 
  
 
@@ -159,7 +171,7 @@ function App() {
       <main>
 
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Home login={login}/>} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />

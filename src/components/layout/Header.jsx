@@ -10,7 +10,7 @@ function Header({ loggedUser }) {
         <img className="header__nav-logo" src={logoPac} alt="Logo Paquita"></img>
       </a>
 
-      {!!loggedUser &&
+     
         <ul className="header__nav-menu" >
           <li>
             <Link className="header__nav-link" to="/">Home</Link>
@@ -19,7 +19,7 @@ function Header({ loggedUser }) {
             <Link className="header__nav-link" to="/Alumnas">Mi perfil</Link>
 
           </li>
-          {loggedUser.rol === 'admin' && (
+         
             <>
               <li>
                 <Link className="header__nav-link" to="/Calendario">Calendario</Link>
@@ -32,9 +32,9 @@ function Header({ loggedUser }) {
               </li>
               <li>  <Link className="header__nav-link" to="RecuperarSolicitud"> Solicitudes de recuperación</Link> </li>     
             </>
-          )}
+          
         </ul>
-      }
+      
     </header>
   );
 }
