@@ -21,7 +21,7 @@ import RecuperarSolicitud from './pages/RecuperarSolicitud';
 
 function App() {
 
-  const [loggedUser, setLoggedUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const [showModal, setShowModal] = useState(false); 
   const [showForm, setShowform]= useState(false);
@@ -67,9 +67,17 @@ function App() {
     });
 
     const data= await res.json();
+    const tokenParts =data.token.split('.');
+
+    const payload = JSON.parse(atob(tokenParts[1]));
+
+    setUser(payload);
+
+
+
     if (data.success) {
       localStorage.setItem('token', data.token);
-      setLoggedUser(email); // Guarda el usuario en el estado
+      setUser(email); // Guarda el usuario en el estado
   } else {
       alert(data.error);
   }
@@ -167,13 +175,13 @@ function App() {
 
   return (
     <>
-      <Header loggedUser={loggedUser} />
+      <Header user={user}/>
       <main>
 
         <Routes>
-          <Route index element={<Home login={login}/>} />
+          <Route index element={<Home login={login} user={user}/>} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
-          <Route path="Alumnas" element={<Alumnas loggedUser={loggedUser} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
+          <Route path="Alumnas" element={<Alumnas user={user} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
           <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud/> }/>
