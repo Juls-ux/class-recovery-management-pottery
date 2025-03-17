@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-function FormRecuperar() {
+function FormRecuperar(user) {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
     const [mensaje, setMensaje] = useState("");
   
@@ -13,10 +13,11 @@ function FormRecuperar() {
         alert("Por favor, selecciona una fecha y hora.");
         return;
       }
+ 
   
       const requestBody = {
-        email: "usuario@example.com", // Reemplázalo con el email de la usuaria autenticada
-        fecha: fechaSeleccionada.toISOString(),
+        email: user.email,
+        fecha: fechaSeleccionada.toString(),
       };
   
       try {
