@@ -2,7 +2,7 @@
 import Header from "../layout/Header";
 import { useState } from "react";
 
-function Home({login, user}) {
+function Home({login, user, setUset, logout, data}) {
 
 
     const [email, setEmail] = useState('');
@@ -10,8 +10,10 @@ function Home({login, user}) {
 
     const handlerSubmit = (ev)=>{
         ev.preventDefault();
-        login({ email, contraseña });
+        login({email, contraseña});
     };
+
+
 
     return (
         

@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import logoPac from '../../images/logo-paq-2.png';
 import MenuItem from "antd/es/menu/MenuItem";
 
-function Header({ user }) {
+function Header({ user, setUser, logout}) {
   return (
     <header className="header">
       <a href="./Home">
@@ -18,35 +18,30 @@ function Header({ user }) {
 
           <li>
             
+            {user && `Bienvenida ${user.nombre}`}
             {user ?
             <Link className="header__nav-link" to="/Logout">Logout</Link>
             :
             <Link className="header__nav-link" to="/Login">Login</Link>
             
-            }
+            }    
 
-            
           </li>
 
-
-
-          <li>
-            
+          <li>        
             <Link className="header__nav-link" to="/Alumnas">Mi perfil</Link>
-
           </li>
-         
             <>
-              <li>
+            <li>
                 <Link className="header__nav-link" to="/Calendario">Calendario</Link>
-              </li>
-              <li>
+            </li>
+            <li>
                 <Link className="header__nav-link" to="/GestionAlumnas">Gestion Alumnas</Link>
-              </li>
-              <li>
+            </li>
+            <li>
                 <Link className="header__nav-link" to="/Grupos">Grupos</Link>
-              </li>
-              <li>  <Link className="header__nav-link" to="RecuperarSolicitud"> Solicitudes de recuperación</Link> </li>     
+            </li>
+            <li>  <Link className="header__nav-link" to="RecuperarSolicitud"> Solicitudes de recuperación</Link> </li>     
             </>
           
         </ul>

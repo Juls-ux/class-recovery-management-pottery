@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useMatch, useNavigate, useLocation  } from 'react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es'; // Importa el idioma español
 
@@ -21,7 +21,11 @@ import RecuperarSolicitud from './pages/RecuperarSolicitud';
 
 function App() {
 
+  const {pathname:path}=useLocation();
+  const navigate = useNavigate();
+
   const [user, setUser] = useState(null);
+  const userFromLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
   const [showModal, setShowModal] = useState(false); 
   const [showForm, setShowform]= useState(false);
@@ -66,25 +70,29 @@ function App() {
       body: JSON.stringify({email, contraseña})
     });
 
-    const data= await res.json();
+    const data = await res.json();
     const tokenParts =data.token.split('.');
-
+    console.log(data.token);
+    
     const payload = JSON.parse(atob(tokenParts[1]));
 
     setUser(payload);
+    setToken(data.token);
+  
 
+    navigate('/alumnas');
 
-
-    if (data.success) {
-      localStorage.setItem('token', data.token);
-      setUser(email); // Guarda el usuario en el estado
-  } else {
-      alert(data.error);
-  }
-    
+    localStorage.setItem('user', JSON.stringify(payload));
   }
 
- 
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem('userToken');
+
+    navigate('/');
+  }
+
 
   const [filterName, setFilterName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -179,7 +187,7 @@ function App() {
       <main>
 
         <Routes>
-          <Route index element={<Home login={login} user={user}/>} />
+          <Route index element={<Home login={login} logout={logout} user={user}/>} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />

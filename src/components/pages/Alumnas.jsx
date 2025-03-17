@@ -4,7 +4,7 @@ import { Form, Link } from "react-router";
 import Formrecuperar from "../Formrecuperar";
 
 
-function Alumnas({ loggedUser, showForm, setShowForm, handlerRecuperar }) {
+function Alumnas({ user, showForm, setShowForm, handlerRecuperar }) {
 
 
     return (
@@ -16,16 +16,16 @@ function Alumnas({ loggedUser, showForm, setShowForm, handlerRecuperar }) {
 
             <div className="alumnas">
                 <img className="alumnas__avatar" src={avatar} alt="avatar-alumnas" />
-                <h2 className="alumnas__h2">{loggedUser.nombre} {loggedUser.apellidos}</h2>
-                <p className="alumnas__text">{loggedUser.email}</p>
+                {user && <h2 className="alumnas__h2">{user.nombre} {user.apellidos}</h2>}
+                {user &&  <p className="alumnas__text">{user.email}</p>}
             </div>
 
             <div className="horario-section">
-                <h3 className="horario-section__h3">Día/s:</h3>
-                <p className="alumnas__text">Lunes</p>
+            <h3 className="horario-section__h3">Día/s:</h3>
+            {user &&  <p className="alumnas__text">{user.dia}</p>}
 
-                <h3 className="horario-section__h3">Horario:</h3>
-                <p className="alumnas__text">17:00 h - 19:00 h</p>
+            {user && <h3 className="horario-section__h3">Horario:</h3>}
+            {user &&  <p className="alumnas__text">{user.hora}</p>}
 
 
 
