@@ -20,9 +20,9 @@ function Header({ user, setUser, logout}) {
             
             {user && `Bienvenida ${user.nombre}`}
             {user ?
-            <Link className="header__nav-link" to="/Logout">Logout</Link>
+            <Link className="header__nav-link" to="/">Logout</Link>
             :
-            <Link className="header__nav-link" to="/Login">Login</Link>
+            <Link className="header__nav-link" to="/">Login</Link>
             
             }    
 

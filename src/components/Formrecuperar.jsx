@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-function FormRecuperar(user) {
+function FormRecuperar({user, setUser}) {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
     const [mensaje, setMensaje] = useState("");
   
@@ -13,17 +13,24 @@ function FormRecuperar(user) {
         alert("Por favor, selecciona una fecha y hora.");
         return;
       }
+      if (!user || !user.email) {
+        setMensaje("No se proporcionó un correo electrónico válido.");
+        return;
+    }
  
   
-      const requestBody = {
+    const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " ");
+
+    const requestBody = {
         email: user.email,
-        fecha: fechaSeleccionada.toString(),
-      };
-  
+        fecha: fechaFormateada, // Enviar en formato correcto
+    };
+    
+      console.log("Cuerpo de la solicitud:", requestBody); 
       try {
         const res = await fetch("http://localhost:3000/api/recuperar-clase", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {"Content-Type": "application/json"},
           body: JSON.stringify(requestBody),
         });
   

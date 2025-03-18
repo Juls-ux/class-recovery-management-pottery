@@ -25,7 +25,7 @@ function Alumnas({ user, showForm, setShowForm, handlerRecuperar }) {
             {user &&  <p className="alumnas__text">{user.dia}</p>}
 
             {user && <h3 className="horario-section__h3">Horario:</h3>}
-            {user &&  <p className="alumnas__text">{user.hora}</p>}
+            {user &&  <p className="alumnas__text">{user.horario}</p>}
 
 
 
@@ -41,7 +41,7 @@ function Alumnas({ user, showForm, setShowForm, handlerRecuperar }) {
             </section>
 
             {/* Condicional para mostrar el formulario */}
-            {showForm && <Formrecuperar />}
+            {showForm && <Formrecuperar user={user}/>}
         </>
 
 

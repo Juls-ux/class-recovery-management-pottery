@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 
-function RecuperarSolicitud() {
+function RecuperarSolicitud({user}) {
     const [solicitudes, setSolicitudes] = useState([]);
     const [error, setError] = useState(null); // Estado para manejar el error
 
@@ -17,7 +17,7 @@ function RecuperarSolicitud() {
                 }
             } catch (error) {
                 setError("Error de conexión con el servidor.");
-                console.error("Error al obtener solicitudes:", error);
+               
             }
         };
 
