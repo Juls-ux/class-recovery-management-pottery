@@ -19,13 +19,12 @@ function FormRecuperar({user, setUser}) {
     }
  
   
-    const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " ");
+     const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " ");
 
-    const requestBody = {
-        email: user.email,
-        fecha: fechaFormateada, // Enviar en formato correcto
-    };
-    
+        const requestBody = {
+            email: user.email,
+            fecha: fechaFormateada, // Enviar en formato correcto
+        };
       console.log("Cuerpo de la solicitud:", requestBody); 
       try {
         const res = await fetch("http://localhost:3000/api/recuperar-clase", {

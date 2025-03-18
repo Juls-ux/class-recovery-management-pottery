@@ -112,13 +112,18 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
               }}
             />
             <ColorPicker
-              color={eventColor}
-              onChange={handleColorChange} // Cambiar color
-              style={{
-                position: 'absolute',
-                bottom: '10px',
-                left: '10px',
-                width: '90%',
+               type="color"
+               value={eventColor}
+               onChange={e => handleColorChange(e.target.value)}
+               style={{
+                 position: 'absolute',
+                 bottom: '10px',
+                 left: '10px',
+                 width: '30px',
+                 height: '30px',
+                 padding: '0',
+                 border: 'none',
+                 background: 'transparent',
               }}
             />
           </>
