@@ -11,6 +11,7 @@ function Home({login, user, setUset, logout, data}) {
     const handlerSubmit = (ev)=>{
         ev.preventDefault();
         login({email, contraseña});
+        localStorage.setItem("user", JSON.stringify(payload));
     };
 
 

@@ -24,6 +24,10 @@ function App() {
   const {pathname:path}=useLocation();
   const navigate = useNavigate();
 
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token") || null;
+  });
+
   const [user, setUser] = useState(null);
   const userFromLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
@@ -63,35 +67,49 @@ function App() {
   }, []);
 
 
-  const login = async ({email, contraseña}) =>{
-    const res = await fetch('http://localhost:3000/api/login',{
-      method:'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({email, contraseña})
-    });
+  const login = async ({ email, contraseña }) => {
+    try {
+      const res = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, contraseña }),
+      });
 
-    const data = await res.json();
-    const tokenParts =data.token.split('.');
-    console.log(data.token);
-    
-    const payload = JSON.parse(atob(tokenParts[1]));
+      const data = await res.json();
+      if (!data.token) {
+        console.error("Error: No se recibió un token");
+        return;
+      }
 
-    setUser(payload);
-    setToken(data.token);
-  
+      console.log("Token recibido:", data.token);
+      
+      const tokenParts = data.token.split(".");
+      const payload = JSON.parse(atob(tokenParts[1]));
 
-    navigate('/alumnas');
+      setUser(payload);
+      setToken(data.token);
 
-    localStorage.setItem('user', JSON.stringify(payload));
-  }
+      // ✅ Guardar en localStorage
+      localStorage.setItem("user", JSON.stringify(payload));
+      localStorage.setItem("token", data.token);
 
+      navigate("/alumnas");
+    } catch (error) {
+      console.error("Error en el login:", error);
+    }
+  };
+
+  // ✅ FUNCIÓN LOGOUT MEJORADA
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('userToken');
 
-    navigate('/');
-  }
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    navigate("/");
+  };
+
 
 
   const [filterName, setFilterName] = useState('');
@@ -183,13 +201,13 @@ function App() {
 
   return (
     <>
-      <Header user={user}/>
+      <Header user={user} login={login} logout={logout}/>
       <main>
 
         <Routes>
           <Route index element={<Home login={login} logout={logout} user={user}/>} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
-          <Route path="Alumnas" element={<Alumnas user={user} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
+          <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
           <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud/> }/>

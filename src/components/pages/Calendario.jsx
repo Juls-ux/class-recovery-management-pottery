@@ -23,12 +23,7 @@ function Calendario({ selectedDate, setSelectedDate, mode, setMode, cellRender, 
 
       <section className="horario">
         <CalendarioInput selectedDate={selectedDate} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />
-        <h2 className="horario__h2">Hora</h2>
-        <section className="horario__hora">
-          <input className="horario__horas" type="text" value="17:00-19:00" readOnly />
-          <input className="horario__horas" type="text" value="19:00-21:00" readOnly />
-        </section>
-        <button className="btn">Solicitar</button>
+      
       </section>
     </div>
   );

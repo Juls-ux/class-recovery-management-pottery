@@ -4,7 +4,7 @@ import { Form, Link } from "react-router";
 import Formrecuperar from "../Formrecuperar";
 
 
-function Alumnas({ user, showForm, setShowForm, handlerRecuperar }) {
+function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout }) {
 
 
     return (

@@ -31,7 +31,7 @@ function RecuperarSolicitud({user}) {
             </div>
 
             <section>
-                {error && <p className="text-red-500">{error}</p>} {/* Mostrar error si existe */}
+                {error && <p className="text">{error}</p>} {/* Mostrar error si existe */}
 
                 {solicitudes.length === 0 && !error ? (
                     <p>No hay solicitudes pendientes.</p>
