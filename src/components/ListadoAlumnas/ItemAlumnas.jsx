@@ -15,10 +15,11 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
 
   // Función para manejar los cambios en los inputs cuando estamos editando
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, email, value } = e.target;
     setCurrentAlumna(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: value,
+      [email]: value 
     }));
   };
 

@@ -18,9 +18,9 @@ function Header({ user, setUser, logout}) {
 
           <li>
             
-            {user && `Bienvenida ${user.nombre}`}
+            
             {user ?
-            <Link className="header__nav-link" to="/">Logout</Link>
+            <Link className="header__nav-link" to="/" onClick={logout}>Logout</Link>
             :
             <Link className="header__nav-link" to="/">Login</Link>
             

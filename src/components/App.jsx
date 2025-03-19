@@ -24,12 +24,16 @@ function App() {
   const {pathname:path}=useLocation();
   const navigate = useNavigate();
 
-  const [token, setToken] = useState(() => {
-    return localStorage.getItem("token") || null;
-  });
-
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(null);
-  const userFromLocalStorage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+
+    // ✅ Recuperar usuario de localStorage al cargar la app
+    useEffect(() => {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    }, []);
 
   const [showModal, setShowModal] = useState(false); 
   const [showForm, setShowform]= useState(false);
@@ -86,10 +90,9 @@ function App() {
       const tokenParts = data.token.split(".");
       const payload = JSON.parse(atob(tokenParts[1]));
 
+      // ✅ Guardar en el estado y en localStorage
       setUser(payload);
       setToken(data.token);
-
-      // ✅ Guardar en localStorage
       localStorage.setItem("user", JSON.stringify(payload));
       localStorage.setItem("token", data.token);
 
@@ -98,19 +101,24 @@ function App() {
       console.error("Error en el login:", error);
     }
   };
-
-  // ✅ FUNCIÓN LOGOUT MEJORADA
   const logout = () => {
+    console.log("Cerrando sesión..."); // 🛠 Depuración
+  
+    // Limpiar el estado
     setUser(null);
     setToken(null);
-
+  
+    // Eliminar datos del localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-
+  
+    // Verificar si los datos se eliminaron correctamente
+    console.log("Usuario en localStorage después del logout:", localStorage.getItem("user")); // 🔍 Debe ser null
+    console.log("Token en localStorage después del logout:", localStorage.getItem("token")); // 🔍 Debe ser null
+  
+    // Redirigir a la página de inicio
     navigate("/");
   };
-
-
 
   const [filterName, setFilterName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -201,11 +209,11 @@ function App() {
 
   return (
     <>
-      <Header user={user} login={login} logout={logout}/>
+      <Header user={user} login={login} logout={logout} token={token} setToken={setToken}/>
       <main>
 
         <Routes>
-          <Route index element={<Home login={login} logout={logout} user={user}/>} />
+          <Route index element={<Home login={login} logout={logout} user={user}token={token} setToken={setToken} />} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />

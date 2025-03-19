@@ -46,7 +46,7 @@ function FormRecuperar({user, setUser}) {
   
     return (
       <div className="form-recuperar">
-        <h2 className="text-xl font-bold mb-2">Recupera una clase</h2>
+        <h2 className="text-xl font-bold mb-2">  Recupera una clase 🖤</h2>
         
         <DatePicker
           selected={fechaSeleccionada}

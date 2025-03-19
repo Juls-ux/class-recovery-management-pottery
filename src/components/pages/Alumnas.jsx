@@ -6,7 +6,6 @@ import Formrecuperar from "../Formrecuperar";
 
 function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout }) {
 
-
     return (
 
         <>
@@ -31,17 +30,9 @@ function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout 
 
             </div>
 
-            <section className="recupera">
-                <button
-                    className="recupera__btn"
-                    onClick={handlerRecuperar}
-                >
-                    Recupera una clase 🖤
-                </button>
-            </section>
-
-            {/* Condicional para mostrar el formulario */}
-            {showForm && <Formrecuperar user={user}/>}
+        
+          
+            {<Formrecuperar user={user}/>}
         </>
 
 
