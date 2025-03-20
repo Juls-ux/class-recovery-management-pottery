@@ -96,7 +96,7 @@ function App() {
       localStorage.setItem("user", JSON.stringify(payload));
       localStorage.setItem("token", data.token);
 
-      navigate("/alumnas");
+      navigate("/");
     } catch (error) {
       console.error("Error en el login:", error);
     }

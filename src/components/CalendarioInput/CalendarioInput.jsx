@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Calendar, Input, Button, Popover, Select, Tag } from 'antd'; // Usamos Tag para mostrar categorías
-import { SketchPicker } from 'react-color'; 
+import { SketchPicker } from 'react-color';
 import dayjs from 'dayjs';
-import 'dayjs/locale/es'; 
+import 'dayjs/locale/es';
 
 dayjs.locale('es');
 
@@ -15,10 +15,10 @@ const CalendarioInput = ({ selectedDate, setSelectedDate, mode, setMode, onSelec
   const [eventCategory, setEventCategory] = useState('');
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
-  
-// Datos de los grupos
 
-  const [grupos, setGrupos] = useState([]); 
+  // Datos de los grupos
+
+  const [grupos, setGrupos] = useState([]);
 
 
   // Cargar los datos de los grupos desde la API
@@ -29,51 +29,51 @@ const CalendarioInput = ({ selectedDate, setSelectedDate, mode, setMode, onSelec
     }
   }, [grupos]); // ⚠️ Se ejecuta cada vez que se actualicen los grupos
 
-  
-// Función para generar eventos de los grupos en las fechas correspondientes
-const generateGroupEvents = () => {
-  const events = {};
-  const diasSemana = {
-    "Lunes": 1,
-    "Martes": 2,
-    "Miércoles": 3,
-    "Jueves": 4,
-    "Viernes": 5
-  };
 
-  grupos.forEach((grupo) => {
-    const diaIndex = diasSemana[grupo.dia]; 
-    if (diaIndex === undefined) return; // Si el día no es válido, lo ignoramos
+  // Función para generar eventos de los grupos en las fechas correspondientes
+  const generateGroupEvents = () => {
+    const events = {};
+    const diasSemana = {
+      "Lunes": 1,
+      "Martes": 2,
+      "Miércoles": 3,
+      "Jueves": 4,
+      "Viernes": 5
+    };
 
-    // Calculamos la primera fecha de la semana actual para ese día
-    let fechaInicio = dayjs().day(diaIndex);
+    grupos.forEach((grupo) => {
+      const diaIndex = diasSemana[grupo.dia];
+      if (diaIndex === undefined) return; // Si el día no es válido, lo ignoramos
 
-    // Si la fecha ya pasó en esta semana, la llevamos a la siguiente semana
-    if (fechaInicio.isBefore(dayjs(), "day")) {
-      fechaInicio = fechaInicio.add(7, "day");
-    }
+      // Calculamos la primera fecha de la semana actual para ese día
+      let fechaInicio = dayjs().day(diaIndex);
 
-    // Generamos los eventos para las siguientes 4 semanas (ajusta según sea necesario)
-    for (let i = 0; i < 4; i++) {
-      const fechaGrupo = fechaInicio.add(i * 7, "day").format("YYYY-MM-DD");
-
-      if (!events[fechaGrupo]) {
-        events[fechaGrupo] = [];
+      // Si la fecha ya pasó en esta semana, la llevamos a la siguiente semana
+      if (fechaInicio.isBefore(dayjs(), "day")) {
+        fechaInicio = fechaInicio.add(7, "day");
       }
 
-      events[fechaGrupo].push({
-        text: `Grupo (${grupo.horario})`,
-        color: "#ffcc00", // Color por defecto para los grupos
-        category: "grupo",
-        alumnos: grupo.alumnos
-      });
-    }
-  });
+      // Generamos los eventos para las siguientes 4 semanas (ajusta según sea necesario)
+      for (let i = 0; i < 4; i++) {
+        const fechaGrupo = fechaInicio.add(i * 7, "day").format("YYYY-MM-DD");
 
-  return events;
-};
+        if (!events[fechaGrupo]) {
+          events[fechaGrupo] = [];
+        }
 
-  
+        events[fechaGrupo].push({
+          text: `Grupo (${grupo.horario})`,
+          color: "#ffcc00", // Color por defecto para los grupos
+          category: "grupo",
+          alumnos: grupo.alumnos
+        });
+      }
+    });
+
+    return events;
+  };
+
+
   const loadEventsFromLocalStorage = () => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
     setEvents(storedEvents);
@@ -100,7 +100,11 @@ const generateGroupEvents = () => {
     if (editingDate && eventText.trim()) {
       const updatedEvents = {
         ...events,
-        [editingDate]: { text: eventText, color: eventColor, category: eventCategory },
+        [editingDate]: {
+          text: eventText,
+          color: eventColor, // Guardamos el color asignado
+          category: eventCategory,
+        },
       };
       setEvents(updatedEvents);
       saveEventsToLocalStorage(updatedEvents);
@@ -112,6 +116,7 @@ const generateGroupEvents = () => {
     setColorPickerVisible(false);
   };
 
+
   const handleTextChange = (e) => {
     setEventText(e.target.value);
   };
@@ -122,6 +127,12 @@ const generateGroupEvents = () => {
 
   const handleCategoryChange = (value) => {
     setEventCategory(value);
+    const categoryColors = {
+      vacaciones: "#ff4d4f", // Rojo
+      grupo: "#52c41a",      // Verde
+      reunion: "#fa8c16",    // Naranja
+    };
+    setEventColor(categoryColors[value] || "#ffffff"); // Asigna el color según la categoría
   };
 
   const handleCategoryEditClick = () => {
@@ -155,15 +166,11 @@ const generateGroupEvents = () => {
             }}
           >
             {events[dateString].text}
-            {/* Muestra la categoría con un Tag */}
             {events[dateString].category && (
               <Tag
-                color="blue"
-                style={{
-                  marginTop: '5px',
-                  cursor: 'pointer',
-                }}
-                onClick={handleCategoryEditClick} // Permite editar la categoría
+                color={events[dateString].color} // Aplica el color del evento
+                style={{ marginTop: '5px', cursor: 'pointer' }}
+                onClick={handleCategoryEditClick}
               >
                 {events[dateString].category}
               </Tag>
@@ -171,14 +178,15 @@ const generateGroupEvents = () => {
           </div>
         )}
 
+
         {/* Si estamos editando, mostramos el campo de texto */}
         {editingDate === dateString && (
           <>
             <Input
               value={eventText}
               onChange={handleTextChange}
-              onBlur={handleSaveEvent} 
-              onPressEnter={handleSaveEvent} 
+              onBlur={handleSaveEvent}
+              onPressEnter={handleSaveEvent}
               autoFocus
               style={{
                 position: 'absolute',
@@ -203,7 +211,7 @@ const generateGroupEvents = () => {
               <Popover
                 content={<SketchPicker color={eventColor} onChangeComplete={handleColorChange} />}
                 trigger="click"
-                open={colorPickerVisible}
+
                 onClickOutSide={() => setColorPickerVisible(false)}
                 placement="topLeft"
               >
@@ -241,6 +249,7 @@ const generateGroupEvents = () => {
         showWeek={true}
         validRange={[dayjs().subtract(1, 'month'), dayjs().add(3, 'month')]}
         cellRender={renderCell}
+        handleCategoryChange={handleCategoryChange}
       />
     </div>
   );

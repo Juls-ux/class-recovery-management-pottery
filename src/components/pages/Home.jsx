@@ -56,7 +56,7 @@ function Home({ login, user, setUset, logout, data }) {
                             <label htmlFor="passwort">Contraseña:</label>
                             <input className='login-section__user-data' type="text" id="contraseña" name="contraseña" placeholder="*****" onChange={(e) => setContraseña(e.target.value)} />
 
-                            <input className='login-section__login-btn' type='submit' valur="Iniciar Sesión" /></>
+                            <input className='login-section__login-btn' type='submit' value="Iniciar Sesión" /></>
 
                     }
 
