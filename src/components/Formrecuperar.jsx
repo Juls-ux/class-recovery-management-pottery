@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function FormRecuperar({ user}) {
+function FormRecuperar({ user }) {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
     const [mensaje, setMensaje] = useState("");
 
@@ -17,11 +17,18 @@ function FormRecuperar({ user}) {
             return;
         }
 
+        // Extraer la hora de la fecha seleccionada
+        const hora = fechaSeleccionada.toISOString().slice(11, 19); // Formato: HH:mm:ss
         const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " ");
+
+
 
         const requestBody = {
             email: user.email,
             fecha: fechaFormateada, // Enviar en formato correcto
+            hora: hora, // Incluir la hora
+            id_alumna: user.nombre, // Asumí que id_alumna viene del objeto user, ajusta si es necesario
+            id_clase: user.nombre, // Lo mismo para id_clase
         };
         console.log("Cuerpo de la solicitud:", requestBody);
 
@@ -69,3 +76,4 @@ function FormRecuperar({ user}) {
 }
 
 export default FormRecuperar;
+

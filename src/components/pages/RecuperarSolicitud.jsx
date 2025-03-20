@@ -36,7 +36,8 @@ function RecuperarSolicitud({ user }) {
                 <h1>📅 Solicitudes para recuperar clases</h1>
             </div>
 
-            <section>
+        
+        <section>
                 {error && <p className="text">{error}</p>} {/* Show error if exists */}
 
                 {solicitudes.length === 0 && !error ? (
