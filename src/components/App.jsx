@@ -16,6 +16,7 @@ import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 import { Badge } from 'antd';
 import Header from './layout/Header';
 import RecuperarSolicitud from './pages/RecuperarSolicitud';
+import FormRecuperar from './Formrecuperar';
 
 
 
@@ -210,13 +211,14 @@ function App() {
           <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud/> }/>
         </Routes>
-       
+    
 
         {showModal && (
           <div className="modal">
             <div className="modal-content">
               <span className="close" onClick={handleCloseModal}>&times;</span>
               <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} gruposJson={gruposJson} />
+              <FormRecuperar></FormRecuperar>
             </div>
           </div>
         )}

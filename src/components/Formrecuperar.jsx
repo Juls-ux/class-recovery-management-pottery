@@ -28,7 +28,7 @@ function FormRecuperar({ user }) {
             fecha: fechaFormateada, // Enviar en formato correcto
             hora: hora, // Incluir la hora
             id_alumna: user.nombre, // Asumí que id_alumna viene del objeto user, ajusta si es necesario
-            id_clase: user.nombre, // Lo mismo para id_clase
+            id_clase: user, // Lo mismo para id_clase
         };
         console.log("Cuerpo de la solicitud:", requestBody);
 
@@ -52,7 +52,7 @@ function FormRecuperar({ user }) {
 
     return (
         <div className="form-recuperar">
-            <h2 className="text-xl font-bold mb-2">Recupera una clase 🖤</h2>
+           
 
             <DatePicker
                 selected={fechaSeleccionada}
