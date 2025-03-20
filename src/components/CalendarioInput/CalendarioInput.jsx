@@ -1,70 +1,136 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Calendar, Input, Tooltip, ColorPicker } from 'antd';
+import { Calendar, Input, Button, Popover, Select, Tag } from 'antd'; // Usamos Tag para mostrar categorías
+import { SketchPicker } from 'react-color'; 
 import dayjs from 'dayjs';
-import 'dayjs/locale/es'; // Cambia el idioma a español
+import 'dayjs/locale/es'; 
 
-dayjs.locale('es'); // Establece el idioma de Dayjs
+dayjs.locale('es');
 
-const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect, onPanelChange}) => {
-  // Estado para manejar los eventos en cada día (almacena la fecha, el texto escrito y el color)
+const CalendarioInput = ({ selectedDate, setSelectedDate, mode, setMode, onSelect, onPanelChange }) => {
   const [events, setEvents] = useState({});
   const [editingDate, setEditingDate] = useState(null);
   const [eventText, setEventText] = useState('');
-  const [eventColor, setEventColor] = useState('#ffffff'); // Color inicial
+  const [eventColor, setEventColor] = useState('#ffffff');
+  const [eventCategory, setEventCategory] = useState('');
+  const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
-  // Función para cargar los eventos desde localStorage
+  
+// Datos de los grupos
+
+  const [grupos, setGrupos] = useState([]); 
+
+
+  // Cargar los datos de los grupos desde la API
+  useEffect(() => {
+    if (grupos.length > 0) {
+      const groupEvents = generateGroupEvents();
+      setEvents((prevEvents) => ({ ...prevEvents, ...groupEvents }));
+    }
+  }, [grupos]); // ⚠️ Se ejecuta cada vez que se actualicen los grupos
+
+  
+// Función para generar eventos de los grupos en las fechas correspondientes
+const generateGroupEvents = () => {
+  const events = {};
+  const diasSemana = {
+    "Lunes": 1,
+    "Martes": 2,
+    "Miércoles": 3,
+    "Jueves": 4,
+    "Viernes": 5
+  };
+
+  grupos.forEach((grupo) => {
+    const diaIndex = diasSemana[grupo.dia]; 
+    if (diaIndex === undefined) return; // Si el día no es válido, lo ignoramos
+
+    // Calculamos la primera fecha de la semana actual para ese día
+    let fechaInicio = dayjs().day(diaIndex);
+
+    // Si la fecha ya pasó en esta semana, la llevamos a la siguiente semana
+    if (fechaInicio.isBefore(dayjs(), "day")) {
+      fechaInicio = fechaInicio.add(7, "day");
+    }
+
+    // Generamos los eventos para las siguientes 4 semanas (ajusta según sea necesario)
+    for (let i = 0; i < 4; i++) {
+      const fechaGrupo = fechaInicio.add(i * 7, "day").format("YYYY-MM-DD");
+
+      if (!events[fechaGrupo]) {
+        events[fechaGrupo] = [];
+      }
+
+      events[fechaGrupo].push({
+        text: `Grupo (${grupo.horario})`,
+        color: "#ffcc00", // Color por defecto para los grupos
+        category: "grupo",
+        alumnos: grupo.alumnos
+      });
+    }
+  });
+
+  return events;
+};
+
+  
   const loadEventsFromLocalStorage = () => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || {};
     setEvents(storedEvents);
   };
 
-  // Función para guardar los eventos en localStorage
   const saveEventsToLocalStorage = (events) => {
     localStorage.setItem('calendarEvents', JSON.stringify(events));
   };
 
-  // Cargar los eventos cuando el componente se monta
   useEffect(() => {
     loadEventsFromLocalStorage();
   }, []);
 
-  // Función para manejar la selección de una fecha
   const handleDateClick = (date) => {
     const dateString = date.format('YYYY-MM-DD');
     setEditingDate(dateString);
-    setEventText(events[dateString]?.text || ''); // Cargar el texto del evento existente si hay uno
-    setEventColor(events[dateString]?.color || '#ffffff'); // Cargar el color del evento
+    setEventText(events[dateString]?.text || '');
+    setEventColor(events[dateString]?.color || '#ffffff');
+    setEventCategory(events[dateString]?.category || '');
+    setColorPickerVisible(true);
   };
 
-  // Función para guardar el evento de la fecha
   const handleSaveEvent = () => {
     if (editingDate && eventText.trim()) {
       const updatedEvents = {
         ...events,
-        [editingDate]: { text: eventText, color: eventColor },
+        [editingDate]: { text: eventText, color: eventColor, category: eventCategory },
       };
       setEvents(updatedEvents);
-      saveEventsToLocalStorage(updatedEvents); // Guardar en localStorage
+      saveEventsToLocalStorage(updatedEvents);
     }
-    setEditingDate(null); // Cerrar la edición
-    setEventText(''); // Limpiar el campo de texto
-    setEventColor('#ffffff'); // Resetear el color
+    setEditingDate(null);
+    setEventText('');
+    setEventColor('#ffffff');
+    setEventCategory('');
+    setColorPickerVisible(false);
   };
 
-  // Función para manejar el cambio de texto
   const handleTextChange = (e) => {
     setEventText(e.target.value);
   };
 
-  // Función para manejar el cambio de color
   const handleColorChange = (color) => {
-    setEventColor(color.hex); // Cambiar el color del evento
+    setEventColor(color.hex);
   };
 
-  // Función para hacer renderizado de la celda de calendario
+  const handleCategoryChange = (value) => {
+    setEventCategory(value);
+  };
+
+  const handleCategoryEditClick = () => {
+    setColorPickerVisible(false); // Cerrar el selector de color si se va a editar la categoría
+  };
+
   const renderCell = (value) => {
     const dateString = value.format('YYYY-MM-DD');
+
     return (
       <div
         style={{
@@ -76,12 +142,11 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
         }}
         onClick={() => handleDateClick(value)}
       >
-        {/* Mostrar el texto del evento si existe */}
         {events[dateString] && (
           <div
             style={{
               fontSize: '12px',
-              backgroundColor: events[dateString].color || '#e0f7fa', // Color del evento
+              backgroundColor: events[dateString].color || '#e0f7fa',
               padding: '4px',
               borderRadius: '4px',
               position: 'absolute',
@@ -90,6 +155,19 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
             }}
           >
             {events[dateString].text}
+            {/* Muestra la categoría con un Tag */}
+            {events[dateString].category && (
+              <Tag
+                color="blue"
+                style={{
+                  marginTop: '5px',
+                  cursor: 'pointer',
+                }}
+                onClick={handleCategoryEditClick} // Permite editar la categoría
+              >
+                {events[dateString].category}
+              </Tag>
+            )}
           </div>
         )}
 
@@ -99,8 +177,8 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
             <Input
               value={eventText}
               onChange={handleTextChange}
-              onBlur={handleSaveEvent} // Guardar al hacer clic fuera
-              onPressEnter={handleSaveEvent} // Guardar al presionar Enter
+              onBlur={handleSaveEvent} 
+              onPressEnter={handleSaveEvent} 
               autoFocus
               style={{
                 position: 'absolute',
@@ -111,21 +189,39 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
                 padding: '5px',
               }}
             />
-            <ColorPicker
-               type="color"
-               value={eventColor}
-               onChange={e => handleColorChange(e.target.value)}
-               style={{
-                 position: 'absolute',
-                 bottom: '10px',
-                 left: '10px',
-                 width: '30px',
-                 height: '30px',
-                 padding: '0',
-                 border: 'none',
-                 background: 'transparent',
-              }}
-            />
+            <Select
+              style={{ width: '100%', marginBottom: '10px' }}
+              value={eventCategory}
+              onChange={handleCategoryChange}
+            >
+              <Select.Option value="vacaciones">Vacaciones</Select.Option>
+              <Select.Option value="grupo">Grupo</Select.Option>
+              <Select.Option value="reunion">Reunión</Select.Option>
+            </Select>
+
+            {colorPickerVisible && (
+              <Popover
+                content={<SketchPicker color={eventColor} onChangeComplete={handleColorChange} />}
+                trigger="click"
+                open={colorPickerVisible}
+                onClickOutSide={() => setColorPickerVisible(false)}
+                placement="topLeft"
+              >
+                <Button
+                  style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    left: '10px',
+                    width: '30px',
+                    height: '30px',
+                    padding: '0',
+                    backgroundColor: eventColor,
+                    border: 'none',
+                    cursor: 'pointer',
+                  }}
+                />
+              </Popover>
+            )}
           </>
         )}
       </div>
@@ -136,16 +232,15 @@ const CalendarioInput = ({selectedDate, setSelectedDate, mode, setMode, onSelect
     <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
       <h2>📅 Calendario Rotas</h2>
 
-      {/* Calendario */}
       <Calendar
         value={selectedDate}
         mode={mode}
         onSelect={onSelect}
         onPanelChange={onPanelChange}
-        fullscreen={true} // Cambia a 'false' para una vista más compacta
-        showWeek={true} // Muestra números de semana
-        validRange={[dayjs().subtract(1, 'month'), dayjs().add(3, 'month')]} // Rango de fechas permitidas
-        cellRender={renderCell} // Usamos nuestro render personalizado para las celdas
+        fullscreen={true}
+        showWeek={true}
+        validRange={[dayjs().subtract(1, 'month'), dayjs().add(3, 'month')]}
+        cellRender={renderCell}
       />
     </div>
   );
@@ -161,3 +256,4 @@ CalendarioInput.propTypes = {
 };
 
 export default CalendarioInput;
+
