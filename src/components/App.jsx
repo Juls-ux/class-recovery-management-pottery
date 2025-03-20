@@ -51,7 +51,6 @@ function App() {
     }
 
 
-
   const [alumnas, setAlumnas] = useState([]);
   useEffect(() => {
     fetch('http://localhost:3000/api/alumnas/clases')
@@ -103,20 +102,11 @@ function App() {
   };
   const logout = () => {
     console.log("Cerrando sesión..."); // 🛠 Depuración
-  
-    // Limpiar el estado
     setUser(null);
     setToken(null);
-  
-    // Eliminar datos del localStorage
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   
-    // Verificar si los datos se eliminaron correctamente
-    console.log("Usuario en localStorage después del logout:", localStorage.getItem("user")); // 🔍 Debe ser null
-    console.log("Token en localStorage después del logout:", localStorage.getItem("token")); // 🔍 Debe ser null
-  
-    // Redirigir a la página de inicio
     navigate("/");
   };
 

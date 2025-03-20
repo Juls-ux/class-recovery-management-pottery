@@ -4,28 +4,54 @@ import DeletIcon from "../../images/delet-icon.svg";
 import { useState, useEffect } from 'react';
 
 function ItemAlumnas({ alumnas = [], setAlumnas }) {
-  const [isEditing, setIsEditing] = useState(false);  // Estado para saber si estamos editando
-  const [currentAlumna, setCurrentAlumna] = useState(null);  // Estado para la alumna que estamos editando
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentAlumna, setCurrentAlumna] = useState(null);
 
-  // Manejador del click en editar
-  const handleEditClick = (alumna) => {
-    setIsEditing(true);  // Activamos el modo de edición
-    setCurrentAlumna(alumna);  // Guardamos la alumna que estamos editando
-  };
 
-  // Función para manejar los cambios en los inputs cuando estamos editando
-  const handleInputChange = (e) => {
-    const { name, email, value } = e.target;
-    setCurrentAlumna(prevState => ({
-      ...prevState,
-      [name]: value,
-      [email]: value 
-    }));
+  const handlePaymentChange = async (email, value) => {
+    console.log(`Iniciando actualización de pago para: ${email}, nuevo valor: ${value}`);
+  
+    const updatedAlumnas = alumnas.map(alumna =>
+      alumna.email === email ? { ...alumna, pago: value } : alumna
+    );
+    setAlumnas(updatedAlumnas); // Update local state for immediate UI feedback
+  
+    try {
+      const response = await fetch(`/api/alumnas/clases/${email}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pago: value }),
+      });
+  
+      console.log(`Código de estado HTTP: ${response.status}`);
+  
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        console.error("Error en la respuesta del servidor:", errorData || "Sin cuerpo de respuesta");
+        throw new Error(`Error al actualizar el pago (HTTP ${response.status})`);
+      }
+  
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        const responseBody = await response.json();
+        console.log("Respuesta del servidor:", responseBody);
+  
+        setAlumnas(prevAlumnas =>
+          prevAlumnas.map(alumna =>
+            alumna.email === email ? responseBody : alumna
+          )
+        );
+      } else {
+        console.warn("La respuesta no es un JSON válido.");
+      }
+    } catch (error) {
+      console.error("Error en handlePaymentChange:", error);
+    }
   };
 
   // Función para guardar los cambios
   const handleSave = () => {
-    setAlumnas(prevAlumnas => prevAlumnas.map(alumna => 
+    setAlumnas(prevAlumnas => prevAlumnas.map(alumna =>
       alumna.email === currentAlumna.email ? currentAlumna : alumna
     ));
     setIsEditing(false);  // Salimos del modo de edición
@@ -33,18 +59,15 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
 
   // Función para cancelar la edición
   const handleCancel = () => {
-    setIsEditing(false);  // Salimos del modo de edición sin guardar
-    setCurrentAlumna(null);  // Restablecemos la alumna a null
+    setIsEditing(false);
+    setCurrentAlumna(null);
   };
 
-  // Función para eliminar
+  // Función para eliminar una alumna
   const handleDelete = (email) => {
     const confirmDelete = window.confirm("¿Seguro que quieres borrar a esta alumna?");
     if (confirmDelete) {
-      console.log("Eliminando a:", email);
       setAlumnas(prevAlumnas => prevAlumnas.filter(alumna => alumna.email !== email));
-    } else {
-      console.log("Cancelado");
     }
   };
 
@@ -86,12 +109,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
             <tr key={oneAlumn.email}>
               <td data-label="ID">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="id" 
-                    value={currentAlumna.id} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="id"
+                    value={currentAlumna.id}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.id} readOnly />
@@ -99,12 +122,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Nombre">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="nombre" 
-                    value={currentAlumna.nombre} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="nombre"
+                    value={currentAlumna.nombre}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.nombre} readOnly />
@@ -112,12 +135,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Apellido">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="apellidos" 
-                    value={currentAlumna.apellidos} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="apellidos"
+                    value={currentAlumna.apellidos}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.apellidos} readOnly />
@@ -125,12 +148,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="E-Mail">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="email" 
-                    value={currentAlumna.email} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="email"
+                    value={currentAlumna.email}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.email} readOnly />
@@ -138,12 +161,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Teléfono">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="telefono" 
-                    value={currentAlumna.telefono} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="telefono"
+                    value={currentAlumna.telefono}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.telefono} readOnly />
@@ -151,12 +174,12 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Día">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="dia" 
-                    value={currentAlumna.dia} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="dia"
+                    value={currentAlumna.dia}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.dia} readOnly />
@@ -164,34 +187,38 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
               </td>
               <td data-label="Hora">
                 {isEditing && currentAlumna.email === oneAlumn.email ? (
-                  <input 
-                    className="listado__input" 
-                    type="text" 
-                    name="horario" 
-                    value={currentAlumna.horario} 
-                    onChange={handleInputChange} 
+                  <input
+                    className="listado__input"
+                    type="text"
+                    name="horario"
+                    value={currentAlumna.horario}
+                    onChange={handleInputChange}
                   />
                 ) : (
                   <input className="listado__input" type="text" value={oneAlumn.horario} readOnly />
                 )}
               </td>
-              <td data-label="Pago"  className="pago">
-                <select className="listado__pago">
-                  <option className="pago__pendiente" value="pendiente">Pendiente</option>
-                  <option className="listado__pagado" value="pagado">Pagado</option>
+              <td data-label="Pago" className="pago">
+                <select
+                  className="listado__pago"
+                  value={oneAlumn.pago || "pendiente"}
+                  onChange={(e) => handlePaymentChange(oneAlumn.email, e.target.value)}
+                >
+                  <option value="pendiente">Pendiente</option>
+                  <option value="pagado">Pagado</option>
                 </select>
               </td>
               <td data-label="Acciones">
                 <div className="listado__icons">
-                  <img 
-                    className="listado__iconEdit" 
-                    src={EditIcon} 
-                    alt="icono editar" 
-                    onClick={() => handleEditClick(oneAlumn)} 
+                  <img
+                    className="listado__iconEdit"
+                    src={EditIcon}
+                    alt="icono editar"
+                    onClick={() => { setIsEditing(true); setCurrentAlumna(oneAlumn); }}
                   />
-                  <img 
-                    className="listado__iconDelet" 
-                    src={DeletIcon} 
+                  <img
+                    className="listado__iconDelet"
+                    src={DeletIcon}
                     alt="icono eliminar"
                     onClick={() => handleDelete(oneAlumn.email)}
                     style={{ cursor: "pointer" }}
@@ -219,6 +246,6 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
 ItemAlumnas.propTypes = {
   alumnas: PropTypes.array,
   setAlumnas: PropTypes.func.isRequired
-}
+};
 
 export default ItemAlumnas;

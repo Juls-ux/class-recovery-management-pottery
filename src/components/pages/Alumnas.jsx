@@ -26,12 +26,8 @@ function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout 
             {user && <h3 className="horario-section__h3">Horario:</h3>}
             {user &&  <p className="alumnas__text">{user.horario}</p>}
 
-
-
             </div>
 
-        
-          
             {<Formrecuperar user={user}/>}
         </>
 
