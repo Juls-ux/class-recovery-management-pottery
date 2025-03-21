@@ -6,7 +6,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { Link } from "react-router";
 
 
-function Burger({user}) {
+function Burger({user, login, setUser, logout, open }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Función para alternar el estado del menú (abrir/cerrar)

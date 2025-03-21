@@ -3,7 +3,7 @@ import FormRecuperar from "../Formrecuperar";
 import { Link } from "react-router";
 import { useState } from "react";
 
-function Home({ login, user, setUset, logout, data }) {
+function Home({ login, user, setUser, logout, data }) {
 
 
     const [email, setEmail] = useState('');
@@ -14,8 +14,6 @@ function Home({ login, user, setUset, logout, data }) {
         login({ email, contraseña });
 
     };
-
-
 
     return (
 
@@ -46,6 +44,7 @@ function Home({ login, user, setUset, logout, data }) {
                         <section>
 
                             <FormRecuperar user={user} />
+
                         </section>
                         :
 

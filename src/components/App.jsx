@@ -205,7 +205,7 @@ function App() {
       <main>
 
         <Routes>
-          <Route index element={<Home login={login} logout={logout} user={user}token={token} setToken={setToken} />} />
+          <Route index element={<Home login={login} logout={logout} setUser={setUser} user={user}token={token} setToken={setToken} />} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform}/>} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />

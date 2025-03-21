@@ -6,14 +6,14 @@ import React from "react";
 import Burger from "./Burger";
 
 
-function Header({ user, setUser, logout, open }) {
+function Header({ user, setUser, logout, open, login, token, setToken }) {
   return (
     <header className="header">
       <a href="./Home">
         <img className="header__nav-logo" src={logoPac} alt="Logo Paquita"></img>
       </a>
 
-      <Burger>
+      <Burger user={user} login={login} logout={logout} token={token} setToken={setToken} >
        
 
       </Burger>
