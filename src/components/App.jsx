@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useMatch, useNavigate, useLocation  } from 'react-router';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es'; // Importa el idioma español
-
 import Home from './pages/Home';
 import GestionAlumnas from './pages/GestionAlumnas';
 import Alumnas from './pages/Alumnas';
@@ -17,6 +16,7 @@ import { Badge } from 'antd';
 import Header from './layout/Header';
 import RecuperarSolicitud from './pages/RecuperarSolicitud';
 import FormRecuperar from './Formrecuperar';
+
 
 
 
@@ -200,7 +200,8 @@ function App() {
 
   return (
     <>
-      <Header user={user} login={login} logout={logout} token={token} setToken={setToken}/>
+      <Header user={user} login={login} logout={logout} token={token} setToken={setToken}
+      />
       <main>
 
         <Routes>

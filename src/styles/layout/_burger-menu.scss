@@ -1,0 +1,84 @@
+/* Estilos del menú de hamburguesa */
+.burger-menu {
+    position: relative;
+  }
+  
+  .burger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .burger-icon-line {
+    width: 30px;
+    height: 2.5px;
+    background-color: #333;
+    border-radius: 5px;
+    
+  }
+  
+  .nav-menu {
+    display: none; 
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color:rgb(0, 0, 0);
+    width: 200px;
+    padding: 10px;
+    list-style: none;
+    padding-block: 30px;
+    z-index: 5;
+
+    
+  }
+  
+  .nav-menu.active {
+    display: block; /* Mostrar el menú cuando está activo */
+  }
+  
+  .nav-menu ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-menu ul li {
+    margin: 15px 0;
+
+  }
+  
+  .nav-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    /* Para pantallas grandes, mostrar el menú de manera horizontal */
+    .burger-menu {
+      display: auto;
+    }
+
+    .nav-menu ul li {
+      margin: 0;
+    }
+  }
+
+  .header{
+    &__nav-link-log{
+      
+        padding: 0.5rem 1rem;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        background-color:salmon;
+        color:black;
+        text-decoration: none;
+        font-size: 14px;
+    }
+  }

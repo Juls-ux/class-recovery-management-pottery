@@ -2,39 +2,33 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
     padding-block: 30px;
     padding-inline: 50px;
 
-
     &__nav-menu {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 10px;
+        
         list-style: none;
         text-align: end;
-
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            gap:5px
-        }
     }
 
-    &__nav-link {
-        text-decoration: none;
-
-        color: #4f46e5;
-        background-color: #e9ecfb;
-        ;
-        font-size: 14px;
-        font-weight: 500;
+    &__nav-link{
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+        justify-content:right;
+        gap: 10px;
+        padding-block: 0px;
     }
+
 
     &__nav-logo {
-
-        width: 100px;
-        height: 100px;
+        width: 60px;
+        height: 60px;
 
     }
 }
