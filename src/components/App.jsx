@@ -10,7 +10,7 @@ import Grupos from './pages/Grupos';
 import Enlaces from './layout/enlaces';
 import '../styles/App.scss';
 //import dataJson from '../data/alumnos.json';
-import gruposJson from '../data/grupos.json';
+
 import alumnosAsignadosGrupo from '../data/alumnos-asig-grupos.json';
 import { Badge } from 'antd';
 import Header from './layout/Header';
@@ -75,38 +75,43 @@ function App() {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const [mensaje, setMensaje] = useState("");
 
-  const enviarSolicitud = async () => {
-    if (!fechaSeleccionada) {
-      alert("Por favor, selecciona una fecha y hora.");
-      return;
-    }
+  const enviarSolicitud = async (ev) => {
+    ev.preventDefault();
+  
 
-    if (!user || !user.email || !user.id_alumna || !user.id_clase) {
+    const hora = fechaSeleccionada.toISOString().slice(11, 19); // Formato: HH:mm:ss
+    const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " "); // Formato: YYYY-MM-DD HH:mm:ss
+  
+    const claseEncontrada = grupos.find(c => c.dia === id_clase.dia && c.horario === id_clase.horario);
+  
+
+    const claseId = claseEncontrada ? claseEncontrada.id : null;
+   
+  
+    const requestBody = {
+      id_alumna: user.id,
+      id_clase: claseId,  // ID de clase encontrado o `null`
+      nombre: user.nombre,
+      email: user.email,
+      fecha: fechaFormateada,
+      hora: hora
+    };
+
+
+    if (!fechaSeleccionada || !hora) {
       setMensaje("No se proporcionaron los datos necesarios.");
       return;
     }
-
-    // Extraer la hora de la fecha seleccionada
-    const hora = fechaSeleccionada.toISOString().slice(11, 19); // Formato: HH:mm:ss
-    const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " "); // Formato: YYYY-MM-DD HH:mm:ss
-
-    const requestBody = {
-      email: user.email,
-      fecha: fechaFormateada, 
-      hora: hora, 
-      id_alumna: user.id_alumna, 
-      id_clase: user.id_clase, 
-    };
-
+  
     console.log("Cuerpo de la solicitud:", requestBody);
-
+  
     try {
       const res = await fetch("http://localhost:3000/api/recuperar-clase", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
       });
-
+  
       const data = await res.json();
       if (data.success) {
         setMensaje("Solicitud enviada correctamente ✅");
@@ -117,6 +122,7 @@ function App() {
       setMensaje("Error de conexión con el servidor ❌");
     }
   };
+  
 
 
   const login = async ({ email, contraseña }) => {
@@ -256,10 +262,10 @@ function App() {
 
         <Routes>
           <Route index element={<Home login={login} logout={logout} setUser={setUser} user={user} token={token} setToken={setToken} handlerRecuperar={handlerRecuperar} enviarSolicitud={enviarSolicitud} mensaje={mensaje} setMensaje={setMensaje} fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} FormRecuperar={FormRecuperar} />} />
-          <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} gruposJson={gruposJson} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
+          <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} handleDelete={handleDelete} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filterName={filterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform} />} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} handlerInputFilterName={handlerInputFilterName}filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud />} />
         </Routes>
 

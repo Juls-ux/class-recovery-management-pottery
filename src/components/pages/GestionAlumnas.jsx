@@ -65,7 +65,6 @@ GestionAlumnas.propTypes = {
     newAlumna: PropTypes.object.isRequired,
     setAlumnas: PropTypes.func.isRequired,
     setNewAlumna: PropTypes.func.isRequired,
-    gruposJson: PropTypes.array.isRequired,
     handleDelete: PropTypes.func.isRequired
 }
 export default GestionAlumnas;

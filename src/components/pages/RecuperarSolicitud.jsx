@@ -10,7 +10,7 @@ function RecuperarSolicitud({ user }) {
             const res = await fetch("http://localhost:3000/api/solicitudes");
             const result = await res.json();
             if (result.success) {
-                setSolicitudes(result.data);
+                setSolicitudes(result.data); // Actualiza las solicitudes cuando se recibe la respuesta
             } else {
                 setError(result.error || "Hubo un error al obtener las solicitudes.");
             }
@@ -19,15 +19,14 @@ function RecuperarSolicitud({ user }) {
         }
     };
 
-    // Fetch solicitudes when the component mounts
+    // Llamar a obtenerSolicitudes cuando el componente se monte
     useEffect(() => {
         obtenerSolicitudes();
     }, []);
 
-    // Function to handle successful submission of a new solicitud from FormRecuperar
+    // Función que se llama cuando una nueva solicitud se envía correctamente
     const handleNewSolicitud = () => {
-        // Re-fetch the solicitudes after a new one has been submitted
-        obtenerSolicitudes();
+        obtenerSolicitudes(); // Vuelve a cargar las solicitudes después de una nueva solicitud
     };
 
     return (
@@ -36,20 +35,17 @@ function RecuperarSolicitud({ user }) {
                 <h1>📅 Solicitudes para recuperar clases</h1>
             </div>
 
-        
-        <section>
-                {error && <p className="text">{error}</p>} {/* Show error if exists */}
+            <section>
+                {error && <p className="text">{error}</p>} {/* Muestra error si existe */}
 
                 {solicitudes.length === 0 && !error ? (
                     <p>No hay solicitudes pendientes.</p>
                 ) : (
-                    <RecuperarTable solicitudes={solicitudes} />
+                    <RecuperarTable solicitudes={solicitudes} handleNewSolicitud={handleNewSolicitud} /> // Pasa las solicitudes a la tabla
                 )}
-
             </section>
         </>
     );
 }
 
 export default RecuperarSolicitud;
-

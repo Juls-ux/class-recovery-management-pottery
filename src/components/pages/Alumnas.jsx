@@ -4,7 +4,7 @@ import { Form, Link } from "react-router";
 import Formrecuperar from "../Formrecuperar";
 
 
-function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout }) {
+function Alumnas({ user}) {
 
     return (
 
@@ -27,9 +27,7 @@ function Alumnas({ user, showForm, setShowForm, handlerRecuperar, login, logout 
             {user &&  <p className="alumnas__text">{user.hora}</p>}
 
             </div>
-            <h2 className="title">Recupera una clase 🖤</h2>
 
-            {<Formrecuperar user={user}/>}
         </>
 
 

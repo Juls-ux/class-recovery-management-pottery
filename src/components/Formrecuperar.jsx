@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function FormRecuperar({ user, fechaSeleccionada, setFechaSeleccionada, enviarSolicitud, mensaje, setMensaje }) {
+function FormRecuperar({ fechaSeleccionada, setFechaSeleccionada, enviarSolicitud, mensaje }) {
     
 
     return (
@@ -19,7 +19,7 @@ function FormRecuperar({ user, fechaSeleccionada, setFechaSeleccionada, enviarSo
                 inline
             />
 
-            <button className="grupos__add-btn" onClick={enviarSolicitud}>
+            <button className="grupos__add-btn" onSubmit={enviarSolicitud}>
                 Enviar solicitud
             </button>
 
