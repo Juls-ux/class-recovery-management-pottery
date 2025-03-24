@@ -82,8 +82,7 @@ function App() {
     const hora = fechaSeleccionada.toISOString().slice(11, 19); // Formato: HH:mm:ss
     const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " "); // Formato: YYYY-MM-DD HH:mm:ss
   
-    const claseEncontrada = grupos.find(c => c.dia === id_clase.dia && c.horario === id_clase.horario);
-  
+    const claseEncontrada = grupos.find(grupo => grupo.dia === user.id_clase.dia && grupo.horario === user.id_clase.horario);  
 
     const claseId = claseEncontrada ? claseEncontrada.id : null;
    

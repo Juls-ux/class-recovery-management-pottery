@@ -8,6 +8,7 @@ function FormRecuperar({ fechaSeleccionada, setFechaSeleccionada, enviarSolicitu
     return (
         <div className="form-recuperar">
             <DatePicker
+            
                 selected={fechaSeleccionada}
                 onChange={(date) => setFechaSeleccionada(date)}
                 showTimeSelect
