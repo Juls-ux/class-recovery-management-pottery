@@ -6,7 +6,7 @@ import React from "react";
 import Burger from "./Burger";
 
 
-function Header({ user, setUser, logout, open, login, token, setToken }) {
+function Header({ user, logout, login, token, setToken }) {
   return (
     <header className="header">
       <a href="./Home">

@@ -3,7 +3,7 @@ import FormRecuperar from "../Formrecuperar";
 import { Link } from "react-router";
 import { useState } from "react";
 
-function Home({ login, user, setUser, logout, data }) {
+function Home({ login, user, handlerRecuperar, logout, FormRecuperar, enviarSolicitud, mensaje, setMensaje, fechaSeleccionada, setFechaSeleccionada}) {
 
 
     const [email, setEmail] = useState('');
@@ -27,7 +27,8 @@ function Home({ login, user, setUser, logout, data }) {
 
                     {user ?
                         <section>
-                            <h1 className='header-section__h1'> Bienvenid@ {user.nombre} 🖤✨ </h1>
+                            <h1 className='header-section__h1'> Bienvenid@ {user.nombre} {user.id_alumna}🖤✨ </h1>
+                            <p className="alumnas__text">{user.hora}</p>
                             <p className="alumnas__text">{user.email}</p>
                         </section>
 
@@ -40,13 +41,16 @@ function Home({ login, user, setUser, logout, data }) {
                         <p className='login-section__parrafo'>Accede a tu perfil de usuario y recupera tu clase siempre que puedas</p>
                     }
 
-                    {user ?
-                        <section>
-
-                            <FormRecuperar user={user} />
-
-                        </section>
-                        :
+                    {user && user.email ? (
+                         <FormRecuperar 
+                         user={user}
+                         enviarSolicitud={enviarSolicitud} 
+                         mensaje={mensaje} 
+                         setMensaje={setMensaje} 
+                         fechaSeleccionada={fechaSeleccionada} 
+                         setFechaSeleccionada={setFechaSeleccionada} 
+                       />
+                    ) : (
 
                         <>
                             <label htmlFor="nombre">E-Mail:</label>
@@ -57,7 +61,7 @@ function Home({ login, user, setUser, logout, data }) {
 
                             <input className='login-section__login-btn' type='submit' value="Iniciar Sesión" /></>
 
-                    }
+                    )}
 
 
                 </form>
