@@ -92,16 +92,16 @@ function App() {
 
     const requestBody = {
       email: user.email,
-      fecha: fechaFormateada, // Enviar en formato correcto
-      hora: hora, // Incluir la hora
-      id_alumna: user.id_alumna, // Asegúrate de que id_alumna esté presente en el objeto user
-      id_clase: user.id_clase, // Asegúrate de que id_clase esté presente en el objeto user
+      fecha: fechaFormateada, 
+      hora: hora, 
+      id_alumna: user.id_alumna, 
+      id_clase: user.id_clase, 
     };
 
     console.log("Cuerpo de la solicitud:", requestBody);
 
     try {
-      const res = await fetch("http://localhost:3000/api/solicitudes", {
+      const res = await fetch("http://localhost:3000/api/recuperar-clase", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
