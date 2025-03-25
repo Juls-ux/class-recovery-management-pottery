@@ -62,6 +62,8 @@ function App() {
 
 
   const [grupos, setGrupos] = useState([]);
+
+  
   const [alumnosAsignados, setAlumnosAsignados] = useState([]);
   useEffect(() => {
     fetch('http://localhost:3000/api/alumnas/grupos')
@@ -75,32 +77,72 @@ function App() {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const [mensaje, setMensaje] = useState("");
 
+  
   const enviarSolicitud = async (ev) => {
     ev.preventDefault();
   
-
-    const hora = fechaSeleccionada.toISOString().slice(11, 19); // Formato: HH:mm:ss
-    const fechaFormateada = fechaSeleccionada.toISOString().slice(0, 19).replace("T", " "); // Formato: YYYY-MM-DD HH:mm:ss
-  
-    const claseEncontrada = grupos.find(grupo => grupo.dia === user.id_clase.dia && grupo.horario === user.id_clase.horario);  
-
-    const claseId = claseEncontrada ? claseEncontrada.id : null;
-   
-  
-    const requestBody = {
-      id_alumna: user.id,
-      id_clase: claseId,  // ID de clase encontrado o `null`
-      nombre: user.nombre,
-      email: user.email,
-      fecha: fechaFormateada,
-      hora: hora
-    };
-
-
-    if (!fechaSeleccionada || !hora) {
+    if (!fechaSeleccionada) {
       setMensaje("No se proporcionaron los datos necesarios.");
       return;
     }
+    
+  
+    const hora = fechaSeleccionada.toISOString().slice(11, 19); // HH:mm:ss
+    const fechaFormateada = fechaSeleccionada
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " "); // YYYY-MM-DD HH:mm:ss
+  
+    // Aseguramos que 'grupos' esté en el formato correcto (array de objetos)
+    let gruposArray = [];
+    if (grupos.length > 0 && grupos[0].resultado_json) {
+      try {
+        gruposArray = JSON.parse(grupos[0].resultado_json);
+      } catch (err) {
+        console.error("Error al parsear los grupos:", err);
+        gruposArray = grupos; // fallback
+      }
+    } else {
+      gruposArray = grupos;
+    }
+  
+    // Depuración: imprime los datos relevantes
+    console.log("User.id_clase:", user?.id_clase);
+    console.log("Grupos procesados:", gruposArray);
+  
+    if (!user?.id_clase) {
+      console.error("El objeto user no tiene la propiedad id_clase");
+    }
+  
+    // Normalizamos los valores para la comparación
+    const userDia = user?.id_clase?.dia?.trim().toUpperCase();
+    const userHorario = user?.id_clase?.horario?.trim();
+  
+    // Busca en grupos usando los valores normalizados
+    const claseEncontrada = gruposArray.find((grupo) => {
+      const grupoDia = grupo.dia?.trim().toUpperCase();
+      const grupoHorario = grupo.horario?.trim();
+      console.log("Comparando user dia:", userDia, "con grupo dia:", grupoDia);
+      console.log("Comparando user horario:", userHorario, "con grupo horario:", grupoHorario);
+      return grupoDia === userDia && grupoHorario === userHorario;
+    });
+  
+    // Dependiendo del alias usado en el endpoint, puede venir como grupo_id o id.
+    const claseId = claseEncontrada
+      ? Number(claseEncontrada.grupo_id || claseEncontrada.id)
+      : null;
+  
+    console.log("Clase encontrada:", claseEncontrada);
+    console.log("Clase id:", claseId);
+  
+    const requestBody = {
+      id_alumna: user.id,
+      id_clase: user.id_clase,
+      nombre: user.nombre,
+      email: user.email,
+      fecha: fechaFormateada,
+      hora: hora,
+    };
   
     console.log("Cuerpo de la solicitud:", requestBody);
   
@@ -122,6 +164,7 @@ function App() {
     }
   };
   
+
 
 
   const login = async ({ email, contraseña }) => {
@@ -264,7 +307,7 @@ function App() {
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} handleDelete={handleDelete} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filterName={filterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform} />} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />
-          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} handlerInputFilterName={handlerInputFilterName}filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
+          <Route path="Grupos" element={<Grupos searchTerm={searchTerm} handlerInputFilterName={handlerInputFilterName} filterName={filterName} setAlumnosAsignados={setAlumnosAsignados} setGrupos={setGrupos} grupos={grupos} setSearchTerm={setSearchTerm} alumnosAsignados={alumnosAsignados} alumnosAsignadosGrupo={alumnosAsignadosGrupo} />} />
           <Route path='RecuperarSolicitud' element={<RecuperarSolicitud />} />
         </Routes>
 
@@ -275,7 +318,7 @@ function App() {
               <span className="close" onClick={handleCloseModal}>&times;</span>
               <FormAddAlum alumnas={alumnas} setAlumnas={setAlumnas} gruposJson={gruposJson} />
               <FormRecuperar
-               user={user}
+                user={user}
                 enviarSolicitud={enviarSolicitud}
                 mensaje={mensaje}
                 setMensaje={setMensaje}

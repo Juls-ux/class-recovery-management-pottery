@@ -1,5 +1,3 @@
-
-
 import { Link } from "react-router";
 import { useState } from "react";
 import image from "../../images/rotas.png"; // Rutas relativas dentro de src
@@ -26,7 +24,7 @@ function Home({ login, user, FormRecuperar, enviarSolicitud, mensaje, setMensaje
                         
                         <section>
                             <h1 className="header-section__h1">
-                                Bienvenid@ {user.nombre} {user.id}🖤✨
+                                Bienvenid@ {user.nombre} 🖤✨
                             </h1>
                             <p className="alumnas__text">{user.hora}</p>
                             <p className="alumnas__text">{user.email}</p>
