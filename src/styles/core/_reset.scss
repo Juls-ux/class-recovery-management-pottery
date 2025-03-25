@@ -1,13 +1,8 @@
-/* Asegura que el html y body ocupen el 100% de la altura de la pantalla */
 html, body {
-  height: 100%; /* Hace que ocupe toda la altura de la pantalla */
-  margin: 0; /* Elimina los márgenes predeterminados */
-  display: flex;
-  flex-direction: column; /* Hace que el contenido principal crezca hacia abajo */
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-
-/* El contenedor principal (el área de contenido) ocupará todo el espacio disponible */
-main {
-  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
-  padding-bottom: 80px; /* Ajusta el padding inferior para evitar que el contenido se sobreponga al footer */
+.content {
+  flex: 1;
 }

@@ -2,32 +2,32 @@
 
 .login {
 
-    background-image: url('../images/login.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+  background-image: url('../images/login.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
     &__img{
       width: 100px;
   
     }
     @media screen and (min-width: 1024px) {
-    height: 100vh;
+
     }
   }
   
- 
-  
   .header-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+    margin-bottom: 20px;
 
   
     &__h1 {
-      font-size: 28px;
+      font-size: 20px;
       margin-bottom: 20px;
     }
 
@@ -37,23 +37,23 @@
   .login-section {
     background-color: rgba(255, 255, 255, 0.87);
     border-radius: 10px;
-    padding: 35px;
-    margin-block: 40px;
-   
-    margin-inline: 20px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 14px;
-    margin-botto
+    width: 90%;
+    max-width: 400px; /* Para que no se expanda demasiado */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
   
   
     &__parrafo {
       font-size: 16px;
-      color: #707070;
-      margin-bottom: 20px;
+    color: #707070;
+    margin-bottom: 20px;
     }
   
     &__user-data {
@@ -80,13 +80,13 @@
   @media screen and (min-width: 716px) {
     .login-section {
       padding: 50px;
-      margin-inline:100px;
+      width: 50%;
     }
   }
   @media screen and (min-width: 1024px) {
     .login-section {
-      padding: 50px;
-      margin-inline: 350px;
+      width: 40%;
+        max-width: 450px;
     }
   }
   

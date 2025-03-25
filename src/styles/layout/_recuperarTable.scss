@@ -1,0 +1,31 @@
+.table-container {
+    overflow-x: auto;
+    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-inline:30px;
+    width: 100%;
+  border-collapse: collapse;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+}
+
+.table-header {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+.aprobada {
+    background-color: #e8f5e9;
+    color: green;
+    font-weight: bold;
+}
+
+.denegada {
+    background-color: #ffebee;
+    color: red;
+    font-weight: bold;
+}

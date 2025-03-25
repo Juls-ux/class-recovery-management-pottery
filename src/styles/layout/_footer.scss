@@ -1,36 +1,39 @@
-/* Estilos para el footer */
+
 .footerNav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    padding-block: 30px;
-    padding-inline: 50px;
-    background-color: black;
-    color: white;
   
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  padding-block: 30px;
+  padding-inline: 50px;
+  background-color: black;
+  color: white;
+}
+
+/* Estilos para enlaces dentro del footer */
+.footerNav .enlaces-temporales {
+  color: #e9ecfb;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .footerNav {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; /* Centra los elementos horizontalmente */
+      padding-inline: 20px;
   }
-  
-  /* Estilos para los enlaces dentro del footer */
+
   .footerNav .enlaces-temporales {
-    color: #e9ecfb;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 10px;
   }
-  
-  /* Ajustes para pantallas pequeñas (dispositivos móviles) */
-  @media (max-width: 768px) {
-    .footerNav {
-      flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
-      justify-content: center; /* Centra los elementos verticalmente */
-      padding-inline: 20px; /* Reduce el padding lateral */
-    }
-  
-    .footerNav .enlaces-temporales {
-      font-size: 12px; /* Ajusta el tamaño de fuente para pantallas pequeñas */
-      text-align: center; /* Asegura que los enlaces se centren */
-      margin-bottom: 10px; /* Agrega un margen inferior entre los enlaces */
-    }
-  }
-  
+}

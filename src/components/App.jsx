@@ -328,9 +328,11 @@ function App() {
             </div>
           </div>
         )}
-
-        <div><Enlaces /></div>
+       
       </main>
+      <footer>
+      <div><Enlaces /></div>
+      </footer>
 
     </>
   )
