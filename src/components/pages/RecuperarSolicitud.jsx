@@ -10,7 +10,7 @@ function RecuperarSolicitud({ user }) {
             const res = await fetch("http://localhost:3000/api/solicitudes");
             const result = await res.json();
             if (result.success) {
-                setSolicitudes(result.data); // Actualiza las solicitudes cuando se recibe la respuesta
+                setSolicitudes(result.solicitudes || []); // Asegura que siempre es un array
             } else {
                 setError(result.error || "Hubo un error al obtener las solicitudes.");
             }
@@ -18,7 +18,6 @@ function RecuperarSolicitud({ user }) {
             setError("Error de conexión con el servidor.");
         }
     };
-
     // Llamar a obtenerSolicitudes cuando el componente se monte
     useEffect(() => {
         obtenerSolicitudes();
@@ -36,13 +35,8 @@ function RecuperarSolicitud({ user }) {
             </div>
 
             <section>
-                {error && <p className="text">{error}</p>} {/* Muestra error si existe */}
-
-                {solicitudes.length === 0 && !error ? (
-                    <p>No hay solicitudes pendientes.</p>
-                ) : (
-                    <RecuperarTable solicitudes={solicitudes} handleNewSolicitud={handleNewSolicitud} /> // Pasa las solicitudes a la tabla
-                )}
+              <RecuperarTable solicitudes={solicitudes} handleNewSolicitud={handleNewSolicitud} /> 
+            
             </section>
         </>
     );

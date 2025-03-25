@@ -21,14 +21,13 @@ function RecuperarTable({ solicitudes }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {solicitudes.map((solicitud) => (
+                    {solicitudes?.map((solicitud) => (
                         <TableRow key={solicitud.id}>
-                             <TableCell>{solicitud.id_alumna}{solicitud.alumna}</TableCell>
+                            <TableCell>{solicitud.id_alumna} - {solicitud.nombre}</TableCell>
                             <TableCell>{solicitud.email}</TableCell>
                             <TableCell>{solicitud.id_clase}</TableCell>
                             <TableCell>{new Date(solicitud.fecha).toLocaleString()}</TableCell>
-
-                            <TableCell>{solicitud.aprobada}</TableCell>
+                            <TableCell>{solicitud.aprobada ? "✅ Aprobada" : "❌ Denegada"}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

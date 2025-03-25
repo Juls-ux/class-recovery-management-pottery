@@ -15,13 +15,13 @@ function Alumnas({ user}) {
 
             <div className="alumnas">
                 <img className="alumnas__avatar" src={avatar} alt="avatar-alumnas" />
-                {user && <h2 className="alumnas__h2">{user.nombre}  {user.id_alumna}{user.apellidos}</h2>}
+                {user && <h2 className="alumnas__h2">{user.nombre}</h2>}
                 {user &&  <p className="alumnas__text">{user.email}</p>}
             </div>
 
             <div className="horario-section">
             <h3 className="horario-section__h3">Día/s:</h3>
-            {user &&  <p className="alumnas__text">{user.dia} { user.id_clase}  </p>}
+            {user &&  <p className="alumnas__text"></p>}
 
             {user && <h3 className="horario-section__h3">Horario:</h3>}
             {user &&  <p className="alumnas__text">{user.hora}</p>}
@@ -29,8 +29,6 @@ function Alumnas({ user}) {
             </div>
 
         </>
-
-
 
     );
 }
