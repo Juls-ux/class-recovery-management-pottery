@@ -7,47 +7,67 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
   const [isEditing, setIsEditing] = useState(false);
   const [currentAlumna, setCurrentAlumna] = useState(null);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCurrentAlumna((prevAlumna) => ({
+      ...prevAlumna,
+      [name]: value,
+    }));
+  };
 
-  const handlePaymentChange = async (email, value) => {
+const handlePaymentChange = async (email, value) => {
     console.log(`Iniciando actualización de pago para: ${email}, nuevo valor: ${value}`);
   
     const updatedAlumnas = alumnas.map(alumna =>
       alumna.email === email ? { ...alumna, pago: value } : alumna
     );
-    setAlumnas(updatedAlumnas); // Update local state for immediate UI feedback
-  
+
+    setAlumnas(updatedAlumnas); 
+    localStorage.setItem("alumnas", JSON.stringify(updatedAlumnas)); // Guardar en localStorage
+
     try {
-      const response = await fetch(`/api/alumnas/clases/${email}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pago: value }),
-      });
-  
-      console.log(`Código de estado HTTP: ${response.status}`);
-  
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        console.error("Error en la respuesta del servidor:", errorData || "Sin cuerpo de respuesta");
-        throw new Error(`Error al actualizar el pago (HTTP ${response.status})`);
-      }
-  
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        const responseBody = await response.json();
-        console.log("Respuesta del servidor:", responseBody);
-  
-        setAlumnas(prevAlumnas =>
-          prevAlumnas.map(alumna =>
-            alumna.email === email ? responseBody : alumna
-          )
-        );
-      } else {
-        console.warn("La respuesta no es un JSON válido.");
-      }
+        const response = await fetch(`/api/alumnas/clases/${email}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pago: value }),
+        });
+
+        console.log(`Código de estado HTTP: ${response.status}`);
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            console.error("Error en la respuesta del servidor:", errorData || "Sin cuerpo de respuesta");
+            throw new Error(`Error al actualizar el pago (HTTP ${response.status})`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            const responseBody = await response.json();
+            console.log("Respuesta del servidor:", responseBody);
+
+            setAlumnas(prevAlumnas => {
+                const newAlumnas = prevAlumnas.map(alumna =>
+                    alumna.email === email ? responseBody : alumna
+                );
+                localStorage.setItem("alumnas", JSON.stringify(newAlumnas)); // Guardar los datos actualizados
+                return newAlumnas;
+            });
+        } else {
+            console.warn("La respuesta no es un JSON válido.");
+        }
     } catch (error) {
-      console.error("Error en handlePaymentChange:", error);
+        console.error("Error en handlePaymentChange:", error);
     }
-  };
+};
+
+// Recuperar datos de localStorage al cargar
+useEffect(() => {
+    const storedAlumnas = localStorage.getItem("alumnas");
+    if (storedAlumnas) {
+        setAlumnas(JSON.parse(storedAlumnas));
+    }
+}, [setAlumnas]);
+
 
   // Función para guardar los cambios
   const handleSave = () => {
@@ -64,12 +84,29 @@ function ItemAlumnas({ alumnas = [], setAlumnas }) {
   };
 
   // Función para eliminar una alumna
-  const handleDelete = (email) => {
+  const handleDelete = async (email) => {
     const confirmDelete = window.confirm("¿Seguro que quieres borrar a esta alumna?");
+    
     if (confirmDelete) {
-      setAlumnas(prevAlumnas => prevAlumnas.filter(alumna => alumna.email !== email));
+        try {
+            const response = await fetch(`http://localhost:3000/api/alumnas/${email}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                setAlumnas(prevAlumnas => prevAlumnas.filter(alumna => alumna.email !== email));
+            } else {
+                alert(data.error);
+            }
+        } catch (error) {
+            console.error("Error al eliminar la alumna:", error);
+            alert("Hubo un error al eliminar la alumna.");
+        }
     }
-  };
+};
 
   useEffect(() => {
     const fetchAlumnas = async () => {

@@ -26,7 +26,7 @@ function Home({ login, user, FormRecuperar, enviarSolicitud, mensaje, setMensaje
                             <h1 className="header-section__h1">
                                 Bienvenid@ {user.nombre} 🖤✨
                             </h1>
-                            <p className="alumnas__text">{user.hora}</p>
+                            <p className="alumnas__text">{user.clase_asignada?.dia} {user.clase_asignada?.horario}</p>
                             <p className="alumnas__text">{user.email}</p>
                         </section>
 

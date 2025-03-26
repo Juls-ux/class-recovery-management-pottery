@@ -14,6 +14,9 @@ function Burger({user, login, setUser, logout, open }) {
     setIsOpen(!isOpen);
   };
 
+console.log(user);
+
+
   return (
     <div className={`burger-menu ${isOpen ? 'open' : ''}`}>
       <button className="burger-icon" onClick={toggleMenu}>
@@ -25,30 +28,39 @@ function Burger({user, login, setUser, logout, open }) {
       <nav className={`nav-menu ${isOpen ? 'active' : ''}`}>
         <ul className="header__nav-menu" >
 
-          <>
+
           <li>
             <Link className="header__nav-link" to="/"><IoHomeSharp />Home
             </Link>
           </li>
-            
+          {user && user.rol === 'admin' &&
             <li>  <Link className="header__nav-link" to="RecuperarSolicitud"><IoMdNotifications />Alertas
             </Link> </li>
-          </>
-        
+
+          }
+
+          {user?.rol === 'admin' &&
           <li>
             <Link className="header__nav-link" to="/Calendario"><FaCalendarAlt />Calendario</Link>
           </li>
-
+}
+          {user &&
           <li>
             <Link className="header__nav-link" to="/Alumnas"><FaRegUserCircle />Mi perfil</Link>
           </li>
+}
+          {user && user.rol === 'admin' &&
           <li>
               <Link className="header__nav-link" to="/GestionAlumnas">Gestion Alumnas</Link>
             </li>
+}
+{user && user.rol === 'admin' &&
             <li>
               <Link className="header__nav-link" to="/Grupos">Grupos</Link>
             </li>
+}
           <li>
+
 
             {user ?
               <Link className="header__nav-link-log" to="/" onClick={logout}>Logout

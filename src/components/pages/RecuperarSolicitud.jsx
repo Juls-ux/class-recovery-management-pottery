@@ -28,6 +28,23 @@ function RecuperarSolicitud({ user }) {
         obtenerSolicitudes(); // Vuelve a cargar las solicitudes después de una nueva solicitud
     };
 
+    const fetchSolicitud = async (id_clase, id_alumna, estado) => {
+        const res = await fetch('http://localhost:3000/api/recuperar-clase/'+id_clase+'/'+id_alumna+'/'+estado, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_clase, id_alumna, estado}),
+        });
+    
+        const resJson = await res.json();
+    
+        if (resJson.success) {
+            await obtenerSolicitudes();
+        } else {
+            console.error("Error al actualizar:", resJson.error);
+        }
+    };
+
+
     return (
         <>
             <div className="title">
@@ -35,7 +52,7 @@ function RecuperarSolicitud({ user }) {
             </div>
 
             <section>
-              <RecuperarTable solicitudes={solicitudes} handleNewSolicitud={handleNewSolicitud} /> 
+              <RecuperarTable solicitudes={solicitudes} fetchSolicitud={fetchSolicitud} /> 
             
             </section>
         </>

@@ -192,7 +192,12 @@ function App() {
       localStorage.setItem("user", JSON.stringify(payload));
       localStorage.setItem("token", data.token);
 
-      navigate("/");
+      if( payload.rol === 'alumna' ) {
+        navigate("/");
+      }
+      else if( payload.rol === 'admin' ) {
+        navigate('/RecuperarSolicitud');
+      }
     } catch (error) {
       console.error("Error en el login:", error);
     }
