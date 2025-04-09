@@ -19,7 +19,6 @@ import FormRecuperar from './Formrecuperar';
 
 
 
-
 function App() {
 
   const { pathname: path } = useLocation();
@@ -51,10 +50,10 @@ function App() {
 
   }
 
-
+  const API_ALUMNAS_URL = import.meta.env.PROD ?  '/api/alumnas/clases' : 'http://localhost:3000/api/alumnas/clases';
   const [alumnas, setAlumnas] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/api/alumnas/clases')
+    fetch(API_ALUMNAS_URL)
       .then(response => response.json())
       .then(result => console.log('Success:', result))
       .catch(error => console.error('Error:', error));
@@ -145,9 +144,9 @@ function App() {
     };
   
     console.log("Cuerpo de la solicitud:", requestBody);
-  
+    const API_RECUPERAR_URL = import.meta.env.PROD ?  'api/recuperar-clase' : 'http://localhost:3000/api/recuperar-clase';
     try {
-      const res = await fetch("http://localhost:3000/api/recuperar-clase", {
+      const res = await fetch(API_RECUPERAR_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestBody),
@@ -165,11 +164,59 @@ function App() {
   };
   
 
+  const API_SOLICITUDES_URL = import.meta.env.PROD
+  ? '/api/solicitudes/'
+  : 'http://localhost:3000/api/solicitudes/';
+
+const useSolicitudesRecuperacion = (idAlumna) => {
+  const [solicitudes, setSolicitudes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [mensaje, setMensaje] = useState("");
+
+  useEffect(() => {
+    if (!idAlumna) return;
+
+    const fetchSolicitudes = async () => {
+      try {
+        const response = await fetch(`${API_SOLICITUDES_URL}${idAlumna}`);
+        const data = await response.json();
+        
+        if (data.success) {
+          setSolicitudes(data.solicitudes);
+          if (data.solicitudes.length > 0) {
+            const ultimaSolicitud = data.solicitudes[0];
+            setMensaje(
+              ultimaSolicitud.aprobada
+                ? "Tu solicitud ha sido aprobada ✅"
+                : "Tu solicitud ha sido denegada ❌"
+            );
+          } else {
+            setMensaje("No tienes solicitudes registradas.");
+          }
+        } else {
+          throw new Error(data.error || 'Error al obtener las solicitudes');
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSolicitudes();
+  }, [idAlumna]);
+
+  return { solicitudes, loading, error, mensaje };
+};
+
+
+  const API_LOGIN_URL = import.meta.env.PROD ?  'api/login' : 'http://localhost:3000/api/login';
 
 
   const login = async ({ email, contraseña }) => {
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch(API_LOGIN_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, contraseña }),
@@ -308,7 +355,7 @@ function App() {
       <main>
 
         <Routes>
-          <Route index element={<Home login={login} logout={logout} setUser={setUser} user={user} token={token} setToken={setToken} handlerRecuperar={handlerRecuperar} enviarSolicitud={enviarSolicitud} mensaje={mensaje} setMensaje={setMensaje} fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} FormRecuperar={FormRecuperar} />} />
+          <Route index element={<Home login={login} logout={logout} setUser={setUser} user={user} token={token} setToken={setToken} handlerRecuperar={handlerRecuperar} enviarSolicitud={enviarSolicitud} mensaje={mensaje} setMensaje={setMensaje} fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} FormRecuperar={FormRecuperar} useSolicitudesRecuperacion={useSolicitudesRecuperacion} />} />
           <Route path="GestionAlumnas" element={<GestionAlumnas alumnas={alumnas} handleDelete={handleDelete} setAlumnas={setAlumnas} handlerInputFilterName={handlerInputFilterName} filterName={filterName} filteredAlumnas={filteredAlumnas} setNewAlumna={setNewAlumna} newAlumna={newAlumna} />} />
           <Route path="Alumnas" element={<Alumnas user={user} login={login} logout={logout} handlerRecuperar={handlerRecuperar} showForm={showForm} setShowForm={setShowform} />} />
           <Route path="Calendario" element={<Calendario selectedDate={selectedDate} setSelectedDate={setSelectedDate} mode={mode} setMode={setMode} cellRender={cellRender} onSelect={onSelect} onPanelChange={onPanelChange} />} />

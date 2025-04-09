@@ -101,3 +101,9 @@
     padding: 14px;  
   }
 }
+
+.react-datepicker__day--festivo {
+  background-color: #fee2e2 !important;
+  color: #b91c1c !important;
+  border-radius: 50%;
+}

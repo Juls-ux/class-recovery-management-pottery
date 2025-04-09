@@ -1,6 +1,6 @@
 
 .footerNav {
-
+position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -12,6 +12,7 @@
   padding-inline: 50px;
   background-color: black;
   color: white;
+  list-style: none;
 }
 
 /* Estilos para enlaces dentro del footer */
@@ -35,5 +36,6 @@
       font-size: 12px;
       text-align: center;
       margin-bottom: 10px;
+      text-decoration: none;
   }
 }

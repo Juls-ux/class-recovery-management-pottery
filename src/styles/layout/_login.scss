@@ -31,6 +31,11 @@
       font-size: 20px;
       margin-bottom: 20px;
     }
+    &__h3{
+      font-size: 19px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
 
   }
   
@@ -55,7 +60,7 @@
     &__parrafo {
       font-size: 16px;
     color: #707070;
-    margin-bottom: 20px;
+    margin-top: 20px;
     }
   
     &__user-data {
@@ -91,4 +96,6 @@ padding-block: 20px;
         max-width: 450px;
     }
   }
-  
+  .mensaje-solicitud{
+    margin-bottom: 0px;
+  }
